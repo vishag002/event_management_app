@@ -2,6 +2,7 @@ import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_inbox_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_profile_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class VendorBottomNavBar extends StatefulWidget {
@@ -39,16 +40,20 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
           items: [
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.home,
+                CupertinoIcons.home,
+                fill: .5,
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: 'Explore',
+              icon: Icon(Icons.chat),
+              label: 'Inbox',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(
+                CupertinoIcons.person_crop_circle,
+                size: 30,
+              ),
               label: 'Profile',
             ),
           ]),
