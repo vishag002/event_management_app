@@ -74,7 +74,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
                     });
                   },
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 FilterChipWidget(
                   label: "Pending",
                   isSelected: selectedFilter == 'Pending',
@@ -161,7 +161,7 @@ Widget ServiceListView({
   required status,
 }) {
   return AspectRatio(
-    aspectRatio: 4 / 2, // Maintain a 4:2 aspect ratio for the outer container
+    aspectRatio: 4.5 / 2, // Maintain a 4:2 aspect ratio for the outer container
     child: Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Container(
@@ -204,7 +204,7 @@ Widget ServiceListView({
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: MediaQuery.of(context).size.width * .5,
+                        width: MediaQuery.of(context).size.width * .6,
                         child: Text(
                           title,
                           maxLines: 1,
@@ -213,7 +213,7 @@ Widget ServiceListView({
                         ),
                       ),
                       SizedBox(
-                        width: 230,
+                        width: MediaQuery.of(context).size.width * .6,
                         child: Text(
                           description,
                           maxLines: 2,
@@ -225,22 +225,20 @@ Widget ServiceListView({
                   ),
                 ],
               ),
-              const SizedBox(
+              Container(
+                // color: Colors.amber,
                 height: 20, // Height of the dashed line
                 child: Row(
                   children: [
                     Flexible(
-                      child: Center(
-                        child: Text(
-                          '------------------------------------------------------------------------------------------------------------',
-                          overflow: TextOverflow
-                              .fade, // Prevents the text from overflowing
-                          softWrap: true, // Allows the text to wrap
-                          maxLines: 1, // Ensures only one line
-                          style: TextStyle(
-                            color: ColorConstants.textSecondary,
-                            fontSize: 20, // Adjust font size
-                          ),
+                      child: Text(
+                        '- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  - ------------------------',
+                        overflow: TextOverflow.fade,
+                        softWrap: true, // Allows the text to wrap
+                        maxLines: 1, // Ensures only one line
+                        style: TextStyle(
+                          color: ColorConstants.textSecondary.withOpacity(.5),
+                          fontSize: 10, // Adjust font size
                         ),
                       ),
                     ),
