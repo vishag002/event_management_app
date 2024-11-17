@@ -1,10 +1,11 @@
-import 'dart:developer';
+import 'dart:math';
 
 import 'package:event_management_app/models/service_model.dart';
 import 'package:event_management_app/models/services_demo_list.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/vendor/vendor_add_service_screen.dart';
+import 'package:event_management_app/views/vendor/vendor_service_view_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -39,20 +40,18 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              "My Services",
-              style: TextConstants.appTitle,
-            ),
-            const SizedBox(height: 30),
-            Container(
-              height: 50,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: ColorConstants.primaryBlack,
-                borderRadius: BorderRadius.circular(10),
+            const Padding(
+              padding: EdgeInsets.only(left: 15),
+              child: Text(
+                "My Services",
+                style: TextConstants.appTitle,
               ),
             ),
+            const SizedBox(height: 30),
+            searchWidget(),
+            const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -188,8 +187,7 @@ Widget ServiceListView({
 
                       // Ensure the square is sized properly
                       return Container(
-                        width:
-                            sideLength, // Set both width and height to the same value to keep it square
+                        width: sideLength,
                         height: sideLength,
                         decoration: BoxDecoration(
                             color: Colors.amber,
@@ -205,13 +203,23 @@ Widget ServiceListView({
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text(
-                        title,
-                        style: TextConstants.headline,
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * .5,
+                        child: Text(
+                          title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextConstants.headline,
+                        ),
                       ),
-                      Text(
-                        description,
-                        style: TextConstants.bodyText,
+                      SizedBox(
+                        width: 230,
+                        child: Text(
+                          description,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextConstants.bodyText,
+                        ),
                       ),
                     ],
                   ),
@@ -256,18 +264,27 @@ Widget ServiceListView({
                         Text(status),
                       ],
                     ),
-                    Container(
-                      width: 100,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        color: ColorConstants.primaryBlack,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "See Details",
-                          style:
-                              TextConstants.buttonText.copyWith(fontSize: 14),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => VendorServiceViewScreen(),
+                            ));
+                      },
+                      child: Container(
+                        width: 100,
+                        height: 40,
+                        decoration: BoxDecoration(
+                          color: ColorConstants.primaryBlack,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "See Details",
+                            style:
+                                TextConstants.buttonText.copyWith(fontSize: 14),
+                          ),
                         ),
                       ),
                     )
@@ -278,6 +295,33 @@ Widget ServiceListView({
           ),
         ),
       ),
+    ),
+  );
+}
+
+Widget searchWidget() {
+  return Container(
+    height: 50,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: ColorConstants.primaryBlack.withOpacity(.1),
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: const TextField(
+      textAlignVertical: TextAlignVertical.center, // Center the text vertically
+      textAlign: TextAlign.start, // Align text to the start horizontally
+      decoration: InputDecoration(
+        border: InputBorder.none, // Remove the border
+        hintText: "Search your services",
+        hintStyle: TextConstants.bodyTextSecondary,
+        prefixIcon: Icon(
+          CupertinoIcons.search,
+          color: ColorConstants.textSecondary, // Add appropriate color
+        ),
+        contentPadding: EdgeInsets.zero, // Adjust padding to center hint
+      ),
+      style: TextConstants.bodyText, // Style for the input text
+      cursorColor: ColorConstants.textSecondary,
     ),
   );
 }
