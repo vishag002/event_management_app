@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:event_management_app/models/service_model.dart';
 import 'package:event_management_app/models/services_demo_list.dart';
 import 'package:event_management_app/utilis/color_const.dart';
@@ -160,8 +158,12 @@ Widget ServiceListView({
   required price,
   required status,
 }) {
+  double screenWidth = MediaQuery.of(context).size.width;
+
+  // Dynamically set the aspect ratio based on the screen width
+  double aspectRatio = screenWidth > 400 ? 4.5 / 2 : 4.1 / 2;
   return AspectRatio(
-    aspectRatio: 4.5 / 2, // Maintain a 4:2 aspect ratio for the outer container
+    aspectRatio: aspectRatio,
     child: Padding(
       padding: const EdgeInsets.only(top: 15),
       child: Container(
