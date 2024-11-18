@@ -15,15 +15,48 @@ class VendorServiceViewScreen extends StatelessWidget {
 
     final w1 = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Column(
-      children: [
-        FullScreenImageCarousel(
-          imageUrls: images,
-          // Optional: customize durations
-          autoPlayDuration: const Duration(seconds: 5),
-          animationDuration: const Duration(seconds: 1),
-        )
-      ],
-    ));
+      body: Column(
+        children: [
+          FullScreenImageCarousel(
+            imageUrls: images,
+            // Optional: customize durations
+            autoPlayDuration: const Duration(seconds: 5),
+            animationDuration: const Duration(seconds: 1),
+          ),
+          Text("title here"),
+          Text("Description here"),
+          Text("Rate 55"),
+          BottomAppBar(
+            color: Colors.transparent,
+            elevation: 0,
+            shadowColor: Colors.transparent,
+            surfaceTintColor: Colors.transparent,
+            child: Container(
+              height: 50,
+              width: w1,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(30),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    child: Center(
+                      child: Text("edit"),
+                    ),
+                  ),
+                  Container(
+                    child: Center(
+                      child: Text("delete"),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
