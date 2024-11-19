@@ -36,6 +36,7 @@ class TextConstants {
   static const TextStyle bodyTextSecondary = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Roboto',
     color: ColorConstants.textSecondary, // Lighter text color
   );
 
@@ -43,6 +44,7 @@ class TextConstants {
   static const TextStyle buttonText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Roboto',
     color: ColorConstants.buttonText, // White text for buttons
   );
 
@@ -50,6 +52,8 @@ class TextConstants {
   static const TextStyle errorText = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Roboto',
+
     color: Colors.red, // Red for error messages
   );
 
@@ -57,6 +61,7 @@ class TextConstants {
   static const TextStyle formLabel = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
+    fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
 }
