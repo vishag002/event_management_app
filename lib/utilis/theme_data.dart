@@ -12,6 +12,6 @@ ThemeData appTheme = ThemeData(
     buttonColor: ColorConstants.buttonBackground, // Custom button color
   ),
   iconTheme: const IconThemeData(
-    color: ColorConstants.backgroundPrimary, // Icon color
+    color: ColorConstants.primaryBlack, // Icon color
   ),
 );
