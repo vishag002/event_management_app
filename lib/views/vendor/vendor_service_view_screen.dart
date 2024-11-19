@@ -16,6 +16,7 @@ class VendorServiceViewScreen extends StatelessWidget {
     final w1 = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FullScreenImageCarousel(
             imageUrls: images,
@@ -23,39 +24,81 @@ class VendorServiceViewScreen extends StatelessWidget {
             autoPlayDuration: const Duration(seconds: 5),
             animationDuration: const Duration(seconds: 1),
           ),
-          Text("title here"),
-          Text("Description here"),
-          Text("Rate 55"),
-          BottomAppBar(
-            color: Colors.transparent,
-            elevation: 0,
-            shadowColor: Colors.transparent,
-            surfaceTintColor: Colors.transparent,
-            child: Container(
-              height: 50,
-              width: w1,
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Center(
-                      child: Text("edit"),
-                    ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'DJ Service',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                ),
+                // Description
+                const SizedBox(height: 10),
+                const Text(
+                  'Professional DJ services for weddings, parties, and corporate events. High-quality sound equipment and experienced DJs to make your event memorable.',
+                  style: TextStyle(color: Colors.grey),
+                ),
+
+                // Price
+                const SizedBox(height: 10),
+                const Text(
+                  '\$550/Day',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                    fontWeight: FontWeight.bold,
                   ),
-                  Container(
-                    child: Center(
-                      child: Text("delete"),
-                    ),
-                  )
-                ],
-              ),
+                ),
+              ],
             ),
-          )
+          ),
         ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: Colors.transparent,
+        shadowColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
+        elevation: 0,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+          ),
+          padding: const EdgeInsets.all(5),
+          child: Row(
+            children: [
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    // Edit action
+                  },
+                  icon: const Icon(Icons.edit),
+                  label: const Text('Edit'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: ElevatedButton.icon(
+                  onPressed: () {
+                    // Delete action
+                  },
+                  icon: const Icon(Icons.delete),
+                  label: const Text('Delete'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
