@@ -43,7 +43,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
     return Positioned(
       top: 40, // Adjust this value to position the button properly
       left: 16,
-      child: GestureDetector(
+      child: InkWell(
         onTap: () => Navigator.of(context).pop(),
         child: Container(
           padding: const EdgeInsets.all(8),
@@ -62,9 +62,13 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
   }
 
   Widget _buildImageCarousel() {
-    return SizedBox(
+    return Container(
       height: MediaQuery.of(context).size.height * 0.5,
       width: MediaQuery.of(context).size.width,
+      decoration: BoxDecoration(
+        color: Colors.grey,
+        borderRadius: BorderRadius.circular(30),
+      ),
       child: CarouselSlider.builder(
         itemCount: widget.imageUrls.length,
         itemBuilder: (context, index, _) {
@@ -97,29 +101,31 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
           bottomRight: Radius.circular(30),
         ),
       ),
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.cover,
-        errorBuilder: (context, error, stackTrace) {
-          return const Center(
-            child: Icon(
-              Icons.error_outline,
-              color: Colors.white,
-              size: 32,
-            ),
-          );
-        },
-        // loadingBuilder: (context, child, loadingProgress) {
-        //   if (loadingProgress == null) return child;
-        //   return Center(
-        //     child: CircularProgressIndicator(
-        //       value: loadingProgress.expectedTotalBytes != null
-        //           ? loadingProgress.cumulativeBytesLoaded /
-        //               loadingProgress.expectedTotalBytes!
-        //           : null,
-        //     ),
-        //   );
-        // },
+      child: ClipRect(
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return const Center(
+              child: Icon(
+                Icons.error_outline,
+                color: Colors.white,
+                size: 32,
+              ),
+            );
+          },
+          // loadingBuilder: (context, child, loadingProgress) {
+          //   if (loadingProgress == null) return child;
+          //   return Center(
+          //     child: CircularProgressIndicator(
+          //       value: loadingProgress.expectedTotalBytes != null
+          //           ? loadingProgress.cumulativeBytesLoaded /
+          //               loadingProgress.expectedTotalBytes!
+          //           : null,
+          //     ),
+          //   );
+          // },
+        ),
       ),
     );
   }

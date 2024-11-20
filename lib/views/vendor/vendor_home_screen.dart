@@ -192,7 +192,7 @@ Widget ServiceListView({
                         width: sideLength,
                         height: sideLength,
                         decoration: BoxDecoration(
-                            color: Colors.amber,
+                            color: Colors.grey,
                             borderRadius: BorderRadius.circular(8),
                             image: DecorationImage(
                                 image: NetworkImage(imageUrl),

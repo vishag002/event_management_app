@@ -1,4 +1,5 @@
 import 'package:event_management_app/utilis/color_const.dart';
+import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -94,11 +95,8 @@ class VendorProfileScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Text(
-                'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature.',
-                style: TextStyle(
-                  color: Colors.grey[600],
-                  height: 1.5,
-                ),
+                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique  ',
+                style: TextConstants.bodyText,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -207,13 +205,7 @@ class VendorProfileScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 16),
-        Text(
-          text,
-          style: const TextStyle(
-            color: Colors.black87,
-            fontSize: 16,
-          ),
-        ),
+        Text(text, style: TextConstants.bodyText),
       ],
     );
   }
