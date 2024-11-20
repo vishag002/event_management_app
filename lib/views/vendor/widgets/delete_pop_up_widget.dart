@@ -2,8 +2,8 @@ import 'dart:ui';
 
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
-import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class BlurryDialog extends StatelessWidget {
   final String title;
@@ -35,16 +35,12 @@ class BlurryDialog extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               // Placeholder for animation or icon
-              Container(
-                height: 100,
-                width: 100,
-                decoration: BoxDecoration(
-                  color: Colors.black12,
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: Icon(Icons.warning_amber_rounded,
-                    size: 60, color: Colors.orange),
-              ),
+              SizedBox(
+                  height: 150,
+                  width: 150,
+                  child: Lottie.asset(
+                    'assets/lottie_files/delete_animation_lottie.json',
+                  )),
               // Title and description
               Column(
                 children: [
@@ -89,10 +85,8 @@ class BlurryDialog extends StatelessWidget {
                     ),
                     child: Text(
                       "Cancel",
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: TextConstants.buttonText
+                          .copyWith(color: ColorConstants.primaryBlack),
                     ),
                   ),
                   ElevatedButton(
@@ -109,11 +103,8 @@ class BlurryDialog extends StatelessWidget {
                       ),
                     ),
                     child: const Text(
-                      "Continue",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      "Confirm",
+                      style: TextConstants.buttonText,
                     ),
                   ),
                 ],

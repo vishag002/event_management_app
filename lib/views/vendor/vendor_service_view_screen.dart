@@ -17,20 +17,19 @@ class VendorServiceViewScreen extends StatelessWidget {
       'https://s.alicdn.com/@sc04/kf/H198e6af29950427a9f441dc9cc7db788Z.jpg_720x720q50.jpg',
     ];
 
-    final w1 = MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(bottom: 0, left: 8, right: 8, top: 8),
+          padding: const EdgeInsets.only(bottom: 0, left: 8, right: 8, top: 0),
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 10),
                 FullScreenImageCarousel(
                   imageUrls: images,
-                  // Optional: customize durations
                   autoPlayDuration: const Duration(seconds: 5),
-                  animationDuration: const Duration(seconds: 1),
+                  animationDuration: const Duration(milliseconds: 750),
                 ),
                 const Padding(
                   padding:

@@ -21,7 +21,6 @@ class FullScreenImageCarousel extends StatefulWidget {
 
 class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
   int _currentIndex = 0;
-  final CarouselController _carouselController = CarouselController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +65,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
       height: MediaQuery.of(context).size.height * 0.5,
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        color: Colors.grey,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(30),
       ),
       child: CarouselSlider.builder(
@@ -79,6 +78,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
           viewportFraction: 1.0,
           enlargeCenterPage: false,
           autoPlay: true,
+          pauseAutoPlayOnTouch: true,
           autoPlayInterval: widget.autoPlayDuration,
           autoPlayAnimationDuration: widget.animationDuration,
           enableInfiniteScroll: true,
@@ -96,35 +96,11 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
     return Container(
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
-        ),
-      ),
-      child: ClipRect(
-        child: Image.network(
-          imageUrl,
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(30),
+        image: DecorationImage(
+          image: NetworkImage(imageUrl),
           fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return const Center(
-              child: Icon(
-                Icons.error_outline,
-                color: Colors.white,
-                size: 32,
-              ),
-            );
-          },
-          // loadingBuilder: (context, child, loadingProgress) {
-          //   if (loadingProgress == null) return child;
-          //   return Center(
-          //     child: CircularProgressIndicator(
-          //       value: loadingProgress.expectedTotalBytes != null
-          //           ? loadingProgress.cumulativeBytesLoaded /
-          //               loadingProgress.expectedTotalBytes!
-          //           : null,
-          //     ),
-          //   );
-          // },
         ),
       ),
     );
@@ -133,33 +109,18 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
   Widget _buildDotIndicators() {
     return Container(
       padding: const EdgeInsets.only(bottom: 16.0),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Colors.transparent,
-            Colors.black.withOpacity(0.5),
-          ],
-        ),
-      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: widget.imageUrls.asMap().entries.map((entry) {
-          return GestureDetector(
-            onTap: () {
-              //
-            },
-            child: Container(
-              width: 8.0,
-              height: 8.0,
-              margin: const EdgeInsets.symmetric(horizontal: 4.0),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: _currentIndex == entry.key
-                    ? Colors.white
-                    : Colors.white.withOpacity(0.4),
-              ),
+          return Container(
+            width: 8.0,
+            height: 8.0,
+            margin: const EdgeInsets.symmetric(horizontal: 4.0),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: _currentIndex == entry.key
+                  ? Colors.white
+                  : Colors.white.withOpacity(0.4),
             ),
           );
         }).toList(),
