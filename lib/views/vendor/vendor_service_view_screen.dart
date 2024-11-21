@@ -94,12 +94,12 @@ class VendorServiceViewScreen extends StatelessWidget {
                           title: "Are you sure you want to Delete?",
                           description: "This action cannot be undone.",
                           onContinue: () {
-                            // Navigate to Vendor Home Screen or perform any action
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => VendorBottomNavBar()),
-                            );
+                            Navigator.pop(context);
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                  builder: (context) => VendorBottomNavBar(),
+                                ),
+                                (route) => false);
                           },
                           onCancel: () {
                             // Optional cancel behavior

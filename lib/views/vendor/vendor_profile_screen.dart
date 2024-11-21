@@ -142,7 +142,7 @@ class VendorProfileScreen extends StatelessWidget {
                   const SizedBox(height: 16),
                   _buildInfoRow(
                     icon: Icons.email_outlined,
-                    text: "johndoe@example.com",
+                    text: "demo@demo.com",
                     iconColor: Theme.of(context).primaryColor,
                   ),
                 ],
