@@ -1,5 +1,5 @@
 import 'package:event_management_app/utilis/text_const.dart';
-import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
+import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:event_management_app/views/vendor/widgets/carousel_widget_.dart';
 import 'package:flutter/material.dart';
 
@@ -98,7 +98,7 @@ class VendorServiceViewScreen extends StatelessWidget {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => VendorHomeScreen()),
+                                  builder: (context) => VendorBottomNavBar()),
                             );
                           },
                           onCancel: () {
