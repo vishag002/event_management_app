@@ -21,23 +21,24 @@ class BlurryDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final h1 = MediaQuery.of(context).size.height * 0.2;
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
       child: AlertDialog(
-        backgroundColor: ColorConstants.backgroundPrimary.withOpacity(0.9),
+        // backgroundColor:const Color.fromARGB(255, 179, 175, 124).withOpacity(0.9),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
         content: Container(
-          padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 0),
+          padding: const EdgeInsets.only(bottom: 5),
           height: MediaQuery.of(context).size.height * 0.4,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              // Placeholder for animation or icon
-              SizedBox(
-                  height: 150,
-                  width: 150,
+              Container(
+                  //color: Colors.red,
+                  height: h1,
+                  width: h1,
                   child: Lottie.asset(
                     'assets/lottie_files/delete_animation_lottie.json',
                   )),
@@ -52,7 +53,7 @@ class BlurryDialog extends StatelessWidget {
                     ),
                     textAlign: TextAlign.center,
                   ),
-                  const SizedBox(height: 8),
+                  //const SizedBox(height: 8),
                   Text(
                     description,
                     style: TextConstants.bodyTextSecondary,
@@ -61,6 +62,8 @@ class BlurryDialog extends StatelessWidget {
                 ],
               ),
               // Buttons
+              const SizedBox(height: 8),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [

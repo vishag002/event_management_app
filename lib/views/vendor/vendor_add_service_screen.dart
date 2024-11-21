@@ -1,3 +1,4 @@
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,13 +21,14 @@ class VendorAddServiceScreen extends StatelessWidget {
         title: Text("Add Service"),
         actions: [
           IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                CupertinoIcons.checkmark_alt,
-                size: 30,
-              ))
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              CupertinoIcons.checkmark_alt,
+              size: 30,
+            ),
+          )
         ],
       ),
       body: Padding(
@@ -37,13 +39,12 @@ class VendorAddServiceScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "add Title",
+                "Service Title",
                 style: TextConstants.subheading,
               ),
             ),
             ListTile(
-              title: // Example usage
-                  CustomTextField(
+              title: CustomTextField(
                 controller: titleController,
                 hintText: 'Add title',
                 validator: (value) {
@@ -64,8 +65,7 @@ class VendorAddServiceScreen extends StatelessWidget {
               ),
             ),
             ListTile(
-              title: // Example usage
-                  CustomTextField(
+              title: CustomTextField(
                 controller: descriptionController,
                 hintText: 'Add description',
                 validator: (value) {
@@ -77,19 +77,18 @@ class VendorAddServiceScreen extends StatelessWidget {
               ),
             ),
 
-            //add rate
+            //add price
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                "Rate",
+                "Price",
                 style: TextConstants.subheading,
               ),
             ),
             ListTile(
-              title: // Example usage
-                  CustomTextField(
+              title: CustomTextField(
                 controller: priceController,
-                hintText: 'Add Service rate',
+                hintText: 'Add Service price',
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter some text';
@@ -98,6 +97,68 @@ class VendorAddServiceScreen extends StatelessWidget {
                 },
               ),
             ),
+
+            //select price Type
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Select Price Type",
+                style: TextConstants.subheading,
+              ),
+            ),
+            ListTile(
+              title: Container(
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: CustomDropdown<String>(
+                  hintText: 'Select price type',
+                  items: priceType,
+                  initialItem: priceType[0],
+                  onChanged: (value) {
+                    print('changing value to: $value');
+                  },
+                ),
+              ),
+            ),
+
+            //select category
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Text(
+                "Category",
+                style: TextConstants.subheading,
+              ),
+            ),
+            ListTile(
+              title: Container(
+                height: 60,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: CustomDropdown<String>(
+                  hintText: 'Select Category',
+                  items: categoryList,
+                  initialItem: categoryList[0],
+                  onChanged: (value) {
+                    print('changing value to: $value');
+                  },
+                ),
+              ),
+            ),
+
+            //select image
             SizedBox(height: 30),
             ListTile(
               title: Container(
@@ -107,7 +168,7 @@ class VendorAddServiceScreen extends StatelessWidget {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
@@ -222,3 +283,16 @@ class CustomTextField extends StatelessWidget {
     );
   }
 }
+///////drop down
+
+const List<String> categoryList = [
+  'Wedding',
+  'Corporate',
+  'Private Show',
+  'Concert',
+];
+
+const List<String> priceType = [
+  'per Day',
+  'per Sqfeet',
+];
