@@ -162,7 +162,7 @@ Widget ServiceListView({
   double screenWidth = MediaQuery.of(context).size.width;
 
   // Dynamically set the aspect ratio based on the screen width
-  double aspectRatio = screenWidth > 400 ? 4.2 / 2 : 4.1 / 2;
+  double aspectRatio = screenWidth > 400 ? 4 / 2 : 4.1 / 2;
   return AspectRatio(
     aspectRatio: aspectRatio,
     child: Padding(
@@ -170,7 +170,7 @@ Widget ServiceListView({
       child: Container(
         width: double.infinity, // Ensure the width is finite
         decoration: BoxDecoration(
-          color: ColorConstants.highlightBlue,
+          color: ColorConstants.highlightBlueLightest.withOpacity(.5),
           borderRadius: BorderRadius.circular(8),
           // border: Border.all(
           //   color: ColorConstants.textSecondary,
@@ -195,11 +195,11 @@ Widget ServiceListView({
                         width: sideLength,
                         height: sideLength,
                         decoration: BoxDecoration(
-                            color: Colors.grey,
-                            borderRadius: BorderRadius.circular(8),
-                            image: DecorationImage(
-                                image: NetworkImage(imageUrl),
-                                fit: BoxFit.cover)),
+                          // color: Colors.grey,
+                          borderRadius: BorderRadius.circular(8),
+                          image: DecorationImage(
+                              image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                        ),
                       );
                     },
                   ),
@@ -257,14 +257,32 @@ Widget ServiceListView({
                   children: [
                     Column(
                       children: [
-                        Text("Price"),
-                        Text("₹ ${price.toString()}"),
+                        Text(
+                          "Price",
+                          style: TextConstants.bodyTextSecondary,
+                        ),
+                        Text(
+                          "₹ ${price.toString()}",
+                          style: TextConstants.buttonText
+                              .copyWith(color: ColorConstants.textPrimary),
+                        ),
                       ],
                     ),
                     Column(
                       children: [
-                        Text("Status"),
-                        Text(status),
+                        Text(
+                          "Status",
+                          style: TextConstants.bodyTextSecondary,
+                        ),
+                        Text(
+                          status,
+                          style: TextConstants.bodyText.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: status == 'Active'
+                                ? ColorConstants.activeColor
+                                : ColorConstants.errorColor,
+                          ),
+                        ),
                       ],
                     ),
                     InkWell(

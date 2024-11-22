@@ -9,6 +9,8 @@ class ColorConstants {
   static const Color highlightBlueLightest = Color(0xFFE6F0FF); // Lightest Blue
   static const Color highlightBlueLight = Color(0xFF99CCFF); // Lighter Blue
   static const Color highlightBlueMedium = Color(0xFF4D94FF); // Medium Blue
+  static const Color activeColor = Color(0xFF00C853);
+  static const Color errorColor = Color(0xFFEF5350);
   // Text Colors
   static const Color textPrimary = Color(0xFF000000); // Black for primary text
   static const Color textSecondary =

@@ -1,9 +1,7 @@
-import 'dart:ui';
-
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 
 class BlurryDialog extends StatelessWidget {
   final String title;
@@ -21,100 +19,108 @@ class BlurryDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final h1 = MediaQuery.of(context).size.height * 0.2;
-    return BackdropFilter(
-      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-      child: AlertDialog(
-        // backgroundColor:const Color.fromARGB(255, 179, 175, 124).withOpacity(0.9),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        content: Container(
-          padding: const EdgeInsets.only(bottom: 5),
-          height: MediaQuery.of(context).size.height * 0.4,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                  //color: Colors.red,
-                  height: h1,
-                  width: h1,
-                  child: Lottie.asset(
-                    'assets/lottie_files/delete_animation_lottie.json',
-                  )),
-              // Title and description
-              Column(
-                children: [
-                  Text(
-                    title,
-                    style: TextConstants.bodyText.copyWith(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  //const SizedBox(height: 8),
-                  Text(
-                    description,
-                    style: TextConstants.bodyTextSecondary,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-              // Buttons
-              const SizedBox(height: 8),
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  TextButton(
-                    onPressed: onCancel ??
-                        () {
-                          Navigator.pop(context);
-                        },
-                    style: TextButton.styleFrom(
-                      foregroundColor: ColorConstants.primaryForeground,
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 24,
-                      ),
-                      side: BorderSide(
-                        color: ColorConstants.primaryForeground,
-                        width: 1,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+    return AlertDialog(
+      backgroundColor: ColorConstants.backgroundPrimary,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30),
+        // side: BorderSide(
+        //     color: Theme.of(context).colorScheme.secondary, width: .1),
+      ),
+      contentPadding: EdgeInsets.zero,
+      content: Stack(
+        children: [
+          // Main content container
+          Container(
+            padding: const EdgeInsets.all(20),
+            width: double.maxFinite,
+            height: MediaQuery.of(context).size.height * .27,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                SizedBox(),
+                SizedBox(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      title,
+                      style: TextConstants.subheading.copyWith(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 20,
                       ),
                     ),
-                    child: Text(
-                      "Cancel",
-                      style: TextConstants.buttonText
-                          .copyWith(color: ColorConstants.primaryForeground),
+                    Text(
+                      description,
+                      textAlign: TextAlign.center,
+                      style: TextConstants.bodyTextSecondary,
                     ),
-                  ),
-                  ElevatedButton(
-                    onPressed: onContinue,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorConstants.primaryForeground,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
+                  ],
+                ),
+                SizedBox(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .25,
+                        height: MediaQuery.of(context).size.height * .045,
+                        decoration: BoxDecoration(
+                          color: ColorConstants.highlightBlue,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Cancel",
+                            style: TextConstants.buttonText.copyWith(
+                              color: ColorConstants.buttonBackground,
+                            ),
+                          ),
+                        ),
                       ),
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 24,
+                    ),
+                    SizedBox(width: 5),
+                    InkWell(
+                      onTap: onContinue,
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * .25,
+                        height: MediaQuery.of(context).size.height * .045,
+                        decoration: BoxDecoration(
+                          color: ColorConstants.primaryForeground,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Confirm",
+                            style: TextConstants.buttonText,
+                          ),
+                        ),
                       ),
                     ),
-                    child: const Text(
-                      "Confirm",
-                      style: TextConstants.buttonText,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
+          // Close icon in the top-right corner
+          Positioned(
+            top: 10,
+            right: 10,
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context); // Close the dialog
+              },
+              icon: Icon(
+                CupertinoIcons.clear_circled,
+                size: 30,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

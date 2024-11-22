@@ -1,3 +1,4 @@
+import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:event_management_app/views/vendor/widgets/carousel_widget_.dart';
@@ -77,10 +78,13 @@ class VendorServiceViewScreen extends StatelessWidget {
                       // Edit action
                     },
                     icon: const Icon(Icons.edit),
-                    label: const Text('Edit'),
+                    label: const Text(
+                      'Edit',
+                      style: TextConstants.buttonText,
+                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
+                      backgroundColor: ColorConstants.primaryForeground,
+                      foregroundColor: ColorConstants.backgroundPrimary,
                     ),
                   ),
                 ),
@@ -91,8 +95,9 @@ class VendorServiceViewScreen extends StatelessWidget {
                       showDialog(
                         context: context,
                         builder: (context) => BlurryDialog(
-                          title: "Are you sure you want to Delete?",
-                          description: "This action cannot be undone.",
+                          title: "Are you sure?",
+                          description:
+                              "Are you sure you want to delete this service. This action cannot be undone",
                           onContinue: () {
                             Navigator.pop(context);
                             Navigator.of(context).pushAndRemoveUntil(
@@ -102,17 +107,19 @@ class VendorServiceViewScreen extends StatelessWidget {
                                 (route) => false);
                           },
                           onCancel: () {
-                            // Optional cancel behavior
                             Navigator.pop(context);
                           },
                         ),
                       );
                     },
                     icon: const Icon(Icons.delete),
-                    label: const Text('Delete'),
+                    label: const Text(
+                      'Delete',
+                      style: TextConstants.buttonText,
+                    ),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
+                      backgroundColor: ColorConstants.primaryForeground,
+                      foregroundColor: ColorConstants.backgroundPrimary,
                     ),
                   ),
                 ),
