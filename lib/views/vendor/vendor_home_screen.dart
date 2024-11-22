@@ -14,93 +14,59 @@ class VendorHomeScreen extends StatefulWidget {
   State<VendorHomeScreen> createState() => _VendorHomeScreenState();
 }
 
-class _VendorHomeScreenState extends State<VendorHomeScreen> {
-  String selectedFilter = 'All';
+class _VendorHomeScreenState extends State<VendorHomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
 
   final List<ServiceModel> serviceItems = getServiceItems();
 
+  @override
+  void initState() {
+    super.initState();
+    // Initialize TabController
+    _tabController = TabController(length: 3, vsync: this);
+    _tabController.addListener(() {
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   // Filter the service items based on the selected filter
-  List<ServiceModel> getFilteredItems() {
-    if (selectedFilter == 'All') {
+  List<ServiceModel> getFilteredItems(String filter) {
+    if (filter == 'All') {
       return serviceItems;
     }
-    return serviceItems
-        .where((service) => service.status == selectedFilter)
-        .toList();
+    return serviceItems.where((service) => service.status == filter).toList();
   }
+
+  List<String> tabLabels = ['All', 'Active', 'Pending'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 30,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 15),
-              child: Text(
-                "My Services",
-                style: TextConstants.appTitle,
-              ),
-            ),
-            const SizedBox(height: 30),
-            searchWidget(),
-            const SizedBox(height: 15),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                FilterChipWidget(
-                  label: "All",
-                  isSelected: selectedFilter == 'All',
-                  onSelected: (isSelected) {
-                    setState(() {
-                      selectedFilter = 'All';
-                    });
-                  },
-                ),
-                const SizedBox(width: 8),
-                FilterChipWidget(
-                  label: "Active",
-                  isSelected: selectedFilter == 'Active',
-                  onSelected: (isSelected) {
-                    setState(() {
-                      selectedFilter = 'Active';
-                    });
-                  },
-                ),
-                const SizedBox(width: 8),
-                FilterChipWidget(
-                  label: "Pending",
-                  isSelected: selectedFilter == 'Pending',
-                  onSelected: (isSelected) {
-                    setState(() {
-                      selectedFilter = 'Pending';
-                    });
-                  },
-                ),
-              ],
-            ),
-            Expanded(
-              child: ListView.builder(
-                itemCount: getFilteredItems().length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ServiceListView(
-                    context: context,
-                    description: getFilteredItems()[index].description,
-                    imageUrl: getFilteredItems()[index].imageUrl,
-                    price: getFilteredItems()[index].price,
-                    status: getFilteredItems()[index].status,
-                    title: getFilteredItems()[index].title,
-                  );
-                },
-              ),
-            ),
-          ],
+        toolbarHeight: 50,
+        bottom: TabBar(
+          controller: _tabController,
+          tabs: tabLabels.map((String label) => Tab(text: label)).toList(),
+          labelColor: ColorConstants.primaryForeground,
+          labelStyle: TextConstants.bodyText,
+          unselectedLabelColor: Colors.grey,
+          indicatorColor: ColorConstants.cardBackground,
         ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          _buildServiceList(getFilteredItems('All')),
+          _buildServiceList(getFilteredItems('Active')),
+          _buildServiceList(getFilteredItems('Pending')),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: ColorConstants.primaryForeground,
@@ -108,10 +74,11 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
         shape: const CircleBorder(),
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => VendorAddServiceScreen(),
-              ));
+            context,
+            MaterialPageRoute(
+              builder: (context) => VendorAddServiceScreen(),
+            ),
+          );
         },
         child: Icon(
           CupertinoIcons.add,
@@ -120,35 +87,50 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
       ),
     );
   }
-}
 
-Widget FilterChipWidget({
-  required String label,
-  required bool isSelected,
-  required void Function(bool) onSelected,
-}) {
-  return ChoiceChip(
-    shadowColor: Colors.black,
-    showCheckmark: false,
-    backgroundColor: ColorConstants.highlightBlueLightest,
-    selectedColor: ColorConstants.primaryForeground,
-    label: Text(
-      label,
-      style: TextConstants.buttonTextSmall.copyWith(
-        color: isSelected
-            ? ColorConstants.backgroundPrimary
-            : ColorConstants.primaryForeground,
+  Widget _buildServiceList(List<ServiceModel> filteredItems) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Padding(
+            padding: EdgeInsets.only(left: 15, top: 20),
+            child: Text(
+              "My Services",
+              style: TextConstants.appTitle,
+            ),
+          ),
+          const SizedBox(height: 20),
+          searchWidget(),
+          const SizedBox(height: 15),
+          Expanded(
+            child: filteredItems.isEmpty
+                ? Center(
+                    child: Text(
+                      "No services found",
+                      style: TextConstants.bodyText,
+                    ),
+                  )
+                : ListView.builder(
+                    itemCount: filteredItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      final item = filteredItems[index];
+                      return ServiceListView(
+                        context: context,
+                        description: item.description,
+                        imageUrl: item.imageUrl,
+                        price: item.price,
+                        status: item.status,
+                        title: item.title,
+                      );
+                    },
+                  ),
+          ),
+        ],
       ),
-    ),
-    selected: isSelected, // Check if the chip is selected
-    onSelected: onSelected, // Callback when the chip is selected
-    shape: RoundedRectangleBorder(
-      side: BorderSide(color: Colors.transparent),
-      borderRadius: BorderRadius.circular(30), // Border radius of 30
-    ),
-    padding: EdgeInsets.symmetric(
-        vertical: 6, horizontal: 20), // Adjust height and padding
-  );
+    );
+  }
 }
 
 Widget ServiceListView({

@@ -38,7 +38,7 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
             barStyle: BubbleBarStyle.horizontal,
             bubbleFillStyle: BubbleFillStyle.fill,
             borderRadius: BorderRadius.circular(30),
-            unselectedIconColor: Colors.black,
+            unselectedIconColor: Colors.grey,
             padding: EdgeInsets.only(left: 0, bottom: 0)),
         // option: AnimatedBarOptions(
         //   iconSize: 32,
@@ -62,10 +62,9 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
           BottomBarItem(
             icon: const Icon(
               Icons.message_outlined,
-              color: Colors.black,
             ),
             title: const Text(
-              'message',
+              'Message',
               style: TextConstants.buttonText2,
             ),
             backgroundColor: ColorConstants.primaryForegroundLight,
