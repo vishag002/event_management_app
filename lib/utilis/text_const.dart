@@ -47,6 +47,12 @@ class TextConstants {
     fontFamily: 'Roboto',
     color: ColorConstants.buttonText, // White text for buttons
   );
+  static const TextStyle buttonText2 = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Roboto',
+    color: ColorConstants.primaryForeground, // White text for buttons
+  );
   static const TextStyle buttonTextSmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,

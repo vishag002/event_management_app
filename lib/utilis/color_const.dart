@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 class ColorConstants {
   // Primary Colors
-  static const Color primaryForeground = Color(0xFF0000FF);
+  static const Color primaryForeground = Color(0xFF5D65B8);
+  static const Color primaryForegroundLight = Color(0xFFB0B9E3);
   static const Color highlightBlue = Color(0xFFE6F0FF);
   static const Color highlightBlueLightest = Color(0xFFE6F0FF); // Lightest Blue
   static const Color highlightBlueLight = Color(0xFF99CCFF); // Lighter Blue
