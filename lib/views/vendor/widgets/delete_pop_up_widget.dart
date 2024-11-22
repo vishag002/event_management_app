@@ -73,13 +73,13 @@ class BlurryDialog extends StatelessWidget {
                           Navigator.pop(context);
                         },
                     style: TextButton.styleFrom(
-                      foregroundColor: ColorConstants.primaryBlack,
+                      foregroundColor: ColorConstants.primaryForeground,
                       padding: const EdgeInsets.symmetric(
                         vertical: 12,
                         horizontal: 24,
                       ),
                       side: BorderSide(
-                        color: ColorConstants.primaryBlack,
+                        color: ColorConstants.primaryForeground,
                         width: 1,
                       ),
                       shape: RoundedRectangleBorder(
@@ -89,13 +89,13 @@ class BlurryDialog extends StatelessWidget {
                     child: Text(
                       "Cancel",
                       style: TextConstants.buttonText
-                          .copyWith(color: ColorConstants.primaryBlack),
+                          .copyWith(color: ColorConstants.primaryForeground),
                     ),
                   ),
                   ElevatedButton(
                     onPressed: onContinue,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorConstants.primaryBlack,
+                      backgroundColor: ColorConstants.primaryForeground,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),

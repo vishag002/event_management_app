@@ -49,7 +49,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
             ),
             const SizedBox(height: 30),
             searchWidget(),
-            const SizedBox(height: 5),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
@@ -103,9 +103,9 @@ class _VendorHomeScreenState extends State<VendorHomeScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: ColorConstants.primaryBlack,
+        backgroundColor: ColorConstants.primaryForeground,
         foregroundColor: ColorConstants.backgroundPrimary,
-        shape: const CircleBorder(eccentricity: .0, side: BorderSide()),
+        shape: const CircleBorder(),
         onPressed: () {
           Navigator.push(
               context,
@@ -128,21 +128,22 @@ Widget FilterChipWidget({
   required void Function(bool) onSelected,
 }) {
   return ChoiceChip(
-    showCheckmark: false, // Disables the checkmark for a cleaner look
-    backgroundColor:
-        Colors.grey[200], // Default background color (non-selected)
-    selectedColor: Colors.black, // Color when selected
+    shadowColor: Colors.black,
+    showCheckmark: false,
+    backgroundColor: ColorConstants.highlightBlueLightest,
+    selectedColor: ColorConstants.primaryForeground,
     label: Text(
       label,
-      style: TextStyle(
+      style: TextConstants.buttonTextSmall.copyWith(
         color: isSelected
-            ? Colors.white
-            : Colors.black, // Text color when selected or unselected
+            ? ColorConstants.backgroundPrimary
+            : ColorConstants.primaryForeground,
       ),
     ),
     selected: isSelected, // Check if the chip is selected
     onSelected: onSelected, // Callback when the chip is selected
     shape: RoundedRectangleBorder(
+      side: BorderSide(color: Colors.transparent),
       borderRadius: BorderRadius.circular(30), // Border radius of 30
     ),
     padding: EdgeInsets.symmetric(
@@ -161,7 +162,7 @@ Widget ServiceListView({
   double screenWidth = MediaQuery.of(context).size.width;
 
   // Dynamically set the aspect ratio based on the screen width
-  double aspectRatio = screenWidth > 400 ? 4.5 / 2 : 4.1 / 2;
+  double aspectRatio = screenWidth > 400 ? 4.2 / 2 : 4.1 / 2;
   return AspectRatio(
     aspectRatio: aspectRatio,
     child: Padding(
@@ -169,10 +170,12 @@ Widget ServiceListView({
       child: Container(
         width: double.infinity, // Ensure the width is finite
         decoration: BoxDecoration(
+          color: ColorConstants.highlightBlue,
           borderRadius: BorderRadius.circular(8),
-          border: Border.all(
-            color: ColorConstants.textSecondary,
-          ),
+          // border: Border.all(
+          //   color: ColorConstants.textSecondary,
+
+          // ),
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -276,7 +279,7 @@ Widget ServiceListView({
                         width: 100,
                         height: 40,
                         decoration: BoxDecoration(
-                          color: ColorConstants.primaryBlack,
+                          color: ColorConstants.primaryForeground,
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Center(
@@ -304,7 +307,7 @@ Widget searchWidget() {
     height: 50,
     width: double.infinity,
     decoration: BoxDecoration(
-      color: ColorConstants.primaryBlack.withOpacity(.1),
+      color: ColorConstants.highlightBlueLightest,
       borderRadius: BorderRadius.circular(8),
     ),
     child: const TextField(

@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 
 class ColorConstants {
   // Primary Colors
-  static const Color primaryBlack = Color(0xFF000000); // Black
-  static const Color primaryWhite = Color(0xFFFFFFFF); // White
-
+  static const Color primaryForeground = Color(0xFF0000FF);
+  static const Color highlightBlue = Color(0xFFE6F0FF);
+  static const Color highlightBlueLightest = Color(0xFFE6F0FF); // Lightest Blue
+  static const Color highlightBlueLight = Color(0xFF99CCFF); // Lighter Blue
+  static const Color highlightBlueMedium = Color(0xFF4D94FF); // Medium Blue
   // Text Colors
   static const Color textPrimary = Color(0xFF000000); // Black for primary text
   static const Color textSecondary =

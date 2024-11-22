@@ -32,7 +32,7 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: ColorConstants.primaryBlack,
+          selectedItemColor: ColorConstants.primaryForeground,
           unselectedItemColor: Colors.grey,
           backgroundColor: ColorConstants.backgroundPrimary,
           currentIndex: _currentIndex, // Set the current tab index

@@ -40,7 +40,7 @@ Widget searchWidget() {
     height: 50,
     width: double.infinity,
     decoration: BoxDecoration(
-      color: ColorConstants.primaryBlack.withOpacity(.1),
+      color: ColorConstants.primaryForeground.withOpacity(.1),
       borderRadius: BorderRadius.circular(8),
     ),
     child: const TextField(
