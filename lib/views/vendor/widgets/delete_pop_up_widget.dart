@@ -51,6 +51,7 @@ class BlurryDialog extends StatelessWidget {
                         fontSize: 20,
                       ),
                     ),
+                    SizedBox(height: 5),
                     Text(
                       description,
                       textAlign: TextAlign.center,
@@ -70,14 +71,16 @@ class BlurryDialog extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * .25,
                         height: MediaQuery.of(context).size.height * .045,
                         decoration: BoxDecoration(
-                          color: ColorConstants.highlightBlue,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(
+                              color: ColorConstants.primaryForeground,
+                              width: 2,
+                            )),
                         child: Center(
                           child: Text(
                             "Cancel",
                             style: TextConstants.buttonText.copyWith(
-                              color: ColorConstants.buttonBackground,
+                              color: ColorConstants.primaryForeground,
                             ),
                           ),
                         ),

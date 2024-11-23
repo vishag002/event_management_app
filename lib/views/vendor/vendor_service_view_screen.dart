@@ -95,7 +95,7 @@ class VendorServiceViewScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        height: 70,
+        height: 80,
         color: Colors.transparent,
         shadowColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
@@ -108,25 +108,39 @@ class VendorServiceViewScreen extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () {
-                    // Edit action
+                child: InkWell(
+                  onTap: () {
+                    //
                   },
-                  icon: const Icon(Icons.edit),
-                  label: const Text(
-                    'Edit',
-                    style: TextConstants.buttonText,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorConstants.primaryForeground,
-                    foregroundColor: ColorConstants.backgroundPrimary,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      border: Border.all(
+                        color: ColorConstants.primaryForeground,
+                        width: 2,
+                      ),
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.edit_outlined),
+                          Text(
+                            ' Edit',
+                            style: TextConstants.buttonText.copyWith(
+                                color: ColorConstants.primaryForeground),
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
               const SizedBox(width: 10),
               Expanded(
-                child: ElevatedButton.icon(
-                  onPressed: () {
+                child: InkWell(
+                  onTap: () {
                     showDialog(
                       context: context,
                       builder: (context) => BlurryDialog(
@@ -147,14 +161,27 @@ class VendorServiceViewScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  icon: const Icon(Icons.delete),
-                  label: const Text(
-                    'Delete',
-                    style: TextConstants.buttonText,
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorConstants.primaryForeground,
-                    foregroundColor: ColorConstants.backgroundPrimary,
+                  child: Container(
+                    height: 80,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: ColorConstants.primaryForeground,
+                    ),
+                    child: Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.delete,
+                            color: ColorConstants.primaryWhite,
+                          ),
+                          Text(
+                            ' Delete',
+                            style: TextConstants.buttonText,
+                          )
+                        ],
+                      ),
+                    ),
                   ),
                 ),
               ),
