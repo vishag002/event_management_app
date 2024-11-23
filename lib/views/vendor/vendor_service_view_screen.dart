@@ -39,18 +39,47 @@ class VendorServiceViewScreen extends StatelessWidget {
                 autoPlayDuration: const Duration(seconds: 5),
                 animationDuration: const Duration(milliseconds: 750),
               ),
-              const Padding(
+              Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Container(
+                      height: 65,
+                      width: double.infinity,
+                      // color: Colors.black,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'DJ Service',
+                            style: TextConstants.appTitle,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              Text('₹ 550', style: TextConstants.appTitle),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 5),
+                                child: Text(' /Day',
+                                    style: TextConstants.appTitle
+                                        .copyWith(fontSize: 14)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    //category
                     Text(
-                      'DJ Service',
-                      style: TextConstants.appTitle,
+                      "Wedding | Birthday | Private show",
+                      style: TextConstants.bodyTextSecondary,
                     ),
                     // Description
-                    SizedBox(height: 10),
+                    SizedBox(height: 30),
                     Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
                       style: TextConstants.bodyText,
@@ -58,7 +87,6 @@ class VendorServiceViewScreen extends StatelessWidget {
 
                     // Price
                     SizedBox(height: 10),
-                    Text('₹ 550/Day', style: TextConstants.appTitle),
                   ],
                 ),
               ),

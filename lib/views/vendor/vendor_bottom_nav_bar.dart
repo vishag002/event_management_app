@@ -5,7 +5,6 @@ import 'package:event_management_app/views/vendor/vendor_inbox_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hugeicons/hugeicons.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class VendorBottomNavBar extends StatefulWidget {
@@ -46,13 +45,7 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
         ),
         items: [
           BottomBarItem(
-            icon: const Icon(
-              HugeIcons.strokeRoundedHome07,
-              fill: 1,
-              weight: 60,
-              size: 40,
-              color: Colors.amber,
-            ),
+            icon: const Icon(Icons.home_filled),
             title: const Padding(
               padding: const EdgeInsets.only(
                 right: 20,

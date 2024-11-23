@@ -18,7 +18,9 @@ class ColorConstants {
       Color(0xFF888888); // Light Gray for secondary text
 
   // Background Colors
-  static const Color backgroundPrimary = Color(0xFFFFFFFF); // White Background
+  static const Color backgroundPrimary = Color(0xFFededed);
+  static const Color primaryWhite = Color(0xFFF7F7F7); // Pure White
+
   static const Color backgroundSecondary =
       Color(0xFFF0F0F0); // Light Gray Background
 
