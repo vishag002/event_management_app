@@ -17,13 +17,11 @@ class VendorHomeScreen extends StatefulWidget {
 class _VendorHomeScreenState extends State<VendorHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
-
   final List<ServiceModel> serviceItems = getServiceItems();
 
   @override
   void initState() {
     super.initState();
-    // Initialize TabController
     _tabController = TabController(length: 3, vsync: this);
     _tabController.addListener(() {
       setState(() {});
@@ -50,12 +48,46 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 50,
+        toolbarHeight: 170,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Title(
+                  color: Colors.black,
+                  child: Text(
+                    "My Services",
+                    style: TextConstants.appTitle,
+                  )),
+              SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                child: Column(children: [
+                  searchWidget(),
+                  SizedBox(height: 60),
+                ]),
+              ),
+            ],
+          ),
+        ),
         bottom: TabBar(
+          dividerHeight: 0,
+          indicator: UnderlineTabIndicator(
+            borderRadius: BorderRadius.circular(5),
+            borderSide: BorderSide(
+                color: Colors.black,
+                style: BorderStyle.solid,
+                width: 2,
+                strokeAlign: 5),
+          ),
+          unselectedLabelStyle: TextConstants.appTitle,
           controller: _tabController,
           tabs: tabLabels.map((String label) => Tab(text: label)).toList(),
           labelColor: ColorConstants.primaryForeground,
-          labelStyle: TextConstants.bodyText,
+          labelStyle: TextConstants.appTitle,
           unselectedLabelColor: Colors.grey,
           indicatorColor: ColorConstants.cardBackground,
         ),
@@ -76,7 +108,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => VendorAddServiceScreen(),
+              builder: (context) => const VendorAddServiceScreen(),
             ),
           );
         },
@@ -94,15 +126,8 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 15, top: 20),
-            child: Text(
-              "My Services",
-              style: TextConstants.appTitle,
-            ),
-          ),
-          const SizedBox(height: 20),
-          searchWidget(),
+          // const SizedBox(height: 20),
+          // searchWidget(),
           const SizedBox(height: 15),
           Expanded(
             child: filteredItems.isEmpty
@@ -307,9 +332,12 @@ Widget searchWidget() {
     height: 50,
     width: double.infinity,
     decoration: BoxDecoration(
-      color: ColorConstants.highlightBlueLightest,
-      borderRadius: BorderRadius.circular(8),
-    ),
+        color: ColorConstants.backgroundPrimary,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(
+          color: ColorConstants.textSecondary,
+          width: 1,
+        )),
     child: const TextField(
       textAlignVertical: TextAlignVertical.center, // Center the text vertically
       textAlign: TextAlign.start, // Align text to the start horizontally

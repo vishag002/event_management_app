@@ -27,7 +27,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
     return Stack(
       children: [
         _buildImageCarousel(),
-        _buildBackButton(context),
+        // _buildBackButton(context),
         Positioned(
           bottom: 0,
           left: 0,
@@ -38,27 +38,27 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
     );
   }
 
-  Widget _buildBackButton(BuildContext context) {
-    return Positioned(
-      top: 40, // Adjust this value to position the button properly
-      left: 16,
-      child: InkWell(
-        onTap: () => Navigator.of(context).pop(),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.5),
-            shape: BoxShape.circle,
-          ),
-          child: const Icon(
-            CupertinoIcons.clear,
-            color: Colors.white,
-            size: 24,
-          ),
-        ),
-      ),
-    );
-  }
+  // Widget _buildBackButton(BuildContext context) {
+  //   return Positioned(
+  //     top: 40, // Adjust this value to position the button properly
+  //     left: 16,
+  //     child: InkWell(
+  //       onTap: () => Navigator.of(context).pop(),
+  //       child: Container(
+  //         padding: const EdgeInsets.all(8),
+  //         decoration: BoxDecoration(
+  //           color: Colors.black.withOpacity(0.5),
+  //           shape: BoxShape.circle,
+  //         ),
+  //         child: const Icon(
+  //           CupertinoIcons.clear,
+  //           color: Colors.white,
+  //           size: 24,
+  //         ),
+  //       ),
+  //     ),
+  //   );
+  // }
 
   Widget _buildImageCarousel() {
     return Container(

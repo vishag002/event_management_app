@@ -1,3 +1,4 @@
+import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -167,7 +168,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
         Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: Colors.black,
+            color: ColorConstants.primaryForeground,
             borderRadius: BorderRadius.circular(12),
           ),
           padding: EdgeInsets.symmetric(vertical: 16),

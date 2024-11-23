@@ -5,6 +5,7 @@ import 'package:event_management_app/views/vendor/vendor_inbox_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_profile_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class VendorBottomNavBar extends StatefulWidget {
@@ -34,24 +35,32 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
         ],
       ),
       bottomNavigationBar: StylishBottomBar(
+        iconSpace: 1.0, // Adjust spacing between icons
         option: BubbleBarOptions(
-            barStyle: BubbleBarStyle.horizontal,
-            bubbleFillStyle: BubbleFillStyle.fill,
-            borderRadius: BorderRadius.circular(30),
-            unselectedIconColor: Colors.grey,
-            padding: EdgeInsets.only(left: 0, bottom: 0)),
-        // option: AnimatedBarOptions(
-        //   iconSize: 32,
-        //   barAnimation: BarAnimation.blink,
-        //   iconStyle: IconStyle.animated,
-        //   opacity: 0.3,
-        // ),
+          barStyle: BubbleBarStyle.horizontal,
+          bubbleFillStyle: BubbleFillStyle.fill,
+          borderRadius: BorderRadius.circular(30), // Adjust for compact bubbles
+          unselectedIconColor: Colors.grey,
+          padding: const EdgeInsets.only(
+              bottom: 5, left: 5, right: 30, top: 15), // Reduce bubble padding
+        ),
         items: [
           BottomBarItem(
-            icon: const Icon(Icons.home),
-            title: const Text(
-              'Home',
-              style: TextConstants.buttonText2,
+            icon: const Icon(
+              HugeIcons.strokeRoundedHome07,
+              fill: 1,
+              weight: 60,
+              size: 40,
+              color: Colors.amber,
+            ),
+            title: const Padding(
+              padding: const EdgeInsets.only(
+                right: 20,
+              ),
+              child: const Text(
+                'Home',
+                style: TextConstants.buttonText2, // Consistent font adjustment
+              ),
             ),
             backgroundColor: ColorConstants.primaryForegroundLight,
             selectedIcon: const Icon(
@@ -60,12 +69,15 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
             ),
           ),
           BottomBarItem(
-            icon: const Icon(
-              Icons.message_outlined,
-            ),
-            title: const Text(
-              'Message',
-              style: TextConstants.buttonText2,
+            icon: const Icon(Icons.message_outlined),
+            title: Padding(
+              padding: const EdgeInsets.only(
+                right: 20,
+              ),
+              child: const Text(
+                'Inbox',
+                style: TextConstants.buttonText2, // Consistent font adjustment
+              ),
             ),
             backgroundColor: ColorConstants.primaryForegroundLight,
             selectedIcon: const Icon(
@@ -75,11 +87,16 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
           ),
           BottomBarItem(
             icon: const Icon(Icons.person_2_outlined),
-            title: const Text(
-              'Profile',
-              style: TextConstants.buttonText2,
+            title: Padding(
+              padding: const EdgeInsets.only(
+                right: 10,
+              ),
+              child: const Text(
+                'Profile',
+                style: TextConstants.buttonText2, // Consistent font adjustment
+              ),
             ),
-            backgroundColor: ColorConstants.highlightBlue,
+            backgroundColor: ColorConstants.primaryForegroundLight,
             selectedIcon: const Icon(
               Icons.person_2,
               color: ColorConstants.primaryForeground,
@@ -90,12 +107,9 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
         notchStyle: NotchStyle.square,
         currentIndex: _currentIndex,
         onTap: (index) {
-          setState(
-            () {
-              _currentIndex = index;
-              //  controller.jumpToPage(index);
-            },
-          );
+          setState(() {
+            _currentIndex = index;
+          });
         },
       ),
     );
