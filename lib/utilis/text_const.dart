@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'color_const.dart'; // Import color constants for consistent colors
 
 class TextConstants {
-  // App Title TextStyle
+  // App Title
   static const TextStyle appTitle = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
@@ -80,4 +80,6 @@ class TextConstants {
     fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
+
+  static get GoogleFonts => null;
 }

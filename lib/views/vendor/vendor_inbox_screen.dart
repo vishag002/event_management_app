@@ -17,7 +17,7 @@ class VendorInboxScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(left: 15),
               child: Text(
                 "Messages",

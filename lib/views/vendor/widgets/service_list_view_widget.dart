@@ -57,7 +57,7 @@ Widget serviceListView2({
                     width: w1,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(15),
                       boxShadow: [
                         // BoxShadow(
                         //   blurRadius: .5,
@@ -78,7 +78,7 @@ Widget serviceListView2({
                           decoration: const BoxDecoration(
                             color: Colors.black45,
                             borderRadius: BorderRadius.vertical(
-                              bottom: Radius.circular(30),
+                              bottom: Radius.circular(15),
                             ),
                           ),
                           child: Padding(
@@ -118,7 +118,7 @@ Widget serviceListView2({
                 //down portion
                 Padding(
                   padding: const EdgeInsets.only(
-                    left: 30,
+                    left: 20,
                     right: 20,
                   ),
                   child: Row(

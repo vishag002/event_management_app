@@ -57,22 +57,25 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Title(
-                  color: ColorConstants.textPrimary,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "My Services",
-                      style: TextConstants.appTitle,
-                    ),
-                  )),
+                color: ColorConstants.textPrimary,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "My Services",
+                    style: TextConstants.appTitle,
+                  ),
+                ),
+              ),
               SizedBox(height: 20),
               Container(
                 width: double.infinity,
                 alignment: Alignment.center,
-                child: Column(children: [
-                  searchWidget(),
-                  SizedBox(height: 60),
-                ]),
+                child: Column(
+                  children: [
+                    searchWidget(),
+                    const SizedBox(height: 60),
+                  ],
+                ),
               ),
             ],
           ),
