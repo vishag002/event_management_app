@@ -49,7 +49,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 170,
+        toolbarHeight: 150,
         flexibleSpace: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -57,10 +57,13 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Title(
-                  color: Colors.black,
-                  child: Text(
-                    "My Services",
-                    style: TextConstants.appTitle,
+                  color: ColorConstants.textPrimary,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      "My Services",
+                      style: TextConstants.appTitle,
+                    ),
                   )),
               SizedBox(height: 20),
               Container(
@@ -76,19 +79,22 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
         ),
         bottom: TabBar(
           dividerHeight: 0,
+          indicatorSize: TabBarIndicatorSize.tab,
+          tabAlignment: TabAlignment.fill,
           indicator: UnderlineTabIndicator(
-            borderRadius: BorderRadius.circular(5),
+            borderRadius: BorderRadius.circular(0),
             borderSide: BorderSide(
                 color: Colors.black,
                 style: BorderStyle.solid,
-                width: 2,
-                strokeAlign: 5),
+                width: 4,
+                strokeAlign: 0),
           ),
-          unselectedLabelStyle: TextConstants.appTitle,
+          unselectedLabelStyle: TextConstants.subheading.copyWith(fontSize: 20),
           controller: _tabController,
           tabs: tabLabels.map((String label) => Tab(text: label)).toList(),
-          labelColor: ColorConstants.primaryForeground,
-          labelStyle: TextConstants.appTitle,
+          labelColor: ColorConstants.textPrimary,
+          labelStyle: TextConstants.subheading
+              .copyWith(fontSize: 20, fontWeight: FontWeight.w500),
           unselectedLabelColor: Colors.grey,
           indicatorColor: ColorConstants.cardBackground,
         ),
@@ -123,7 +129,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
 
   Widget _buildServiceList(List<ServiceModel> filteredItems) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

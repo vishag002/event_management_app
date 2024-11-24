@@ -25,7 +25,11 @@ class VendorServiceViewScreen extends StatelessWidget {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_back_ios_new)),
-        title: Text("Service Details"),
+        centerTitle: true,
+        title: Text(
+          "Service Detail",
+          style: TextConstants.headline.copyWith(fontWeight: FontWeight.w500),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(bottom: 0, left: 8, right: 8, top: 0),
@@ -54,7 +58,10 @@ class VendorServiceViewScreen extends StatelessWidget {
                         children: [
                           Text(
                             'DJ Service',
-                            style: TextConstants.appTitle,
+                            style: TextConstants.appTitle.copyWith(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w600,
+                            ),
                           ),
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.end,
@@ -72,8 +79,9 @@ class VendorServiceViewScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 10),
+                    // SizedBox(height: 10),
                     //category
+
                     Text(
                       "Wedding | Birthday | Private show",
                       style: TextConstants.bodyTextSecondary,
@@ -81,8 +89,16 @@ class VendorServiceViewScreen extends StatelessWidget {
                     // Description
                     SizedBox(height: 30),
                     Text(
+                      "Description",
+                      style: TextConstants.formLabel.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 5),
+                    Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                      style: TextConstants.bodyText,
+                      style: TextConstants.formLabel
+                          .copyWith(color: ColorConstants.textSecondary),
                     ),
 
                     // Price

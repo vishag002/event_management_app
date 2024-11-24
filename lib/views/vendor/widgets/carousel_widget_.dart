@@ -29,7 +29,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
         _buildImageCarousel(),
         // _buildBackButton(context),
         Positioned(
-          bottom: 0,
+          bottom: 51,
           left: 0,
           right: 0,
           child: _buildDotIndicators(),
@@ -61,34 +61,41 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
   // }
 
   Widget _buildImageCarousel() {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: CarouselSlider.builder(
-        itemCount: widget.imageUrls.length,
-        itemBuilder: (context, index, _) {
-          return _buildCarouselItem(widget.imageUrls[index]);
-        },
-        options: CarouselOptions(
-          height: MediaQuery.of(context).size.height * 0.5,
-          viewportFraction: 1.0,
-          enlargeCenterPage: false,
-          autoPlay: true,
-          pauseAutoPlayOnTouch: true,
-          autoPlayInterval: widget.autoPlayDuration,
-          autoPlayAnimationDuration: widget.animationDuration,
-          enableInfiniteScroll: true,
-          onPageChanged: (index, _) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            height: MediaQuery.of(context).size.height * 0.49,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.circular(30),
+            ),
+            child: CarouselSlider.builder(
+              itemCount: widget.imageUrls.length,
+              itemBuilder: (context, index, _) {
+                return _buildCarouselItem(widget.imageUrls[index]);
+              },
+              options: CarouselOptions(
+                height: MediaQuery.of(context).size.height * 0.5,
+                viewportFraction: 1.0,
+                enlargeCenterPage: false,
+                autoPlay: true,
+                pauseAutoPlayOnTouch: true,
+                autoPlayInterval: widget.autoPlayDuration,
+                autoPlayAnimationDuration: widget.animationDuration,
+                enableInfiniteScroll: true,
+                onPageChanged: (index, _) {
+                  setState(() {
+                    _currentIndex = index;
+                  });
+                },
+              ),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 

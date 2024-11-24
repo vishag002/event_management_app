@@ -8,12 +8,14 @@ class TextConstants {
   static const TextStyle appTitle = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
+    fontFamily: 'Roboto',
     color: ColorConstants.textPrimary, // Primary text color
   );
 
   // Headline TextStyle
   static const TextStyle headline = TextStyle(
     fontSize: 22,
+    fontFamily: 'Roboto',
     fontWeight: FontWeight.w600,
     color: ColorConstants.textPrimary,
   );
@@ -22,6 +24,7 @@ class TextConstants {
   static const TextStyle subheading = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w500,
+    fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
 
@@ -29,6 +32,7 @@ class TextConstants {
   static const TextStyle bodyText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
+    fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
 

@@ -39,6 +39,7 @@ dependencies:
   animated_custom_dropdown: ^3.1.1
   stylish_bottom_bar: ^1.1.0
   hugeicons: ^0.0.7
+  iconsax_plus: ^1.0.0
 
 dev_dependencies:
   flutter_test:

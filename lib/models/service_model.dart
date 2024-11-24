@@ -4,7 +4,6 @@ class ServiceModel {
   final String description;
   final double price;
   final String status;
-
   ServiceModel({
     required this.imageUrl,
     required this.title,
