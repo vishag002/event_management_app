@@ -84,6 +84,7 @@ Widget serviceListView2({
                           child: Padding(
                             padding: EdgeInsets.symmetric(horizontal: 20),
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
@@ -96,14 +97,16 @@ Widget serviceListView2({
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: 10, left: 5),
-                                  child: Text(
-                                    "₹ 550",
-                                    style: TextConstants.buttonText,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
+                                Flexible(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: 10, left: 5),
+                                    child: Text(
+                                      "₹ 550",
+                                      style: TextConstants.buttonText,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -116,55 +119,75 @@ Widget serviceListView2({
                 ),
 
                 //down portion
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 20,
-                    right: 20,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: ColorConstants.textSecondary.withOpacity(.1),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(
-                              Icons.circle,
-                              color: status == 'Active'
-                                  ? ColorConstants.activeColor
-                                  : ColorConstants.errorColor,
-                              size: 15,
-                            ),
-                            const SizedBox(width: 10),
-                            Text(status,
-                                style: TextConstants.buttonText.copyWith(
-                                  color: ColorConstants.textPrimary,
-                                  fontWeight: FontWeight.w500,
-                                )),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        height: 48,
-                        width: 140,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(30),
-                          color: ColorConstants.primaryForeground,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "See Details",
-                            style: TextConstants.buttonText,
+                Flexible(
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 6),
+                          decoration: BoxDecoration(
+                            color: ColorConstants.textSecondary.withOpacity(.1),
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(
+                                Icons.circle,
+                                color: status == 'Active'
+                                    ? ColorConstants.activeColor
+                                    : ColorConstants.errorColor,
+                                size: 15,
+                              ),
+                              const SizedBox(width: 10),
+                              Text(status,
+                                  style: TextConstants.buttonText.copyWith(
+                                    color: ColorConstants.textPrimary,
+                                    fontWeight: FontWeight.w500,
+                                  )),
+                            ],
                           ),
                         ),
-                      )
-                    ],
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 9),
+                          decoration: BoxDecoration(
+                            color: ColorConstants.primaryForeground,
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "See Details",
+                                style: TextConstants.buttonText,
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        // Container(
+                        //   height: 48,
+                        //   width: 140,
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(30),
+                        //     color: ColorConstants.primaryForeground,
+                        //   ),
+                        //   child: Center(
+                        //     child: Text(
+                        //       "See Details",
+                        //       style: TextConstants.buttonText,
+                        //     ),
+                        //   ),
+                        // )
+                      ],
+                    ),
                   ),
                 )
               ],

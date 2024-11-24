@@ -29,7 +29,7 @@ class _FullScreenImageCarouselState extends State<FullScreenImageCarousel> {
         _buildImageCarousel(),
         // _buildBackButton(context),
         Positioned(
-          bottom: 51,
+          bottom: 15,
           left: 0,
           right: 0,
           child: _buildDotIndicators(),

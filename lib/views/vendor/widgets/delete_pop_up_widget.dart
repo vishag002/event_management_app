@@ -61,7 +61,7 @@ class BlurryDialog extends StatelessWidget {
                 ),
                 SizedBox(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     InkWell(
                       onTap: () {

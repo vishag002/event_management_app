@@ -173,10 +173,10 @@ Widget searchWidget() {
     height: 50,
     width: double.infinity,
     decoration: BoxDecoration(
-        color: ColorConstants.backgroundPrimary,
+        color: ColorConstants.primaryWhite,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
-          color: ColorConstants.textSecondary,
+          color: ColorConstants.textSecondary.withOpacity(.5),
           width: 1,
         )),
     child: const TextField(
