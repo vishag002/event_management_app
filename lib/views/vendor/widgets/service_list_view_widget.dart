@@ -171,21 +171,6 @@ Widget serviceListView2({
                             ],
                           ),
                         ),
-
-                        // Container(
-                        //   height: 48,
-                        //   width: 140,
-                        //   decoration: BoxDecoration(
-                        //     borderRadius: BorderRadius.circular(30),
-                        //     color: ColorConstants.primaryForeground,
-                        //   ),
-                        //   child: Center(
-                        //     child: Text(
-                        //       "See Details",
-                        //       style: TextConstants.buttonText,
-                        //     ),
-                        //   ),
-                        // )
                       ],
                     ),
                   ),
