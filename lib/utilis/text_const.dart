@@ -80,6 +80,4 @@ class TextConstants {
     fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
-
-  static get GoogleFonts => null;
 }

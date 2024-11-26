@@ -118,7 +118,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const VendorAddServiceScreen(),
+              builder: (context) => VendorAddServiceScreen(),
             ),
           );
         },
