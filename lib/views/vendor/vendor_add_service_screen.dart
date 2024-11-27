@@ -1,6 +1,7 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/vendor/widgets/demo_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -78,7 +79,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
         color: ColorConstants.primaryWhite,
         child: _currentStep == 2
-            ? _buildContinueButton()
+            ? _buildContinueButton(context)
             : Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -233,15 +234,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
               style: TextConstants.bodyText,
             ),
           ),
-          categoryDropDown(
-            value: _selectedCategory,
-            items: categoryList,
-            onChanged: (value) {
-              setState(() {
-                _selectedCategory = value!;
-              });
-            },
-          ),
+          CategoryDropDown(),
           const SizedBox(height: 30),
           Row(
             children: [
@@ -457,10 +450,14 @@ Widget _enterDetailsField(titleController, descriptionController,
 ///
 
 ///
-Widget _buildContinueButton() {
+Widget _buildContinueButton(context) {
   return InkWell(
     onTap: () {
-      //Navig
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryDropDown(),
+          ));
     },
     child: Container(
       height: 50,

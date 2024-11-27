@@ -1,83 +1,112 @@
+import 'package:event_management_app/utilis/color_const.dart';
+import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/material.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:multi_dropdown/multi_dropdown.dart';
 
-void main() {
-  runApp(MyApp());
-}
+class CategoryDropDown extends StatefulWidget {
+  const CategoryDropDown({super.key});
 
-class MyApp extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Select Users',
-      home: SelectUsersScreen(),
-    );
-  }
+  State<CategoryDropDown> createState() => _CategoryDropDownState();
 }
 
-class SelectUsersScreen extends StatefulWidget {
-  @override
-  _SelectUsersScreenState createState() => _SelectUsersScreenState();
-}
+class _CategoryDropDownState extends State<CategoryDropDown> {
+  final _formKey = GlobalKey<FormState>();
 
-class _SelectUsersScreenState extends State<SelectUsersScreen> {
-  List<String> users = ['Jack', 'Ann', 'Jacob', 'Esther'];
-  List<String> selectedUsers = [];
+  final controller = MultiSelectController<String>();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Select Users'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            DropdownButton<String>(
-              value: null,
-              hint: Text('Select Users'),
-              onChanged: (value) {
-                setState(() {
-                  if (selectedUsers.contains(value)) {
-                    selectedUsers.remove(value);
-                  } else {
-                    selectedUsers.add(value!);
+    var categoryList = [
+      DropdownItem(label: 'Wedding', value: 'Wedding'),
+      DropdownItem(label: 'Corporate', value: 'Corporate'),
+      DropdownItem(label: 'Private Show', value: 'Private Show'),
+      DropdownItem(label: 'Concert', value: 'Concert'),
+    ];
+
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: SizedBox(
+        width: double.infinity,
+        //height: 65,
+        child: Form(
+          key: _formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(height: 4),
+              MultiDropdown<String>(
+                items: categoryList,
+                controller: controller,
+                enabled: true,
+                searchEnabled: false,
+
+                //selected chip widget
+                chipDecoration: const ChipDecoration(
+                  labelStyle: TextConstants.formLabel,
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  backgroundColor: ColorConstants.highlightBlue,
+                  wrap: true,
+                  runSpacing: 2,
+                  spacing: 10,
+                ),
+
+                //
+                autovalidateMode: AutovalidateMode.disabled,
+                fieldDecoration: FieldDecoration(
+                  backgroundColor: Colors.white,
+                  animateSuffixIcon: true,
+                  suffixIcon: const Icon(Icons.keyboard_arrow_down_rounded),
+                  borderRadius: 8,
+                  labelText: "Select your fields ",
+                  labelStyle: const TextStyle(color: Colors.grey),
+                  hintText: 'Select Category',
+                  hintStyle: const TextStyle(color: Colors.black87),
+                  showClearIcon: false,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(color: Colors.transparent),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: const BorderSide(
+                        color: ColorConstants.primaryForeground),
+                  ),
+                ),
+                //
+                dropdownDecoration: const DropdownDecoration(
+                  backgroundColor: ColorConstants.backgroundPrimary,
+                  elevation: 0,
+                  maxHeight: 400,
+                  header: Padding(
+                    padding: EdgeInsets.all(0),
+                  ),
+                ),
+                dropdownItemDecoration: const DropdownItemDecoration(
+                  textColor: Colors.black,
+                  selectedBackgroundColor: Colors.white,
+                  backgroundColor: ColorConstants.backgroundPrimary,
+                  disabledBackgroundColor: ColorConstants.activeColor,
+                  selectedIcon: Icon(
+                    IconsaxPlusBold.tick_square,
+                    color: ColorConstants.primaryForeground,
+                  ),
+                ),
+                closeOnBackButton: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please select a category';
                   }
-                });
-              },
-              items: users
-                  .map((user) => DropdownMenuItem<String>(
-                        value: user,
-                        child: Row(
-                          children: [
-                            if (selectedUsers.contains(user))
-                              Icon(Icons.check, color: Colors.green),
-                            SizedBox(width: 8.0),
-                            Text(user),
-                          ],
-                        ),
-                      ))
-                  .toList(),
-            ),
-            SizedBox(height: 16.0),
-            Text(
-              'Selected Users:',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 16.0,
+                  return null;
+                },
+                onSelectionChange: (selectedItems) {
+                  debugPrint("Selected Categories: $selectedItems");
+                },
               ),
-            ),
-            SizedBox(height: 8.0),
-            Wrap(
-              spacing: 8.0,
-              children: selectedUsers
-                  .map((user) => Chip(
-                        label: Text(user),
-                      ))
-                  .toList(),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
