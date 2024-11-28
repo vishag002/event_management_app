@@ -1,9 +1,12 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
+import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
 import 'package:event_management_app/views/vendor/widgets/demo_screen.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class VendorAddServiceScreen extends StatefulWidget {
   @override
@@ -134,6 +137,11 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
     return Scaffold(
       backgroundColor: ColorConstants.primaryWhite,
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back_ios_new)),
         title: const Text('Add Service'),
       ),
       body: Stack(
@@ -151,16 +159,20 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
                 return const SizedBox.shrink();
               },
               onStepTapped: (step) {
-                setState(() {
-                  _currentStep = step;
-                });
+                setState(
+                  () {
+                    _currentStep = step;
+                  },
+                );
               },
               onStepContinue: () {
-                setState(() {
-                  if (_currentStep < 2) {
-                    _currentStep += 1;
-                  }
-                });
+                setState(
+                  () {
+                    if (_currentStep < 2) {
+                      _currentStep += 1;
+                    }
+                  },
+                );
               },
               onStepCancel: () {
                 setState(() {
@@ -234,7 +246,16 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
               style: TextConstants.bodyText,
             ),
           ),
-          CategoryDropDown(),
+          //CategoryDropDown(),
+          categoryDropDown(
+            value: _selectedCategory,
+            items: categoryList,
+            onChanged: (value) {
+              setState(() {
+                _selectedCategory = value!;
+              });
+            },
+          ),
           const SizedBox(height: 30),
           Row(
             children: [
@@ -453,11 +474,18 @@ Widget _enterDetailsField(titleController, descriptionController,
 Widget _buildContinueButton(context) {
   return InkWell(
     onTap: () {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CategoryDropDown(),
-          ));
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(
+          builder: (context) => const VendorBottomNavBar(),
+        ),
+        (Route<dynamic> route) => false,
+      );
+      // Get.to(
+      //   () => const VendorBottomNavBar(),
+      //   transition: Transition.cupertinoDialog,
+      //   fullscreenDialog: GetPlatform.isAndroid,
+      //   duration: const Duration(milliseconds: 600),
+      // );
     },
     child: Container(
       height: 50,
@@ -468,7 +496,7 @@ Widget _buildContinueButton(context) {
       ),
       child: const Center(
         child: Text(
-          "Continue",
+          "Submit",
           style: TextConstants.buttonText,
         ),
       ),

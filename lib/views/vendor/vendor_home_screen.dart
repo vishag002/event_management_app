@@ -5,6 +5,7 @@ import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/vendor/vendor_add_service_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'widgets/service_list_view_widget.dart';
 
@@ -58,8 +59,8 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
             children: [
               Title(
                 color: ColorConstants.textPrimary,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     "My Services",
                     style: TextConstants.appTitle,
@@ -115,11 +116,16 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
         foregroundColor: ColorConstants.backgroundPrimary,
         shape: const CircleBorder(),
         onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => VendorAddServiceScreen(),
-            ),
+          // Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => VendorAddServiceScreen(),
+          //     ));
+          Get.to(
+            () => VendorAddServiceScreen(),
+            transition: Transition.downToUp,
+            fullscreenDialog: GetPlatform.isAndroid,
+            duration: const Duration(milliseconds: 600),
           );
         },
         child: Icon(

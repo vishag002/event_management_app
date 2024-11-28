@@ -3,6 +3,8 @@ import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:event_management_app/views/vendor/widgets/carousel_widget_.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import 'widgets/delete_pop_up_widget.dart';
 
@@ -165,11 +167,18 @@ class VendorServiceViewScreen extends StatelessWidget {
                             "Are you sure you want to delete this service. This action cannot be undone",
                         onContinue: () {
                           Navigator.pop(context);
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                builder: (context) => VendorBottomNavBar(),
-                              ),
-                              (route) => false);
+                          Get.offAll(
+                            const VendorBottomNavBar(),
+                            transition: Transition.cupertino,
+                            fullscreenDialog: GetPlatform.isAndroid,
+                            duration: const Duration(milliseconds: 600),
+                          );
+
+                          // Navigator.of(context).pushAndRemoveUntil(
+                          //     MaterialPageRoute(
+                          //       builder: (context) => VendorBottomNavBar(),
+                          //     ),
+                          //     (route) => false);
                         },
                         onCancel: () {
                           Navigator.pop(context);
