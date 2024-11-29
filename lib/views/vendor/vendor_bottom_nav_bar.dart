@@ -5,6 +5,7 @@ import 'package:event_management_app/views/vendor/vendor_inbox_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax_plus/iconsax_plus.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
 
 class VendorBottomNavBar extends StatefulWidget {
   const VendorBottomNavBar({super.key});
@@ -37,80 +38,80 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
 }
 
 ///
-// Widget bottomBarStyle1(_currentIndex, changeTab) {
-//   return StylishBottomBar(
-//     backgroundColor: ColorConstants.primaryWhite,
-//     elevation: BorderSide.strokeAlignOutside,
-//     iconSpace: 1.0, // Adjust spacing between icons
-//     option: BubbleBarOptions(
-//       barStyle: BubbleBarStyle.horizontal,
-//       bubbleFillStyle: BubbleFillStyle.fill,
-//       borderRadius: BorderRadius.circular(30), // Adjust for compact bubbles
-//       unselectedIconColor: Colors.grey,
-//       padding: const EdgeInsets.only(
-//           bottom: 5, left: 5, right: 30, top: 15), // Reduce bubble padding
-//     ),
-//     items: [
-//       BottomBarItem(
-//         icon: const Icon(Icons.home_filled),
-//         title: const Padding(
-//           padding: const EdgeInsets.only(
-//             right: 20,
-//           ),
-//           child: const Text(
-//             'Home',
-//             style: TextConstants.buttonText2, // Consistent font adjustment
-//           ),
-//         ),
-//         backgroundColor: ColorConstants.primaryForegroundLight,
-//         selectedIcon: const Icon(
-//           Icons.home_filled,
-//           color: ColorConstants.primaryForeground,
-//         ),
-//       ),
-//       BottomBarItem(
-//         icon: const Icon(Icons.message_outlined),
-//         title: const Padding(
-//           padding: EdgeInsets.only(
-//             right: 20,
-//           ),
-//           child: Text(
-//             'Inbox',
-//             style: TextConstants.buttonText2, // Consistent font adjustment
-//           ),
-//         ),
-//         backgroundColor: ColorConstants.primaryForegroundLight,
-//         selectedIcon: const Icon(
-//           Icons.message,
-//           color: ColorConstants.primaryForeground,
-//         ),
-//       ),
-//       BottomBarItem(
-//         icon: const Icon(Icons.person_2_outlined),
-//         title: const Padding(
-//           padding: EdgeInsets.only(
-//             right: 10,
-//           ),
-//           child: Text(
-//             'Profile',
-//             style: TextConstants.buttonText2, // Consistent font adjustment
-//           ),
-//         ),
-//         backgroundColor: ColorConstants.primaryForegroundLight,
-//         selectedIcon: const Icon(
-//           Icons.person_2,
-//           color: ColorConstants.primaryForeground,
-//         ),
-//       ),
-//     ],
-//     hasNotch: false,
-//     notchStyle: NotchStyle.square,
-//     currentIndex: _currentIndex,
-//     onTap: (index) {
-//       changeTab(index);
-//     },
-//   );
-// }
+Widget bottomBarStyle1(_currentIndex, changeTab) {
+  return StylishBottomBar(
+    backgroundColor: ColorConstants.primaryWhite,
+    elevation: BorderSide.strokeAlignOutside,
+    iconSpace: 1.0, // Adjust spacing between icons
+    option: BubbleBarOptions(
+      barStyle: BubbleBarStyle.horizontal,
+      bubbleFillStyle: BubbleFillStyle.fill,
+      borderRadius: BorderRadius.circular(30), // Adjust for compact bubbles
+      unselectedIconColor: Colors.grey,
+      padding: const EdgeInsets.only(
+          bottom: 5, left: 5, right: 30, top: 15), // Reduce bubble padding
+    ),
+    items: [
+      BottomBarItem(
+        icon: const Icon(Icons.home_filled),
+        title: const Padding(
+          padding: const EdgeInsets.only(
+            right: 20,
+          ),
+          child: const Text(
+            'Home',
+            style: TextConstants.buttonText2, // Consistent font adjustment
+          ),
+        ),
+        backgroundColor: ColorConstants.primaryForegroundLight,
+        selectedIcon: const Icon(
+          Icons.home_filled,
+          color: ColorConstants.primaryForeground,
+        ),
+      ),
+      BottomBarItem(
+        icon: const Icon(Icons.message_outlined),
+        title: const Padding(
+          padding: EdgeInsets.only(
+            right: 20,
+          ),
+          child: Text(
+            'Inbox',
+            style: TextConstants.buttonText2, // Consistent font adjustment
+          ),
+        ),
+        backgroundColor: ColorConstants.primaryForegroundLight,
+        selectedIcon: const Icon(
+          Icons.message,
+          color: ColorConstants.primaryForeground,
+        ),
+      ),
+      BottomBarItem(
+        icon: const Icon(Icons.person_2_outlined),
+        title: const Padding(
+          padding: EdgeInsets.only(
+            right: 10,
+          ),
+          child: Text(
+            'Profile',
+            style: TextConstants.buttonText2, // Consistent font adjustment
+          ),
+        ),
+        backgroundColor: ColorConstants.primaryForegroundLight,
+        selectedIcon: const Icon(
+          Icons.person_2,
+          color: ColorConstants.primaryForeground,
+        ),
+      ),
+    ],
+    hasNotch: false,
+    notchStyle: NotchStyle.square,
+    currentIndex: _currentIndex,
+    onTap: (index) {
+      changeTab(index);
+    },
+  );
+}
 
 ///import 'package:flutter/material.dart';
 

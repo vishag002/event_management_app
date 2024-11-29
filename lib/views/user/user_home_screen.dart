@@ -10,10 +10,12 @@ class UserHomeScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("User Home Screen"),
       ),
-      body: Column(
-        children: [
-          ExploreScreenList(),
-        ],
+      body: ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) => const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: ExploreScreenList(),
+        ),
       ),
     );
   }
