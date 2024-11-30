@@ -3,9 +3,9 @@ import 'color_const.dart'; // Import the color constants
 
 ThemeData appTheme = ThemeData(
   primaryColor: ColorConstants.primaryForeground, // Primary color
-  scaffoldBackgroundColor: ColorConstants.primaryWhite, // Background color
+  scaffoldBackgroundColor: ColorConstants.lightGreyShade, // Background color
   appBarTheme: AppBarTheme(
-    backgroundColor: ColorConstants.primaryWhite, // App bar color
+    backgroundColor: ColorConstants.lightGreyShade, // App bar color
   ),
 
   buttonTheme: const ButtonThemeData(

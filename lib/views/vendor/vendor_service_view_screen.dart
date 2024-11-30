@@ -198,7 +198,7 @@ class VendorServiceViewScreen extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.delete,
-                            color: ColorConstants.primaryWhite,
+                            color: ColorConstants.lightGreyShade,
                           ),
                           Text(
                             ' Delete',

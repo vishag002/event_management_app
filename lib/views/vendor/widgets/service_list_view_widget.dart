@@ -34,7 +34,7 @@ Widget serviceListView2({
             height: h1 * 0.34,
             width: w1,
             decoration: BoxDecoration(
-              color: ColorConstants.primaryWhite,
+              color: ColorConstants.lightGreyShade,
               borderRadius: BorderRadius.circular(30),
               boxShadow: [
                 BoxShadow(
@@ -92,7 +92,7 @@ Widget serviceListView2({
                                   "Live Music Monata",
                                   style: TextConstants.subheading.copyWith(
                                       fontSize: 22,
-                                      color: ColorConstants.primaryWhite,
+                                      color: ColorConstants.lightGreyShade,
                                       fontWeight: FontWeight.w600),
                                   maxLines: 1,
                                   overflow: TextOverflow.ellipsis,
@@ -161,7 +161,7 @@ Widget serviceListView2({
                             color: ColorConstants.primaryForeground,
                             borderRadius: BorderRadius.circular(30),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(

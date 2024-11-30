@@ -44,7 +44,7 @@ class _CategoryDropDownState extends State<CategoryDropDown> {
                 searchEnabled: false,
 
                 //selected chip widget
-                chipDecoration: const ChipDecoration(
+                chipDecoration: ChipDecoration(
                   labelStyle: TextConstants.formLabel,
                   borderRadius: BorderRadius.all(Radius.circular(30)),
                   backgroundColor: ColorConstants.highlightBlue,

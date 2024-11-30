@@ -40,7 +40,7 @@ class _VendorBottomNavBarState extends State<VendorBottomNavBar> {
 ///
 Widget bottomBarStyle1(_currentIndex, changeTab) {
   return StylishBottomBar(
-    backgroundColor: ColorConstants.primaryWhite,
+    backgroundColor: ColorConstants.lightGreyShade,
     elevation: BorderSide.strokeAlignOutside,
     iconSpace: 1.0, // Adjust spacing between icons
     option: BubbleBarOptions(
@@ -54,11 +54,11 @@ Widget bottomBarStyle1(_currentIndex, changeTab) {
     items: [
       BottomBarItem(
         icon: const Icon(Icons.home_filled),
-        title: const Padding(
+        title: Padding(
           padding: const EdgeInsets.only(
             right: 20,
           ),
-          child: const Text(
+          child: Text(
             'Home',
             style: TextConstants.buttonText2, // Consistent font adjustment
           ),
@@ -71,8 +71,8 @@ Widget bottomBarStyle1(_currentIndex, changeTab) {
       ),
       BottomBarItem(
         icon: const Icon(Icons.message_outlined),
-        title: const Padding(
-          padding: EdgeInsets.only(
+        title: Padding(
+          padding: const EdgeInsets.only(
             right: 20,
           ),
           child: Text(
@@ -88,8 +88,8 @@ Widget bottomBarStyle1(_currentIndex, changeTab) {
       ),
       BottomBarItem(
         icon: const Icon(Icons.person_2_outlined),
-        title: const Padding(
-          padding: EdgeInsets.only(
+        title: Padding(
+          padding: const EdgeInsets.only(
             right: 10,
           ),
           child: Text(
@@ -129,7 +129,7 @@ Widget bottomBarStyle2(int currentIndex, Function(int) changeTab) {
       selectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
         fontSize: 12,
       ),
-      backgroundColor: ColorConstants.primaryWhite,
+      backgroundColor: ColorConstants.lightGreyShade,
       elevation: 0,
       selectedItemColor: ColorConstants.primaryForeground,
       unselectedItemColor: Colors.grey,

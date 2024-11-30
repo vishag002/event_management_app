@@ -10,15 +10,15 @@ class ExploreScreenList extends StatelessWidget {
     final w1 = MediaQuery.of(context).size.width;
 
     return Container(
-      height: h1 * 0.5,
+      //height: h1 * 0.5,
       width: w1,
-      //    decoration: BoxDecoration(color: Colors.grey.shade300),
+      decoration: BoxDecoration(color: Colors.grey.shade300),
       child: Column(
         children: [
           Stack(
             children: [
               Container(
-                height: h1 * 0.34,
+                height: h1 * 0.3,
                 width: w1,
                 decoration: BoxDecoration(
                   color: Colors.amber.shade200,
@@ -57,11 +57,9 @@ class ExploreScreenList extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
-                    height: h1 * 0.01), // Space between title and description
+                SizedBox(height: h1 * 0.01),
                 Text(
-                  'This is a description that provides more details about this section. '
-                  'The text adapts to different screen sizes for a better user experience.',
+                  'This is a description that provides more details about this section. ',
                   style: TextStyle(
                     fontSize: w1 * 0.04, // Responsive font size
                     color: Colors.grey.shade700,

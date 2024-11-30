@@ -59,7 +59,7 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
             children: [
               Title(
                 color: ColorConstants.textPrimary,
-                child: const Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     "My Services",
@@ -179,20 +179,20 @@ Widget searchWidget() {
     height: 50,
     width: double.infinity,
     decoration: BoxDecoration(
-        color: ColorConstants.primaryWhite,
+        color: ColorConstants.lightGreyShade,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
           color: ColorConstants.textSecondary.withOpacity(.5),
           width: 1,
         )),
-    child: const TextField(
+    child: TextField(
       textAlignVertical: TextAlignVertical.center, // Center the text vertically
       textAlign: TextAlign.start, // Align text to the start horizontally
       decoration: InputDecoration(
         border: InputBorder.none, // Remove the border
         hintText: "Search your services",
         hintStyle: TextConstants.bodyTextSecondary,
-        prefixIcon: Icon(
+        prefixIcon: const Icon(
           CupertinoIcons.search,
           color: ColorConstants.textSecondary, // Add appropriate color
         ),

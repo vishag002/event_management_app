@@ -52,7 +52,7 @@ Widget bottomBarStyle2(int currentIndex, Function(int) changeTab) {
       selectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
         fontSize: 12,
       ),
-      backgroundColor: ColorConstants.primaryWhite,
+      backgroundColor: ColorConstants.lightGreyShade,
       elevation: 0,
       selectedItemColor: ColorConstants.primaryForeground,
       unselectedItemColor: Colors.grey,

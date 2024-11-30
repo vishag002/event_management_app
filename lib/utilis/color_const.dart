@@ -12,6 +12,8 @@ class ColorConstants {
   static const Color highlightBlueMedium = Color(0xFF4D94FF); // Medium Blue
   static const Color activeColor = Color(0xFF00C853);
   static const Color errorColor = Color(0xFFEF5350);
+  static const Color greySecondary = Color(0xFF888888);
+  static const Color primaryWhite = Color(0xFFFFFFFF);
   // Text Colors
   static const Color textPrimary = Color(0xFF000000); // Black for primary text
   static const Color textSecondary =
@@ -19,11 +21,8 @@ class ColorConstants {
 
   // Background Colors
   static const Color backgroundPrimary = Color(0xFFededed);
-  static const Color primaryWhite = Color(0xFFF7F7F7); // Pure White
-
-  static const Color backgroundSecondary =
-      Color(0xFFF0F0F0); // Light Gray Background
-
+  static const Color lightGreyShade = Color(0xFFF7F7F7);
+  static const Color backgroundSecondary = Color(0xFFF0F0F0);
   // Card & Button Colors
   static const Color cardBackground =
       Color(0xFFFFFFFF); // White for card background

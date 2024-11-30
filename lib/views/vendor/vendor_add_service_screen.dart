@@ -2,13 +2,11 @@ import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
-import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
-import 'package:event_management_app/views/vendor/widgets/demo_screen.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class VendorAddServiceScreen extends StatefulWidget {
+  const VendorAddServiceScreen({super.key});
+
   @override
   _VendorAddServiceScreenState createState() => _VendorAddServiceScreenState();
 }
@@ -66,7 +64,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
       ),
       stepStyle: StepStyle(
           indexStyle: TextStyle(
-        color: ColorConstants.primaryWhite,
+        color: ColorConstants.lightGreyShade,
       )),
       content: content,
       isActive: isActive,
@@ -80,7 +78,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
       right: 0,
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-        color: ColorConstants.primaryWhite,
+        color: ColorConstants.lightGreyShade,
         child: _currentStep == 2
             ? _buildContinueButton(context)
             : Row(
@@ -117,7 +115,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
                           borderRadius: BorderRadius.circular(30),
                           color: ColorConstants.primaryForeground,
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
                             "Continue",
                             style: TextConstants.buttonText,
@@ -135,7 +133,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstants.primaryWhite,
+      backgroundColor: ColorConstants.lightGreyShade,
       appBar: AppBar(
         leading: IconButton(
             onPressed: () {
@@ -148,7 +146,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
         children: [
           Theme(
             data: ThemeData(
-              canvasColor: ColorConstants.primaryWhite,
+              canvasColor: ColorConstants.lightGreyShade,
             ),
             child: Stepper(
               connectorColor: const WidgetStatePropertyAll(
@@ -214,7 +212,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               "Service Title",
@@ -226,7 +224,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
             controller: _titleController,
           ),
           const SizedBox(height: 30),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               "Service Description",
@@ -239,7 +237,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
             maxLine: 3,
           ),
           const SizedBox(height: 30),
-          const Padding(
+          Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
               "Service Category",
@@ -263,7 +261,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Service Price",
@@ -282,7 +280,7 @@ class _VendorAddServiceScreenState extends State<VendorAddServiceScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Pricing Type",
@@ -322,22 +320,22 @@ Widget _reviewStepp(titleController, descriptionController, priceController,
         style: TextConstants.bodyTextSecondary
             .copyWith(fontWeight: FontWeight.w500),
       ),
-      const Text(
+      Text(
         "Speaker",
         style: TextConstants.bodyText,
       ),
-      SizedBox(height: 30),
-      const Text(
+      const SizedBox(height: 30),
+      Text(
         "Service Description",
         style: TextConstants.bodyTextSecondary,
       ),
-      const Text(
+      Text(
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur",
         style: TextConstants.bodyText,
       ),
       /////
-      SizedBox(height: 30),
-      const Text(
+      const SizedBox(height: 30),
+      Text(
         "Service Category",
         style: TextConstants.bodyTextSecondary,
       ),
@@ -347,7 +345,7 @@ Widget _reviewStepp(titleController, descriptionController, priceController,
       ),
       ///////
       const SizedBox(height: 30),
-      const Text(
+      Text(
         "service Price",
         style: TextConstants.bodyTextSecondary,
       ),
@@ -355,9 +353,9 @@ Widget _reviewStepp(titleController, descriptionController, priceController,
         "5000 per day",
         style: TextConstants.bodyText,
       ),
-      SizedBox(height: 30),
+      const SizedBox(height: 30),
 
-      const Text(
+      Text(
         "Images",
         style: TextConstants.bodyTextSecondary,
       ),
@@ -377,7 +375,7 @@ Widget _enterDetailsField(titleController, descriptionController,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             "Service Title",
@@ -388,7 +386,7 @@ Widget _enterDetailsField(titleController, descriptionController,
           hintText: "Enter the title of your service",
           controller: titleController,
         ),
-        const Padding(
+        Padding(
           padding: EdgeInsets.all(8.0),
           child: Text(
             "Service Description",
@@ -400,8 +398,8 @@ Widget _enterDetailsField(titleController, descriptionController,
           controller: descriptionController,
           maxLine: 3,
         ),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Text(
             "Service Category",
             style: TextConstants.bodyText,
@@ -423,7 +421,7 @@ Widget _enterDetailsField(titleController, descriptionController,
                   crossAxisAlignment: CrossAxisAlignment
                       .start, // Align text and input to the start
                   children: [
-                    const Padding(
+                    Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Service Price",
@@ -443,8 +441,8 @@ Widget _enterDetailsField(titleController, descriptionController,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         "Pricing Type",
                         style: TextConstants.bodyText,
@@ -494,7 +492,7 @@ Widget _buildContinueButton(context) {
         borderRadius: BorderRadius.circular(30),
         color: ColorConstants.primaryForeground,
       ),
-      child: const Center(
+      child: Center(
         child: Text(
           "Submit",
           style: TextConstants.buttonText,
@@ -586,7 +584,7 @@ Widget _buildImageUploadSection() {
           borderRadius: BorderRadius.circular(12),
         ),
         padding: const EdgeInsets.symmetric(vertical: 16),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(Icons.add_photo_alternate, color: Colors.white, size: 28),
@@ -690,7 +688,7 @@ Widget categoryDropDown({
       decoration: CustomDropdownDecoration(
         listItemDecoration: ListItemDecoration(
           highlightColor: ColorConstants.highlightBlue,
-          selectedColor: ColorConstants.primaryWhite,
+          selectedColor: ColorConstants.lightGreyShade,
           selectedIconColor: ColorConstants.primaryForeground,
           selectedIconShape: CircleBorder(),
         ),
