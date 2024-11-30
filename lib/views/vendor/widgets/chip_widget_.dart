@@ -2,7 +2,7 @@ import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/material.dart';
 
-Widget FilterChipWidget({
+Widget filterChipWidget({
   required String label,
   required bool isSelected,
   required void Function(bool) onSelected,

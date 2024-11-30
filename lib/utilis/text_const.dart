@@ -76,4 +76,10 @@ class TextConstants {
     //fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
+  static TextStyle smallHighlightText = GoogleFonts.poppins(
+    fontSize: 13,
+    fontWeight: FontWeight.w500,
+    //fontFamily: 'Roboto',
+    color: ColorConstants.textSecondary,
+  );
 }
