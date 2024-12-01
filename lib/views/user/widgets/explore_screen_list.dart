@@ -3,7 +3,8 @@ import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreenList extends StatelessWidget {
-  const ExploreScreenList({super.key});
+  final IconData icon;
+  const ExploreScreenList({super.key, required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class ExploreScreenList extends StatelessWidget {
                           // TODO: FAVORITE BUTTON
                         },
                         icon: Icon(
-                          Icons.favorite_border_outlined,
+                          icon,
                           color: ColorConstants.errorColor,
                           size: 30,
                         ),

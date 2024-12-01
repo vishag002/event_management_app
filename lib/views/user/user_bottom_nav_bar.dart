@@ -29,8 +29,8 @@ class _UserBottomNavBarState extends State<UserBottomNavBar> {
           index: _currentIndex,
           children: const [
             UserHomeScreen(),
-            UserInboxSCreen(),
             UserWishListScreen(),
+            UserInboxScreen(),
             UserProfileScreen(),
           ],
         ),

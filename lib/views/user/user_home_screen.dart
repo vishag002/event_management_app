@@ -71,10 +71,13 @@ class _UserHomeScreenState extends State<UserHomeScreen> {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: InkWell(
-                    onTap: () {
-                      Get.to(UserServiceDetailsScreen());
-                    },
-                    child: ExploreScreenList()),
+                  onTap: () {
+                    Get.to(const UserServiceDetailsScreen());
+                  },
+                  child: const ExploreScreenList(
+                    icon: Icons.favorite_border,
+                  ),
+                ),
               ),
             ),
           ),
