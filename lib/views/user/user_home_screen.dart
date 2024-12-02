@@ -13,109 +13,145 @@ class UserHomeScreen extends StatefulWidget {
   _UserHomeScreenState createState() => _UserHomeScreenState();
 }
 
-class _UserHomeScreenState extends State<UserHomeScreen> {
-  // List of chip labels
+class _UserHomeScreenState extends State<UserHomeScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
+
   final List<String> _chipLabels = [
-    "all",
-    "Marrage",
-    "Stage Decoration",
-    "Private shows"
+    "All",
+    "Corporate",
+    "Private shows",
+    "Concert",
   ];
 
-  // Track the currently selected chip
-  int _selectedChipIndex = 0;
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: _chipLabels.length, vsync: this);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "App Name",
-          style: TextConstants.appTitle,
-        ),
-      ),
-      body: Column(
-        children: [
-          Container(
-            height: 80,
-            // width: double.infinity,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: List.generate(_chipLabels.length, (index) {
-                  return SingleChildScrollView(
-                    child: _chipContainer(
-                      label: _chipLabels[index],
-                      isSelected: _selectedChipIndex == index,
-                      onTap: () {
-                        setState(() {
-                          _selectedChipIndex = index;
-                        });
-                      },
-                    ),
-                  );
-                }),
-              ),
-            ),
-          ),
-          const SizedBox(height: 30),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: searchWidget(),
-          ),
-          const SizedBox(height: 20),
-          Flexible(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(const UserServiceDetailsScreen());
-                  },
-                  child: const ExploreScreenList(
-                    icon: Icons.favorite_border,
+        toolbarHeight: 150,
+        flexibleSpace: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Title(
+                color: ColorConstants.textPrimary,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    "App Name",
+                    style: TextConstants.appTitle
+                        .copyWith(fontWeight: FontWeight.w100),
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Updated chip container widget with selection and tap functionality
-  Widget _chipContainer(
-      {required String label, bool isSelected = false, VoidCallback? onTap}) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: isSelected
-                ? ColorConstants.primaryForeground
-                : ColorConstants.highlightBlueLightest,
-            border: Border.all(color: Colors.black),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(
-              label,
-              style: TextStyle(
-                color: isSelected
-                    ? Colors.white
-                    : Colors.black, // Text color changes with selection
+              SizedBox(height: 20),
+              Container(
+                width: double.infinity,
+                alignment: Alignment.center,
+                child: Column(
+                  children: [
+                    searchWidget(),
+                    const SizedBox(height: 60),
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
+        bottom: TabBar(
+          tabAlignment: TabAlignment.center,
+          controller: _tabController,
+          isScrollable: true,
+          labelStyle: TextConstants.headline.copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+          ),
+          unselectedLabelStyle: TextConstants.headline.copyWith(
+            fontSize: 15,
+            fontWeight: FontWeight.w400,
+          ),
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey,
+          indicator: UnderlineTabIndicator(
+            borderSide: BorderSide(width: 2.0, color: Colors.black),
+            insets: EdgeInsets.symmetric(horizontal: 16.0),
+          ),
+          tabs: List.generate(_chipLabels.length, (index) {
+            return Tab(
+              text: _chipLabels[index],
+            );
+          }),
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: List.generate(_chipLabels.length, (index) {
+          return _buildCategoryContent(index);
+        }),
       ),
     );
   }
 
-  // Your existing search widget (assuming it's defined elsewhere)
+  // Build content for each tab (category)
+  Widget _buildCategoryContent(int index) {
+    return ListView.builder(
+      padding: EdgeInsets.only(top: 10),
+      itemCount: 5, // Example item count, adjust based on data
+      itemBuilder: (context, idx) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              Get.to(const UserServiceDetailsScreen());
+            },
+            child: const ExploreScreenList(
+              icon: Icons.favorite_border,
+            ),
+          ),
+        );
+      },
+    );
+  }
 }
+
+
+
+//first chip style
+
+// Widget _chipContainer(
+//     {required String label, bool isSelected = false, VoidCallback? onTap}) {
+//   return GestureDetector(
+//     onTap: onTap,
+//     child: Padding(
+//       padding: const EdgeInsets.all(8.0),
+//       child: Container(
+//         decoration: BoxDecoration(
+//           color: isSelected
+//               ? ColorConstants.primaryForeground
+//               : ColorConstants.highlightBlueLightest,
+//           border: Border.all(color: Colors.black),
+//           borderRadius: BorderRadius.circular(30),
+//         ),
+//         child: Padding(
+//           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+//           child: Text(
+//             label,
+//             style: TextStyle(
+//               color: isSelected
+//                   ? Colors.white
+//                   : Colors.black, // Text color changes with selection
+//             ),
+//           ),
+//         ),
+//       ),
+//     ),
+//   );
+// }

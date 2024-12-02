@@ -6,27 +6,27 @@ import 'color_const.dart'; // Import color constants for consistent colors
 
 class TextConstants {
   // App Title
-  static final TextStyle appTitle = GoogleFonts.poppins(
+  static final TextStyle appTitle = GoogleFonts.montserrat(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: ColorConstants.textPrimary, // Primary text color
   );
 
   // Headline TextStyle
-  static final TextStyle headline = GoogleFonts.poppins(
+  static final TextStyle headline = GoogleFonts.montserrat(
     fontSize: 22,
     fontWeight: FontWeight.w600,
     color: ColorConstants.textPrimary,
   );
 
   // Subheading TextStyle
-  static final TextStyle subheading = GoogleFonts.poppins(
+  static final TextStyle subheading = GoogleFonts.montserrat(
     fontSize: 18,
     fontWeight: FontWeight.w500,
     color: ColorConstants.textPrimary,
   );
   // Body TextStyle
-  static TextStyle bodyText = GoogleFonts.poppins(
+  static TextStyle bodyText = GoogleFonts.hind(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     // fontFamily: 'Roboto',
@@ -34,7 +34,7 @@ class TextConstants {
   );
 
   // Secondary TextStyle (for lighter text, such as subtitles or descriptions)
-  static TextStyle bodyTextSecondary = GoogleFonts.poppins(
+  static TextStyle bodyTextSecondary = GoogleFonts.hind(
     fontSize: 16,
     fontWeight: FontWeight.normal,
     //fontFamily: 'Roboto',
@@ -42,19 +42,19 @@ class TextConstants {
   );
 
   // Button TextStyle
-  static TextStyle buttonText = GoogleFonts.poppins(
+  static TextStyle buttonText = GoogleFonts.hind(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     //fontFamily: 'Roboto',
     color: ColorConstants.buttonText, // White text for buttons
   );
-  static TextStyle buttonText2 = GoogleFonts.poppins(
+  static TextStyle buttonText2 = GoogleFonts.hind(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     //fontFamily: 'Roboto',
     color: ColorConstants.primaryForeground, // White text for buttons
   );
-  static TextStyle buttonTextSmall = GoogleFonts.poppins(
+  static TextStyle buttonTextSmall = GoogleFonts.hind(
     fontSize: 14,
     fontWeight: FontWeight.w600,
     //fontFamily: 'Roboto',
@@ -62,7 +62,7 @@ class TextConstants {
   );
 
   // Error TextStyle
-  static TextStyle errorText = GoogleFonts.poppins(
+  static TextStyle errorText = GoogleFonts.hind(
     fontSize: 14,
     fontWeight: FontWeight.normal,
     //fontFamily: 'Roboto',
@@ -70,13 +70,13 @@ class TextConstants {
   );
 
   // Form Label TextStyle
-  static TextStyle formLabel = GoogleFonts.poppins(
+  static TextStyle formLabel = GoogleFonts.hind(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     //fontFamily: 'Roboto',
     color: ColorConstants.textPrimary,
   );
-  static TextStyle smallHighlightText = GoogleFonts.poppins(
+  static TextStyle smallHighlightText = GoogleFonts.hind(
     fontSize: 13,
     fontWeight: FontWeight.w500,
     //fontFamily: 'Roboto',

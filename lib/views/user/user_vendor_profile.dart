@@ -1,4 +1,3 @@
-import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,45 +8,46 @@ class UserVendorProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        title: const Text("Vendor Profile"),
+      ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Profile Image
             Container(
-              // margin: const EdgeInsets.only(top: 24),
-              padding: const EdgeInsets.all(5),
+              margin: const EdgeInsets.only(top: 24),
+              padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.black,
+                color: Colors.white,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 15,
-                    spreadRadius: 5,
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 20,
+                    spreadRadius: 2,
                   ),
                 ],
               ),
               child: CircleAvatar(
                 backgroundColor: Colors.grey[200],
-                radius: MediaQuery.of(context).size.height * .06,
-                // backgroundImage: NetworkImage(
-                //   "https://s.alicdn.com/@sc04/kf/H198e6af29950427a9f441dc9cc7db788Z.jpg_720x720q50.jpg",
-                // ),
+                radius: MediaQuery.of(context).size.height * .07,
                 child: Icon(
                   Icons.person,
-                  size: MediaQuery.of(context).size.height * .06,
+                  size: MediaQuery.of(context).size.height * .07,
                   color: Colors.grey[400],
                 ),
               ),
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 20),
 
             // Vendor Name
             const Text(
               "ABC Limited",
               style: TextStyle(
-                fontSize: 28,
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
@@ -84,7 +84,7 @@ class UserVendorProfile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
-                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique  ',
+                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique.',
                 style: TextConstants.bodyText,
                 textAlign: TextAlign.justify,
               ),
@@ -94,63 +94,88 @@ class UserVendorProfile extends StatelessWidget {
             // Contact Information Card
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 24),
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.grey[50],
-                borderRadius: BorderRadius.circular(20),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(16),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.05),
+                    color: Colors.black.withOpacity(0.1),
                     blurRadius: 10,
-                    offset: const Offset(0, 5),
+                    offset: const Offset(0, 4),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Contact Information',
-                    style: TextStyle(
+                    style: TextConstants.formLabel.copyWith(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
                     ),
                   ),
                   const SizedBox(height: 20),
                   _buildInfoRow(
                     icon: CupertinoIcons.phone_circle_fill,
                     text: "12345689",
-                    iconColor: Theme.of(context).primaryColor,
+                    iconColor: Colors.blue,
                   ),
                   const SizedBox(height: 16),
                   _buildInfoRow(
                     icon: Icons.location_on,
                     text: "ABC Road, Bangalore",
-                    iconColor: Theme.of(context).primaryColor,
+                    iconColor: Colors.red,
                   ),
                   const SizedBox(height: 16),
                   _buildInfoRow(
                     icon: Icons.email_outlined,
                     text: "demo@demo.com",
-                    iconColor: Theme.of(context).primaryColor,
+                    iconColor: Colors.green,
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "Services Provided",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
 
-            // Grid View with Constrained Height
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 5,
-              itemBuilder: (context, index) => ServiceListView(
-                context: context,
-                imageUrl:
-                    "https://res.cloudinary.com/dreamworth-in/image/upload/v1502875248/event-planning.jpg",
-                title: "title",
-                description: "description",
+                  // Service List
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 5,
+                      itemBuilder: (context, index) => GestureDetector(
+                        onTap: () {
+                          // Navigate to service details page
+                        },
+                        child: ServiceListView(
+                          context: context,
+                          imageUrl:
+                              "https://res.cloudinary.com/dreamworth-in/image/upload/v1502875248/event-planning.jpg",
+                          title: "Service ${index + 1}",
+                          description:
+                              "Brief description of the service provided.",
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -166,7 +191,7 @@ Widget _buildInfoRow({
   return Row(
     children: [
       Container(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: iconColor.withOpacity(0.1),
           borderRadius: BorderRadius.circular(10),
@@ -183,83 +208,51 @@ Widget _buildInfoRow({
   );
 }
 
-///
-
 Widget ServiceListView({
   required context,
   required imageUrl,
   required title,
   required description,
 }) {
-  double W1 = MediaQuery.of(context).size.width;
-
-  // Dynamically set the aspect ratio based on the screen width
-  //double aspectRatio = screenWidth > 400 ? 4 / 2 : 4.1 / 2;
-  return Padding(
-    padding: const EdgeInsets.only(top: 15),
-    child: Container(
-      width: double.infinity, // Ensure the width is finite
-      decoration: BoxDecoration(
-        color: ColorConstants.highlightBlueLightest.withOpacity(.5),
-        borderRadius: BorderRadius.circular(8),
-        // border: Border.all(
-        //   color: ColorConstants.textSecondary,
-        // ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
+  return Card(
+    margin: const EdgeInsets.only(bottom: 16),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+    elevation: 3,
+    child: Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              imageUrl,
+              height: 80,
+              width: 80,
+              fit: BoxFit.cover,
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // Calculate a responsive square using MediaQuery
-                Builder(
-                  builder: (context) {
-                    double width = MediaQuery.of(context).size.width;
-                    double sideLength = width * 0.2; // 20% of the screen width
-
-                    // Ensure the square is sized properly
-                    return Container(
-                      width: sideLength,
-                      height: sideLength,
-                      decoration: BoxDecoration(
-                        // color: Colors.grey,
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                            image: NetworkImage(imageUrl), fit: BoxFit.cover),
-                      ),
-                    );
-                  },
+                Text(
+                  title,
+                  style: TextConstants.formLabel.copyWith(fontSize: 16),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
-                const SizedBox(width: 20),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .6,
-                      child: Text(
-                        title,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextConstants.formLabel,
-                      ),
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * .6,
-                      child: Text(
-                        description,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextConstants.bodyText,
-                      ),
-                    ),
-                  ],
+                const SizedBox(height: 8),
+                Text(
+                  description,
+                  style: TextConstants.bodyText.copyWith(fontSize: 14),
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     ),
   );

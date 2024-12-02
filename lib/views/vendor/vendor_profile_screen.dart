@@ -1,7 +1,9 @@
+import 'package:event_management_app/Authentication/login_screen.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class VendorProfileScreen extends StatelessWidget {
   const VendorProfileScreen({super.key});
@@ -15,8 +17,10 @@ class VendorProfileScreen extends StatelessWidget {
               color: ColorConstants.backgroundPrimary,
               itemBuilder: (BuildContext context) {
                 return [
-                  _buildPopupMenuItem("Edit Profile", Icons.edit, context),
-                  _buildPopupMenuItem("LogOut", Icons.logout, context),
+                  _buildPopupMenuItem(
+                      "Edit Profile", Icons.edit, context, navigationAction),
+                  _buildPopupMenuItem(
+                      "LogOut", Icons.logout, context, navigationAction),
                 ];
               })
         ],
@@ -213,8 +217,8 @@ class VendorProfileScreen extends StatelessWidget {
   /////
   ///
 
-  PopupMenuItem _buildPopupMenuItem(
-      String menuTitle, IconData iconData, BuildContext context) {
+  PopupMenuItem _buildPopupMenuItem(String menuTitle, IconData iconData,
+      BuildContext context, button_action) {
     // Get screen width
     double screenWidth = MediaQuery.of(context).size.width;
 
@@ -225,7 +229,10 @@ class VendorProfileScreen extends StatelessWidget {
         screenWidth < 400 ? 14.0 : 16.0; // Smaller text for small screens
 
     return PopupMenuItem(
-      padding: EdgeInsets.symmetric(horizontal: 8.0), // Minimal padding
+      onTap: () {
+        button_action();
+      },
+      padding: const EdgeInsets.symmetric(horizontal: 8.0), // Minimal padding
       height: 40.0, // Fixed height for consistent look
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -246,6 +253,17 @@ class VendorProfileScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void popAction(BuildContext context) {
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context); // Safely pops the current route if possible
+    }
+  }
+
+  void navigationAction() {
+    Get.to(
+        () => LoginScreen()); // Proper GetX navigation with lazy initialization
   }
 }
 
