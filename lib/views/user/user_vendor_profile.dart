@@ -1,3 +1,4 @@
+import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -139,6 +140,17 @@ class UserVendorProfile extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Grid View with Constrained Height
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: 5,
+              itemBuilder: (context, index) => ServiceListView(
+                context: context,
+                imageUrl:
+                    "https://res.cloudinary.com/dreamworth-in/image/upload/v1502875248/event-planning.jpg",
+                title: "title",
+                description: "description",
+              ),
+            )
           ],
         ),
       ),
@@ -168,5 +180,87 @@ Widget _buildInfoRow({
       const SizedBox(width: 16),
       Text(text, style: TextConstants.bodyText),
     ],
+  );
+}
+
+///
+
+Widget ServiceListView({
+  required context,
+  required imageUrl,
+  required title,
+  required description,
+}) {
+  double W1 = MediaQuery.of(context).size.width;
+
+  // Dynamically set the aspect ratio based on the screen width
+  //double aspectRatio = screenWidth > 400 ? 4 / 2 : 4.1 / 2;
+  return Padding(
+    padding: const EdgeInsets.only(top: 15),
+    child: Container(
+      width: double.infinity, // Ensure the width is finite
+      decoration: BoxDecoration(
+        color: ColorConstants.highlightBlueLightest.withOpacity(.5),
+        borderRadius: BorderRadius.circular(8),
+        // border: Border.all(
+        //   color: ColorConstants.textSecondary,
+        // ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                // Calculate a responsive square using MediaQuery
+                Builder(
+                  builder: (context) {
+                    double width = MediaQuery.of(context).size.width;
+                    double sideLength = width * 0.2; // 20% of the screen width
+
+                    // Ensure the square is sized properly
+                    return Container(
+                      width: sideLength,
+                      height: sideLength,
+                      decoration: BoxDecoration(
+                        // color: Colors.grey,
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                            image: NetworkImage(imageUrl), fit: BoxFit.cover),
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .6,
+                      child: Text(
+                        title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextConstants.formLabel,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * .6,
+                      child: Text(
+                        description,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextConstants.bodyText,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ),
   );
 }
