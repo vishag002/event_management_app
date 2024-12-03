@@ -33,10 +33,10 @@ class UserVendorProfile extends StatelessWidget {
               ),
               child: CircleAvatar(
                 backgroundColor: Colors.grey[200],
-                radius: MediaQuery.of(context).size.height * .07,
+                radius: MediaQuery.of(context).size.height * .06,
                 child: Icon(
                   Icons.person,
-                  size: MediaQuery.of(context).size.height * .07,
+                  size: MediaQuery.of(context).size.height * .06,
                   color: Colors.grey[400],
                 ),
               ),
@@ -92,27 +92,18 @@ class UserVendorProfile extends StatelessWidget {
             const SizedBox(height: 30),
 
             // Contact Information Card
-            Container(
-              margin: const EdgeInsets.symmetric(horizontal: 24),
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Contact Information',
-                    style: TextConstants.formLabel.copyWith(
-                      fontWeight: FontWeight.bold,
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Text(
+                      'Contact Information',
+                      style: TextConstants.formLabel.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -153,7 +144,7 @@ class UserVendorProfile extends StatelessWidget {
 
                   // Service List
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 0),
                     child: ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
@@ -162,7 +153,7 @@ class UserVendorProfile extends StatelessWidget {
                         onTap: () {
                           // Navigate to service details page
                         },
-                        child: ServiceListView(
+                        child: serviceListView(
                           context: context,
                           imageUrl:
                               "https://res.cloudinary.com/dreamworth-in/image/upload/v1502875248/event-planning.jpg",
@@ -208,52 +199,38 @@ Widget _buildInfoRow({
   );
 }
 
-Widget ServiceListView({
+Widget serviceListView({
   required context,
   required imageUrl,
   required title,
   required description,
 }) {
-  return Card(
-    margin: const EdgeInsets.only(bottom: 16),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-    elevation: 3,
-    child: Padding(
-      padding: const EdgeInsets.all(12.0),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: Image.network(
-              imageUrl,
-              height: 80,
-              width: 80,
-              fit: BoxFit.cover,
-            ),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextConstants.formLabel.copyWith(fontSize: 16),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 10),
+    child: Container(
+        height: MediaQuery.of(context).size.height * 0.15,
+        decoration: BoxDecoration(
+          //color: Colors.amber,
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: MediaQuery.of(context).size.width * 0.35,
+              height: 150, // Adjust height as needed
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                      'https://i.cdn.newsbytesapp.com/images/3018481724068746.jpg'), // Replace with your image URL
+                  fit: BoxFit.cover,
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  description,
-                  style: TextConstants.bodyText.copyWith(fontSize: 14),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                  bottomRight: Radius.circular(40), // Keeps the curved shape
                 ),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
-    ),
+          ],
+        )),
   );
 }

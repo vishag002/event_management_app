@@ -16,6 +16,8 @@ class UserBottomNavBar extends StatefulWidget {
 
 class _UserBottomNavBarState extends State<UserBottomNavBar> {
   int _currentIndex = 0;
+  bool visible = true;
+
   void _onTabTapped(int index) {
     setState(() {
       _currentIndex = index;
@@ -27,93 +29,117 @@ class _UserBottomNavBarState extends State<UserBottomNavBar> {
     return Scaffold(
         body: IndexedStack(
           index: _currentIndex,
-          children: const [
-            UserHomeScreen(),
+          children: [
+            UserHomeScreen(
+              hideNavigation: hideNav,
+              showNavigation: showNav,
+            ),
             UserWishListScreen(),
             UserInboxScreen(),
             UserProfileScreen(),
           ],
         ),
-        bottomNavigationBar: bottomBarStyle2(_currentIndex, _onTabTapped));
+        bottomNavigationBar:
+            bottomBarStyle2(_currentIndex, _onTabTapped, context, visible));
+  }
+
+  void hideNav() {
+    setState(() {
+      visible = false;
+    });
+  }
+
+  void showNav() {
+    setState(() {
+      visible = true;
+    });
   }
 }
 
-Widget bottomBarStyle2(int currentIndex, Function(int) changeTab) {
-  return SizedBox(
-    height: 80,
+Widget bottomBarStyle2(
+    int currentIndex, Function(int) changeTab, context, visible) {
+  return AnimatedContainer(
+    duration: Duration(milliseconds: 1000),
+    curve: Curves.fastLinearToSlowEaseIn,
+    height: visible ? MediaQuery.of(context).size.height * .07 : 0,
     width: double.infinity,
-    child: BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: changeTab,
-      enableFeedback: true,
-      unselectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
-        fontSize: 12,
-      ),
-      selectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
-        fontSize: 12,
-      ),
-      backgroundColor: ColorConstants.lightGreyShade,
-      elevation: 0,
-      selectedItemColor: ColorConstants.primaryForeground,
-      unselectedItemColor: Colors.grey,
-      iconSize: 30,
-      selectedFontSize: 12,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(IconsaxPlusLinear.search_normal_1),
-          ), // Default (unselected) icon
-          activeIcon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(
-              IconsaxPlusBold.search_normal_1, // Selected icon
-              color: ColorConstants.primaryForeground,
-            ),
+    child: Wrap(
+      children: [
+        BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          currentIndex: currentIndex,
+          onTap: changeTab,
+          enableFeedback: true,
+          unselectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
+            fontSize: 12,
           ),
-          label: 'Explore',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(IconsaxPlusLinear.heart),
-          ), // Default (unselected) icon
-          activeIcon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(
-              IconsaxPlusBold.heart, // Selected icon
-              color: ColorConstants.primaryForeground,
-            ),
+          selectedLabelStyle: TextConstants.buttonTextSmall.copyWith(
+            fontSize: 12,
           ),
-          label: 'Wish List',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(IconsaxPlusLinear.message_text_1),
-          ), // Default (unselected) icon
-          activeIcon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(
-              IconsaxPlusBold.message_text_1, // Selected icon
-              color: ColorConstants.primaryForeground,
+          backgroundColor: ColorConstants.lightGreyShade,
+          elevation: 0,
+          selectedItemColor: ColorConstants.primaryForeground,
+          unselectedItemColor: Colors.grey,
+          iconSize: 30,
+          selectedFontSize: 12,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(IconsaxPlusLinear.search_normal_1),
+              ), // Default (unselected) icon
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(
+                  IconsaxPlusBold.search_normal_1, // Selected icon
+                  color: ColorConstants.primaryForeground,
+                ),
+              ),
+              label: 'Explore',
             ),
-          ),
-          label: 'Inbox',
-        ),
-        BottomNavigationBarItem(
-          icon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(IconsaxPlusLinear.profile_circle),
-          ), // Default (unselected) icon
-          activeIcon: Padding(
-            padding: EdgeInsets.only(bottom: 5),
-            child: Icon(
-              IconsaxPlusBold.profile_circle, // Selected icon
-              color: ColorConstants.primaryForeground,
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(IconsaxPlusLinear.heart),
+              ), // Default (unselected) icon
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(
+                  IconsaxPlusBold.heart, // Selected icon
+                  color: ColorConstants.primaryForeground,
+                ),
+              ),
+              label: 'Wish List',
             ),
-          ),
-          label: 'Profile',
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(IconsaxPlusLinear.message_text_1),
+              ), // Default (unselected) icon
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(
+                  IconsaxPlusBold.message_text_1, // Selected icon
+                  color: ColorConstants.primaryForeground,
+                ),
+              ),
+              label: 'Inbox',
+            ),
+            BottomNavigationBarItem(
+              icon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(IconsaxPlusLinear.profile_circle),
+              ), // Default (unselected) icon
+              activeIcon: Padding(
+                padding: EdgeInsets.only(bottom: 5),
+                child: Icon(
+                  IconsaxPlusBold.profile_circle, // Selected icon
+                  color: ColorConstants.primaryForeground,
+                ),
+              ),
+              label: 'Profile',
+            ),
+          ],
         ),
       ],
     ),

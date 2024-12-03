@@ -14,7 +14,7 @@ class _VendorInboxScreenState extends State<VendorInboxScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
 
-  List<String> tabLabels = ['All', 'Unread Messages'];
+  List<String> tabLabels = ['All', 'Unread'];
 
   @override
   void initState() {

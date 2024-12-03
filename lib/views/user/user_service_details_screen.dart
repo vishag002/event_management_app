@@ -24,10 +24,13 @@ class UserServiceDetailsScreen extends StatelessWidget {
           children: [
             FullScreenImageCarousel(imageUrls: images),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Text(
                 "Service Name",
-                style: TextConstants.appTitle,
+                style: TextConstants.subheading.copyWith(
+                  fontSize: 22,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             const SizedBox(height: 20),
@@ -89,7 +92,7 @@ Widget vendorNameTab() {
       //color: Colors.amber,
       border: Border.symmetric(
         horizontal:
-            BorderSide(color: ColorConstants.greySecondary.withOpacity(.4)),
+            BorderSide(color: ColorConstants.greySecondary.withOpacity(.1)),
       ),
     ),
     child: Padding(
@@ -113,13 +116,17 @@ Widget vendorNameTab() {
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   "Vendor Name",
-                  style: TextConstants.headline
-                      .copyWith(height: 1), // Add height: 1
+                  style: TextConstants.formLabel.copyWith(
+                    height: 1,
+                    //fontSize: 18,
+                    overflow: TextOverflow.ellipsis,
+                    fontWeight: FontWeight.bold,
+                  ), // Add height: 1
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),

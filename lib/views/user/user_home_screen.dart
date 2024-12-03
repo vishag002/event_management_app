@@ -2,12 +2,16 @@ import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/user_service_details_screen.dart';
 import 'package:event_management_app/views/user/widgets/explore_screen_list.dart';
-import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class UserHomeScreen extends StatefulWidget {
-  const UserHomeScreen({super.key});
+  final VoidCallback showNavigation;
+  final VoidCallback hideNavigation;
+  const UserHomeScreen(
+      {super.key, required this.showNavigation, required this.hideNavigation});
 
   @override
   _UserHomeScreenState createState() => _UserHomeScreenState();
@@ -16,11 +20,13 @@ class UserHomeScreen extends StatefulWidget {
 class _UserHomeScreenState extends State<UserHomeScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  ScrollController scrollController = ScrollController();
 
   final List<String> _chipLabels = [
     "All",
+    "Weddings",
     "Corporate",
-    "Private shows",
+    "Private show",
     "Concert",
   ];
 
@@ -28,6 +34,34 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   void initState() {
     super.initState();
     _tabController = TabController(length: _chipLabels.length, vsync: this);
+
+    //scroll controller
+    scrollController.addListener(
+      () {
+        if (scrollController.position.userScrollDirection ==
+            ScrollDirection.forward) {
+          widget.showNavigation();
+        } else {
+          widget.hideNavigation();
+        }
+      },
+    );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    scrollController.removeListener(
+      () {
+        if (scrollController.position.userScrollDirection ==
+            ScrollDirection.forward) {
+          widget.showNavigation();
+        } else {
+          widget.hideNavigation();
+        }
+      },
+    );
   }
 
   @override
@@ -58,7 +92,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                 alignment: Alignment.center,
                 child: Column(
                   children: [
-                    searchWidget(),
+                    searchWidget(context: context),
                     const SizedBox(height: 60),
                   ],
                 ),
@@ -67,15 +101,16 @@ class _UserHomeScreenState extends State<UserHomeScreen>
           ),
         ),
         bottom: TabBar(
+          indicatorSize: TabBarIndicatorSize.tab,
           tabAlignment: TabAlignment.center,
           controller: _tabController,
           isScrollable: true,
           labelStyle: TextConstants.headline.copyWith(
-            fontSize: 15,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           unselectedLabelStyle: TextConstants.headline.copyWith(
-            fontSize: 15,
+            fontSize: 16,
             fontWeight: FontWeight.w400,
           ),
           labelColor: Colors.black,
@@ -103,6 +138,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   // Build content for each tab (category)
   Widget _buildCategoryContent(int index) {
     return ListView.builder(
+      controller: scrollController,
       padding: EdgeInsets.only(top: 10),
       itemCount: 5, // Example item count, adjust based on data
       itemBuilder: (context, idx) {
@@ -120,6 +156,40 @@ class _UserHomeScreenState extends State<UserHomeScreen>
       },
     );
   }
+}
+//search widget
+
+Widget searchWidget({context}) {
+  return Container(
+    height: MediaQuery.of(context).size.height * .06,
+    width: double.infinity,
+    decoration: BoxDecoration(
+        color: ColorConstants.lightGreyShade,
+        borderRadius: BorderRadius.circular(30),
+        border: Border.all(
+          color: ColorConstants.textSecondary.withOpacity(.5),
+          width: 1,
+        )),
+    child: Center(
+      child: TextField(
+        textAlignVertical:
+            TextAlignVertical.center, // Center the text vertically
+        textAlign: TextAlign.start, // Align text to the start horizontally
+        decoration: InputDecoration(
+          border: InputBorder.none, // Remove the border
+          hintText: "Search your services",
+          hintStyle: TextConstants.bodyTextSecondary,
+          prefixIcon: const Icon(
+            CupertinoIcons.search,
+            color: ColorConstants.textSecondary, // Add appropriate color
+          ),
+          contentPadding: EdgeInsets.zero, // Adjust padding to center hint
+        ),
+        style: TextConstants.bodyText, // Style for the input text
+        cursorColor: ColorConstants.textSecondary,
+      ),
+    ),
+  );
 }
 
 

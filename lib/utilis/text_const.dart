@@ -20,7 +20,7 @@ class TextConstants {
   );
 
   // Subheading TextStyle
-  static final TextStyle subheading = GoogleFonts.montserrat(
+  static final TextStyle subheading = GoogleFonts.hind(
     fontSize: 18,
     fontWeight: FontWeight.w500,
     color: ColorConstants.textPrimary,
