@@ -68,7 +68,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 150,
+        toolbarHeight: 130,
         flexibleSpace: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(

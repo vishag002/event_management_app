@@ -1,6 +1,9 @@
+import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/user/user_service_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserVendorProfile extends StatelessWidget {
   const UserVendorProfile({super.key});
@@ -206,12 +209,33 @@ Widget serviceListView({
   required description,
 }) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 10),
-    child: Container(
+    padding: const EdgeInsets.only(bottom: 20),
+    child: InkWell(
+      onTap: () {
+        Get.to(UserServiceDetailsScreen());
+      },
+      child: Container(
         height: MediaQuery.of(context).size.height * 0.15,
         decoration: BoxDecoration(
-          //color: Colors.amber,
-          borderRadius: BorderRadius.circular(20),
+          color: ColorConstants.primaryWhite,
+          // border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(40),
+            topRight: Radius.circular(20),
+            bottomLeft: Radius.circular(0),
+            bottomRight: Radius.circular(30),
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: Color.fromRGBO(100, 100, 111, 0.2),
+              blurRadius: 29,
+              spreadRadius: 0,
+              offset: Offset(
+                0,
+                7,
+              ),
+            ),
+          ],
         ),
         child: Row(
           children: [
@@ -219,6 +243,7 @@ Widget serviceListView({
               width: MediaQuery.of(context).size.width * 0.35,
               height: 150, // Adjust height as needed
               decoration: BoxDecoration(
+                color: ColorConstants.primaryWhite,
                 image: DecorationImage(
                   image: NetworkImage(
                       'https://i.cdn.newsbytesapp.com/images/3018481724068746.jpg'), // Replace with your image URL
@@ -230,7 +255,34 @@ Widget serviceListView({
                 ),
               ),
             ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Service name",
+                        style: TextConstants.headline,
+                      ),
+                      SizedBox(height: 5),
+                      Text(
+                        " Description ee Description eeDescription eeDescription eeDescription eeDescription eeDescription ee",
+                        style: TextConstants.formLabel,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           ],
-        )),
+        ),
+      ),
+    ),
   );
 }
