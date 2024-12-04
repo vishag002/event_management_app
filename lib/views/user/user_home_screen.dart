@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class UserHomeScreen extends StatefulWidget {
   final VoidCallback showNavigation;
@@ -68,7 +69,8 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 130,
+        //toolbarHeight: 130,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.15,
         flexibleSpace: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
@@ -149,7 +151,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
               Get.to(const UserServiceDetailsScreen());
             },
             child: const ExploreScreenList(
-              icon: Icons.favorite_border,
+              icon: IconsaxPlusLinear.heart,
             ),
           ),
         );

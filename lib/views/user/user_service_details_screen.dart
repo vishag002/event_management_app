@@ -120,7 +120,7 @@ Widget vendorNameTab() {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  "Vendor Name",
+                  "ABC Limited",
                   style: TextConstants.formLabel.copyWith(
                     height: 1,
                     //fontSize: 18,

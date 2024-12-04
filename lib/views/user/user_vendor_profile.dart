@@ -4,6 +4,7 @@ import 'package:event_management_app/views/user/user_service_details_screen.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class UserVendorProfile extends StatelessWidget {
   const UserVendorProfile({super.key});
@@ -81,55 +82,131 @@ class UserVendorProfile extends StatelessWidget {
                 ],
               ),
             ),
+
             const SizedBox(height: 20),
-
-            // Description
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique.',
-                style: TextConstants.bodyText,
-                textAlign: TextAlign.justify,
-              ),
-            ),
-            const SizedBox(height: 30),
-
-            // Contact Information Card
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+            Container(
+              height: 80,
+              width: double.infinity,
+              //color: Colors.green.shade100,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      'Contact Information',
-                      style: TextConstants.formLabel.copyWith(
-                        fontWeight: FontWeight.bold,
+                  InkWell(
+                    onTap: () {
+                      //
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: ColorConstants.primaryForeground,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        IconsaxPlusBold.call,
+                        color: ColorConstants.primaryWhite,
                       ),
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  _buildInfoRow(
-                    icon: CupertinoIcons.phone_circle_fill,
-                    text: "12345689",
-                    iconColor: Colors.blue,
+                  const SizedBox(width: 10),
+                  InkWell(
+                    onTap: () {
+                      //
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: ColorConstants.primaryForeground,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        CupertinoIcons.mail_solid,
+                        color: ColorConstants.primaryWhite,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  _buildInfoRow(
-                    icon: Icons.location_on,
-                    text: "ABC Road, Bangalore",
-                    iconColor: Colors.red,
-                  ),
-                  const SizedBox(height: 16),
-                  _buildInfoRow(
-                    icon: Icons.email_outlined,
-                    text: "demo@demo.com",
-                    iconColor: Colors.green,
+                  const SizedBox(width: 10),
+                  InkWell(
+                    onTap: () {
+                      //
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                        color: ColorConstants.primaryForeground,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        IconsaxPlusBold.location,
+                        color: ColorConstants.primaryWhite,
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
+            // Description
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    "About",
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique.',
+                    style: TextConstants.bodyText,
+                    textAlign: TextAlign.justify,
+                  ),
+                ],
+              ),
+            ),
+            //const SizedBox(height: 30),
+
+            // Contact Information Card
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 10),
+            //   child: Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Padding(
+            //         padding: const EdgeInsets.symmetric(horizontal: 10),
+            //         child: Text(
+            //           'Contact Information',
+            //           style: TextConstants.formLabel.copyWith(
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //       ),
+            //       const SizedBox(height: 20),
+            //       _buildInfoRow(
+            //         icon: CupertinoIcons.phone_circle_fill,
+            //         text: "12345689",
+            //         iconColor: Colors.blue,
+            //       ),
+            //       const SizedBox(height: 16),
+            //       _buildInfoRow(
+            //         icon: Icons.location_on,
+            //         text: "ABC Road, Bangalore",
+            //         iconColor: Colors.red,
+            //       ),
+            //       const SizedBox(height: 16),
+            //       _buildInfoRow(
+            //         icon: Icons.email_outlined,
+            //         text: "demo@demo.com",
+            //         iconColor: Colors.green,
+            //       ),
+            //     ],
+            //   ),
+            // ),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -215,27 +292,27 @@ Widget serviceListView({
         Get.to(UserServiceDetailsScreen());
       },
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.15,
+        height: MediaQuery.of(context).size.height * 0.14,
         decoration: BoxDecoration(
           color: ColorConstants.primaryWhite,
           // border: Border.all(color: Colors.black),
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(40),
+            topLeft: Radius.circular(60),
             topRight: Radius.circular(20),
             bottomLeft: Radius.circular(0),
             bottomRight: Radius.circular(30),
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Color.fromRGBO(100, 100, 111, 0.2),
-              blurRadius: 29,
-              spreadRadius: 0,
-              offset: Offset(
-                0,
-                7,
-              ),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Color.fromRGBO(100, 100, 111, 0.2),
+          //     blurRadius: 29,
+          //     spreadRadius: 0,
+          //     offset: Offset(
+          //       0,
+          //       7,
+          //     ),
+          //   ),
+          // ],
         ),
         child: Row(
           children: [
@@ -246,7 +323,7 @@ Widget serviceListView({
                 color: ColorConstants.primaryWhite,
                 image: DecorationImage(
                   image: NetworkImage(
-                      'https://i.cdn.newsbytesapp.com/images/3018481724068746.jpg'), // Replace with your image URL
+                      'https://www.visionvivaah.com/blog/wp-content/uploads/2019/10/Best-Event-Management-Company-In-Mumbai.jpg'), // Replace with your image URL
                   fit: BoxFit.cover,
                 ),
                 borderRadius: BorderRadius.only(
@@ -255,7 +332,7 @@ Widget serviceListView({
                 ),
               ),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20),
@@ -266,12 +343,14 @@ Widget serviceListView({
                     children: [
                       Text(
                         "Service name",
-                        style: TextConstants.headline,
+                        style: TextConstants.formLabel.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        " Description ee Description eeDescription eeDescription eeDescription eeDescription eeDescription ee",
-                        style: TextConstants.formLabel,
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec sodales dui, at maximus neque. Nullam vitae blandit ex. Morbi placerat augue vitae libero vehicula eleifend. Ut et pretium urna, eu viverra massa. Maecenas vitae vulputate turpis. Ut non nisl nec dui vehicula pharetra a id mi. Aliquam feugiat fringilla suscipit. Aliquam accumsan cursus blandit. Nullam bibendum vel libero id consequat. Duis ultricies fringilla turpis, nec dignissim erat cursus aliquam",
+                        style: TextConstants.bodyText.copyWith(),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                       ),

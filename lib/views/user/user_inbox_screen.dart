@@ -25,9 +25,21 @@ Widget userChatList({required BuildContext context}) {
     leading: leadingWidget(),
     title: Text(
       "vendor name",
-      style: TextConstants.bodyText.copyWith(height: 1),
+      style: TextConstants.bodyText
+          .copyWith(height: 1, fontWeight: FontWeight.w600),
     ),
-    subtitle: Text("last message"),
+    subtitle: Padding(
+      padding: const EdgeInsets.only(
+        top: 5,
+      ),
+      child: Text(
+        "last message",
+        style: TextConstants.bodyText.copyWith(
+          height: 1,
+          fontSize: 14,
+        ),
+      ),
+    ),
     trailing: Icon(
       Icons.circle,
       size: 10,

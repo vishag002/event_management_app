@@ -2,6 +2,7 @@ import 'package:event_management_app/views/user/user_service_details_screen.dart
 import 'package:event_management_app/views/user/widgets/explore_screen_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class UserWishListScreen extends StatelessWidget {
   const UserWishListScreen({super.key});
@@ -21,7 +22,7 @@ class UserWishListScreen extends StatelessWidget {
               Get.to(const UserServiceDetailsScreen());
             },
             child: const ExploreScreenList(
-              icon: Icons.favorite,
+              icon: IconsaxPlusBold.heart,
             ),
           ),
         ),
