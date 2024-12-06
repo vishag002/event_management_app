@@ -27,13 +27,6 @@ class UserVendorProfile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.2),
-                    blurRadius: 20,
-                    spreadRadius: 2,
-                  ),
-                ],
               ),
               child: CircleAvatar(
                 backgroundColor: Colors.grey[200],
@@ -169,44 +162,7 @@ class UserVendorProfile extends StatelessWidget {
                 ],
               ),
             ),
-            //const SizedBox(height: 30),
 
-            // Contact Information Card
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 10),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       Padding(
-            //         padding: const EdgeInsets.symmetric(horizontal: 10),
-            //         child: Text(
-            //           'Contact Information',
-            //           style: TextConstants.formLabel.copyWith(
-            //             fontWeight: FontWeight.bold,
-            //           ),
-            //         ),
-            //       ),
-            //       const SizedBox(height: 20),
-            //       _buildInfoRow(
-            //         icon: CupertinoIcons.phone_circle_fill,
-            //         text: "12345689",
-            //         iconColor: Colors.blue,
-            //       ),
-            //       const SizedBox(height: 16),
-            //       _buildInfoRow(
-            //         icon: Icons.location_on,
-            //         text: "ABC Road, Bangalore",
-            //         iconColor: Colors.red,
-            //       ),
-            //       const SizedBox(height: 16),
-            //       _buildInfoRow(
-            //         icon: Icons.email_outlined,
-            //         text: "demo@demo.com",
-            //         iconColor: Colors.green,
-            //       ),
-            //     ],
-            //   ),
-            // ),
             const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -294,42 +250,36 @@ Widget serviceListView({
       child: Container(
         height: MediaQuery.of(context).size.height * 0.14,
         decoration: BoxDecoration(
-          color: ColorConstants.primaryWhite,
-          // border: Border.all(color: Colors.black),
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(60),
-            topRight: Radius.circular(20),
-            bottomLeft: Radius.circular(0),
-            bottomRight: Radius.circular(30),
-          ),
-          // boxShadow: [
-          //   BoxShadow(
-          //     color: Color.fromRGBO(100, 100, 111, 0.2),
-          //     blurRadius: 29,
-          //     spreadRadius: 0,
-          //     offset: Offset(
-          //       0,
-          //       7,
-          //     ),
-          //   ),
-          // ],
-        ),
+            color: ColorConstants.primaryWhite,
+            // border: Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(30)
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Color.fromRGBO(100, 100, 111, 0.2),
+            //     blurRadius: 29,
+            //     spreadRadius: 0,
+            //     offset: Offset(
+            //       0,
+            //       7,
+            //     ),
+            //   ),
+            // ],
+            ),
         child: Row(
           children: [
-            Container(
-              width: MediaQuery.of(context).size.width * 0.35,
-              height: 150, // Adjust height as needed
-              decoration: BoxDecoration(
-                color: ColorConstants.primaryWhite,
-                image: DecorationImage(
-                  image: NetworkImage(
-                      'https://www.visionvivaah.com/blog/wp-content/uploads/2019/10/Best-Event-Management-Company-In-Mumbai.jpg'), // Replace with your image URL
-                  fit: BoxFit.cover,
-                ),
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(40),
-                  bottomRight: Radius.circular(40), // Keeps the curved shape
-                ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: MediaQuery.of(context).size.width * 0.3,
+                height: 150, // Adjust height as needed
+                decoration: BoxDecoration(
+                    color: ColorConstants.primaryWhite,
+                    image: DecorationImage(
+                      image: NetworkImage(
+                          'https://www.visionvivaah.com/blog/wp-content/uploads/2019/10/Best-Event-Management-Company-In-Mumbai.jpg'), // Replace with your image URL
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(25)),
               ),
             ),
             const SizedBox(width: 10),

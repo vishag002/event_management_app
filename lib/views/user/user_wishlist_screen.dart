@@ -11,7 +11,7 @@ class UserWishListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Wishlist"),
+        title: const Text("Your Wishlist"),
       ),
       body: ListView.builder(
         itemCount: 5,

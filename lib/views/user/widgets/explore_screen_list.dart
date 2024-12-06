@@ -27,8 +27,8 @@ class ExploreScreenList extends StatelessWidget {
                 Container(
                   height: h1 * 0.3,
                   width: w1,
-                  decoration: BoxDecoration(
-                    color: Colors.amber.shade200,
+                  decoration: const BoxDecoration(
+                    color: ColorConstants.lightGreyShade,
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(30),
                       top: Radius.circular(30),
