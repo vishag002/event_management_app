@@ -88,10 +88,11 @@ class _VendorHomeScreenState extends State<VendorHomeScreen>
           indicator: UnderlineTabIndicator(
             borderRadius: BorderRadius.circular(0),
             borderSide: BorderSide(
-                color: Colors.black,
-                style: BorderStyle.solid,
-                width: 4,
-                strokeAlign: 0),
+              color: Colors.black,
+              style: BorderStyle.solid,
+              width: 4,
+              strokeAlign: 0,
+            ),
           ),
           unselectedLabelStyle: TextConstants.subheading.copyWith(fontSize: 20),
           controller: _tabController,
