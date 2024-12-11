@@ -16,68 +16,86 @@ class UserServiceDetailsScreen extends StatelessWidget {
       'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRstgDu88i4tfrnMfGsqUCEbqrC49Ye5HRp2g&s',
       'https://s.alicdn.com/@sc04/kf/H198e6af29950427a9f441dc9cc7db788Z.jpg_720x720q50.jpg',
     ];
+
     return Scaffold(
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            FullScreenImageCarousel(imageUrls: images),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                "Service Name",
-                style: TextConstants.subheading.copyWith(
-                  fontSize: 22,
-                  fontWeight: FontWeight.w600,
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(
+                bottom: 200), // Ensure spacing for BottomAppBar
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                FullScreenImageCarousel(imageUrls: images),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Service Name",
+                    style: TextConstants.subheading.copyWith(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            const SizedBox(height: 20),
-            InkWell(
-                onTap: () {
-                  Get.to(UserVendorProfile());
-                },
-                child: vendorNameTab()),
-            const SizedBox(height: 20),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                "Category",
-                style: TextConstants.formLabel.copyWith(
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                InkWell(
+                  onTap: () {
+                    Get.to(UserVendorProfile());
+                  },
+                  child: vendorNameTab(),
                 ),
-              ),
-            ),
-            const SizedBox(height: 5),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                "Birthday | Private Event",
-                style: TextConstants.bodyText.copyWith(),
-              ),
-            ),
-            const SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                "Description",
-                style: TextConstants.formLabel.copyWith(
-                  fontWeight: FontWeight.bold,
+                const SizedBox(height: 20),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Category",
+                    style: TextConstants.formLabel.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
+                const SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Birthday | Private Event",
+                    style: TextConstants.bodyText.copyWith(),
+                  ),
+                ),
+                const SizedBox(height: 30),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    "Description",
+                    style: TextConstants.formLabel.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                  child: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+                    style: TextConstants.formLabel
+                        .copyWith(color: ColorConstants.textSecondary),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: BottomAppBar(
+              child: SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: userActionWidget(context: context),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Text(
-                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-                style: TextConstants.formLabel
-                    .copyWith(color: ColorConstants.textSecondary),
-              ),
-            ),
-            userActionWidget(context: context),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
