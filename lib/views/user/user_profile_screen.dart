@@ -1,4 +1,5 @@
 import 'package:event_management_app/Authentication/login_screen.dart';
+import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:get/get.dart';
@@ -136,7 +137,11 @@ class UserProfileScreen extends StatelessWidget {
   }
 
   void navigationAction() {
-    Get.to(
-        () => LoginScreen()); // Proper GetX navigation with lazy initialization
+    Get.offAll(
+      const RoleSelectionScreen(),
+      transition: Transition.cupertino,
+      fullscreenDialog: GetPlatform.isAndroid,
+      duration: const Duration(milliseconds: 600),
+    ); // Proper GetX navigation with lazy initialization
   }
 }

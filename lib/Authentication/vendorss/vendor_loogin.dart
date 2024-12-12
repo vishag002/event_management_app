@@ -1,13 +1,13 @@
 import 'package:event_management_app/Authentication/forgot_password_screen.dart';
-import 'package:event_management_app/Authentication/user_register_screen.dart';
+import 'package:event_management_app/Authentication/vendorss/vendor_register_screen.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
-import 'package:event_management_app/views/user/user_bottom_nav_bar.dart';
+import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class VendorLoginScreen extends StatelessWidget {
+  const VendorLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +72,7 @@ class LoginPage extends StatelessWidget {
         ElevatedButton(
           onPressed: () {
             Get.offAll(
-              const UserBottomNavBar(),
+              const VendorBottomNavBar(),
               transition: Transition.cupertino,
               fullscreenDialog: GetPlatform.isAndroid,
               duration: const Duration(milliseconds: 600),
@@ -111,7 +111,7 @@ class LoginPage extends StatelessWidget {
         const Text("Dont have an account? "),
         TextButton(
           onPressed: () {
-            Get.to(SignupPage());
+            Get.to(VendorRegisterScreen());
           },
           child: const Text(
             "Sign Up",
