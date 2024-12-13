@@ -69,32 +69,92 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //toolbarHeight: 130,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.15,
+        //toolbarHeight: 90,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.164,
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {
+        //         //
+        //       },
+        //       icon: Icon(Icons.search))
+        // ],
         flexibleSpace: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Title(
                 color: ColorConstants.textPrimary,
                 child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10),
-                  child: Text(
-                    "App Name",
-                    style: TextConstants.appTitle
-                        .copyWith(fontWeight: FontWeight.w100),
-                  ),
-                ),
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.05),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            //
+                          },
+                          child: Container(
+                            //width: 40,
+                            //height: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  ColorConstants.greySecondary.withOpacity(.1),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.search,
+                                  size: 32,
+                                  color: ColorConstants.primaryForeground,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: 10),
+                        Container(
+                          alignment: Alignment.centerLeft,
+                          clipBehavior: Clip.hardEdge,
+                          width: MediaQuery.of(context).size.width * 0.35,
+                          //height: MediaQuery.of(context).size.height * .05,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            color: ColorConstants.greySecondary.withOpacity(.1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 20,
+                              vertical: 10,
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Icon(CupertinoIcons.location_solid),
+                                SizedBox(width: 10),
+                                Text(
+                                  "Banglore",
+                                  style: TextConstants.buttonText2.copyWith(),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    )),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               Container(
-                width: double.infinity,
-                alignment: Alignment.center,
+                // height: MediaQuery.of(context).size.height * .06,
+                // width: double.infinity,
+                alignment: Alignment.centerLeft,
                 child: Column(
                   children: [
-                    searchWidget(context: context),
+                    eventManagerWidget(context),
                     const SizedBox(height: 60),
                   ],
                 ),
@@ -128,11 +188,26 @@ class _UserHomeScreenState extends State<UserHomeScreen>
           }),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: List.generate(_chipLabels.length, (index) {
-          return _buildCategoryContent(index);
-        }),
+      body: Column(
+        children: [
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: InkWell(
+          //     onTap: () {
+          //       //
+          //     },
+          //     child: ,
+          //   ),
+          // ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: List.generate(_chipLabels.length, (index) {
+                return _buildCategoryContent(index);
+              }),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -140,6 +215,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   // Build content for each tab (category)
   Widget _buildCategoryContent(int index) {
     return ListView.builder(
+      shrinkWrap: true,
       controller: scrollController,
       padding: EdgeInsets.only(top: 10),
       itemCount: 5, // Example item count, adjust based on data
@@ -159,40 +235,72 @@ class _UserHomeScreenState extends State<UserHomeScreen>
     );
   }
 }
-//search widget
 
-Widget searchWidget({context}) {
+//event manager
+Widget eventManagerWidget(context) {
   return Container(
-    height: MediaQuery.of(context).size.height * .06,
+    height: MediaQuery.of(context).size.height * .09,
     width: double.infinity,
     decoration: BoxDecoration(
-        color: ColorConstants.lightGreyShade,
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(
-          color: ColorConstants.textSecondary.withOpacity(.5),
-          width: 1,
-        )),
-    child: Center(
-      child: TextField(
-        textAlignVertical:
-            TextAlignVertical.center, // Center the text vertically
-        textAlign: TextAlign.start, // Align text to the start horizontally
-        decoration: InputDecoration(
-          border: InputBorder.none, // Remove the border
-          hintText: "Search your services",
-          hintStyle: TextConstants.bodyTextSecondary,
-          prefixIcon: const Icon(
-            CupertinoIcons.search,
-            color: ColorConstants.textSecondary, // Add appropriate color
+        color: Colors.grey.shade300,
+        border: Border(
+          bottom: BorderSide(
+            color: ColorConstants.primaryForeground,
           ),
-          contentPadding: EdgeInsets.zero, // Adjust padding to center hint
         ),
-        style: TextConstants.bodyText, // Style for the input text
-        cursorColor: ColorConstants.textSecondary,
-      ),
+        borderRadius: BorderRadius.circular(8)),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          "Hire an event manager",
+          style: TextConstants.buttonText2,
+        ),
+        // IconButton(
+        //     onPressed: () {
+        //       //
+        //     },
+        //     icon: const Icon(Icons.close))
+      ],
     ),
   );
 }
+
+
+//search widget
+
+// Widget searchWidget({context}) {
+//   return Container(
+//     height: MediaQuery.of(context).size.height * .06,
+//     width: double.infinity,
+//     decoration: BoxDecoration(
+//         color: ColorConstants.lightGreyShade,
+//         borderRadius: BorderRadius.circular(30),
+//         border: Border.all(
+//           color: ColorConstants.textSecondary.withOpacity(.5),
+//           width: 1,
+//         )),
+//     child: Center(
+//       child: TextField(
+//         textAlignVertical:
+//             TextAlignVertical.center, // Center the text vertically
+//         textAlign: TextAlign.start, // Align text to the start horizontally
+//         decoration: InputDecoration(
+//           border: InputBorder.none, // Remove the border
+//           hintText: "Search your services",
+//           hintStyle: TextConstants.bodyTextSecondary,
+//           prefixIcon: const Icon(
+//             CupertinoIcons.search,
+//             color: ColorConstants.textSecondary, // Add appropriate color
+//           ),
+//           contentPadding: EdgeInsets.zero, // Adjust padding to center hint
+//         ),
+//         style: TextConstants.bodyText, // Style for the input text
+//         cursorColor: ColorConstants.textSecondary,
+//       ),
+//     ),
+//   );
+// }
 
 
 

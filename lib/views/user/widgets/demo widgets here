@@ -1,0 +1,37 @@
+
+/////////////////////////////////
+hire an event manager first design  
+ 
+ 
+ InkWell(
+              onTap: () {
+                //
+              },
+              child: Container(
+                height: 50,
+                width: double.infinity,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border(
+                      bottom: BorderSide(
+                        color: ColorConstants.primaryForeground,
+                      ),
+                    ),
+                    borderRadius: BorderRadius.circular(8)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Hire an event manager",
+                      style: TextConstants.buttonText2,
+                    ),
+                    // IconButton(
+                    //     onPressed: () {
+                    //       //
+                    //     },
+                    //     icon: const Icon(Icons.close))
+                  ],
+                ),
+              ),
+            ),
+/////////////////////////////////
