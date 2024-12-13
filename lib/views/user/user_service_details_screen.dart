@@ -79,18 +79,18 @@ class UserServiceDetailsScreen extends StatelessWidget {
                     .copyWith(color: ColorConstants.textSecondary),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: BottomAppBar(
-                elevation: 0,
-                clipBehavior: Clip.hardEdge,
-                //color: Colors.red,
-                padding: EdgeInsets.all(0),
-                child: userActionWidget(context: context),
-              ),
-            )
           ],
         ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0,
+        color: Colors.transparent,
+        surfaceTintColor: Colors.amber,
+        shadowColor: Colors.transparent,
+        clipBehavior: Clip.hardEdge,
+        //color: Colors.red,
+        padding: EdgeInsets.all(0),
+        child: userActionWidget(context: context),
       ),
     );
   }

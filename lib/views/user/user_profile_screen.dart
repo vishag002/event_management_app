@@ -1,8 +1,8 @@
-import 'package:event_management_app/Authentication/login_screen.dart';
 import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
 
 class UserProfileScreen extends StatelessWidget {
   const UserProfileScreen({super.key});
@@ -97,8 +97,15 @@ class UserProfileScreen extends StatelessWidget {
         _buildProfileMenuItem(
           icon: Icons.share,
           title: "Share App",
-          onTap: () {
-            // Navigate to customer support
+          onTap: () async {
+            try {
+              await Share.share(
+                'Check out this app: https://play.google.com/store/apps/details?id=com.example.myapp',
+                subject: 'Flutter App Recommendation',
+              );
+            } catch (e) {
+              debugPrint('Error sharing content: $e');
+            }
           },
         ),
         const Divider(),
