@@ -1,4 +1,7 @@
 import 'package:event_management_app/Authentication/role_selection_screen.dart';
+import 'package:event_management_app/views/user/user_edit_profile_screen.dart';
+import 'package:event_management_app/views/user/user_faq_screen.dart';
+import 'package:event_management_app/views/user/user_security_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:get/get.dart';
@@ -66,7 +69,12 @@ class UserProfileScreen extends StatelessWidget {
           icon: Icons.edit,
           title: "Edit Profile",
           onTap: () {
-            // Navigate to edit profile screen
+            Get.to(
+              () => UserEditProfileScreen(),
+              transition: Transition.cupertino,
+              fullscreenDialog: GetPlatform.isAndroid,
+              duration: const Duration(milliseconds: 600),
+            );
           },
         ),
         const Divider(),
@@ -74,7 +82,12 @@ class UserProfileScreen extends StatelessWidget {
           icon: Icons.lock,
           title: "Security",
           onTap: () {
-            // Navigate to security settings
+            Get.to(
+              () => UserSecurityScreen(),
+              transition: Transition.cupertino,
+              fullscreenDialog: GetPlatform.isAndroid,
+              duration: const Duration(milliseconds: 600),
+            );
           },
         ),
         const Divider(),
@@ -90,7 +103,12 @@ class UserProfileScreen extends StatelessWidget {
           icon: Icons.help_outline,
           title: "FAQ",
           onTap: () {
-            // Navigate to customer support
+            Get.to(
+              () => UserFaqScreen(),
+              transition: Transition.cupertino,
+              fullscreenDialog: GetPlatform.isAndroid,
+              duration: const Duration(milliseconds: 600),
+            );
           },
         ),
         const Divider(),

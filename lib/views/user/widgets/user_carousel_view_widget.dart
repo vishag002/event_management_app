@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:iconsax_plus/iconsax_plus.dart';
 
 class UserCarouselViewWidget extends StatefulWidget {
   const UserCarouselViewWidget({
@@ -47,11 +48,11 @@ class _UserCarouselViewWidgetState extends State<UserCarouselViewWidget> {
         child: Container(
           padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: Colors.black.withOpacity(0.5),
+            color: Colors.grey.withOpacity(0.3),
             shape: BoxShape.circle,
           ),
           child: const Icon(
-            Icons.favorite,
+            IconsaxPlusLinear.heart,
             color: Colors.red,
             size: 35,
           ),

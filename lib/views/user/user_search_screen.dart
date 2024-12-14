@@ -1,6 +1,9 @@
+import 'package:event_management_app/models/search_category_data.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/user/search_result_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserSearchScreen extends StatelessWidget {
   @override
@@ -14,14 +17,26 @@ class UserSearchScreen extends StatelessWidget {
           children: [
             searchWidget(),
             SizedBox(height: 16),
-            Text(
-              "Browse Categories",
-              style: TextConstants.subheading.copyWith(
-                fontSize: 23,
+            Expanded(
+              child: ListView.builder(
+                itemCount: categories.length,
+                itemBuilder: (context, index) {
+                  final category = categories[index];
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        category.name,
+                        style: TextConstants.subheading.copyWith(fontSize: 18),
+                      ),
+                      SizedBox(height: 8),
+                      categoryTiles(subCategories: category.subCategories),
+                      SizedBox(height: 16),
+                    ],
+                  );
+                },
               ),
             ),
-            SizedBox(height: 5),
-            categoryTiles(),
           ],
         ),
       ),
@@ -29,47 +44,55 @@ class UserSearchScreen extends StatelessWidget {
   }
 }
 
-Widget categoryTiles() {
-  return Expanded(
-    child: GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        childAspectRatio: 3 / 2, // Adjust for card aspect ratio
-      ),
-      itemCount: 12, // Adjust as needed
-      itemBuilder: (context, index) => Container(
-        decoration: BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.circular(12),
-          image: DecorationImage(
-            image: AssetImage('assets/category_$index.jpg'),
-            fit: BoxFit.cover,
+Widget categoryTiles({required List<SubCategory> subCategories}) {
+  return GridView.builder(
+    shrinkWrap: true, // Ensures the GridView doesn't occupy infinite height
+    physics: NeverScrollableScrollPhysics(), // Prevents nested scrolling
+    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      crossAxisCount: 2,
+      crossAxisSpacing: 16,
+      mainAxisSpacing: 16,
+      childAspectRatio: 3 / 2,
+    ),
+    itemCount: subCategories.length,
+    itemBuilder: (context, index) {
+      final subCategory = subCategories[index];
+      return InkWell(
+        onTap: () {
+          Get.to(() => SearchResultScreen());
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.grey[300],
+            borderRadius: BorderRadius.circular(12),
+            // image: DecorationImage(
+            //   image: NetworkImage(subCategory.imageUrl),
+            //   fit: BoxFit.cover,
+            // ),
           ),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Align(
-            alignment: Alignment.bottomLeft,
-            child: Text(
-              "Category ${index + 1}",
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                shadows: [
-                  Shadow(
-                    offset: Offset(1, 1),
-                    blurRadius: 4,
-                    color: Colors.black.withOpacity(0.8),
-                  ),
-                ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Align(
+              alignment: Alignment.bottomLeft,
+              child: Text(
+                subCategory.name,
+                style: TextStyle(
+                  fontSize: 14,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  shadows: [
+                    Shadow(
+                      offset: Offset(1, 1),
+                      blurRadius: 4,
+                      color: Colors.black.withOpacity(0.8),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
-      ),
-    ),
+      );
+    },
   );
 }

@@ -86,16 +86,16 @@ Widget bottomBarStyle2(
             BottomNavigationBarItem(
               icon: Padding(
                 padding: EdgeInsets.only(bottom: 5),
-                child: Icon(IconsaxPlusLinear.search_normal_1),
+                child: Icon(IconsaxPlusLinear.home_1),
               ), // Default (unselected) icon
               activeIcon: Padding(
                 padding: EdgeInsets.only(bottom: 5),
                 child: Icon(
-                  IconsaxPlusBold.search_normal_1, // Selected icon
+                  IconsaxPlusBold.home_1, // Selected icon
                   color: ColorConstants.primaryForeground,
                 ),
               ),
-              label: 'Explore',
+              label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Padding(

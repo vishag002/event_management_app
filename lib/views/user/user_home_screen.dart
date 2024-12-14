@@ -1,6 +1,7 @@
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/user_search_screen.dart';
+import 'package:event_management_app/views/user/user_select_city.dart';
 import 'package:event_management_app/views/user/user_service_details_screen.dart';
 import 'package:event_management_app/views/user/widgets/explore_screen_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -118,30 +119,36 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                           ),
                         ),
                         SizedBox(width: 10),
-                        Container(
-                          alignment: Alignment.centerLeft,
-                          clipBehavior: Clip.hardEdge,
-                          width: MediaQuery.of(context).size.width * 0.35,
-                          //height: MediaQuery.of(context).size.height * .05,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            color: ColorConstants.greySecondary.withOpacity(.1),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 10,
+                        InkWell(
+                          onTap: () {
+                            Get.to(UserSelectCity());
+                          },
+                          child: Container(
+                            alignment: Alignment.centerLeft,
+                            clipBehavior: Clip.hardEdge,
+                            width: MediaQuery.of(context).size.width * 0.35,
+                            //height: MediaQuery.of(context).size.height * .05,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color:
+                                  ColorConstants.greySecondary.withOpacity(.1),
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Icon(CupertinoIcons.location_solid),
-                                SizedBox(width: 10),
-                                Text(
-                                  "Banglore",
-                                  style: TextConstants.buttonText2.copyWith(),
-                                ),
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 20,
+                                vertical: 10,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Icon(CupertinoIcons.location_solid),
+                                  SizedBox(width: 10),
+                                  Text(
+                                    "Banglore",
+                                    style: TextConstants.buttonText2.copyWith(),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -204,7 +211,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
             child: TabBarView(
               controller: _tabController,
               children: List.generate(_chipLabels.length, (index) {
-                return _buildCategoryContent(index);
+                return _buildCategoryContent();
               }),
             ),
           ),
@@ -214,7 +221,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   }
 
   // Build content for each tab (category)
-  Widget _buildCategoryContent(int index) {
+  Widget _buildCategoryContent() {
     return ListView.builder(
       shrinkWrap: true,
       controller: scrollController,
