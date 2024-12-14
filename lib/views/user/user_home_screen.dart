@@ -1,5 +1,6 @@
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/user/user_search_screen.dart';
 import 'package:event_management_app/views/user/user_service_details_screen.dart';
 import 'package:event_management_app/views/user/widgets/explore_screen_list.dart';
 import 'package:flutter/cupertino.dart';
@@ -94,7 +95,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                       children: [
                         InkWell(
                           onTap: () {
-                            //
+                            Get.to(UserSearchScreen());
                           },
                           child: Container(
                             //width: 40,
