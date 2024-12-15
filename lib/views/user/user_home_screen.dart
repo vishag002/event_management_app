@@ -1,3 +1,4 @@
+import 'package:event_management_app/models/service_category_data.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/search_result_screen.dart';
@@ -93,33 +94,8 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                     padding: EdgeInsets.only(
                         top: MediaQuery.of(context).size.height * 0.05),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            Get.to(UserSearchScreen());
-                          },
-                          child: Container(
-                            //width: 40,
-                            //height: 40,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color:
-                                  ColorConstants.greySecondary.withOpacity(.1),
-                            ),
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.search,
-                                  size: 32,
-                                  color: ColorConstants.primaryForeground,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(width: 10),
                         InkWell(
                           onTap: () {
                             Get.to(UserSelectCity());
@@ -153,14 +129,38 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                             ),
                           ),
                         ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(UserSearchScreen());
+                          },
+                          child: Container(
+                            //width: 40,
+                            //height: 40,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color:
+                                  ColorConstants.greySecondary.withOpacity(.1),
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.search,
+                                  size: 32,
+                                  color: ColorConstants.primaryForeground,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     )),
               ),
               SizedBox(height: 10),
               Container(
                 // height: MediaQuery.of(context).size.height * .06,
-                // width: double.infinity,
-                alignment: Alignment.centerLeft,
+                //width: double.infinity,
+                alignment: Alignment.center,
                 child: Column(
                   children: [
                     eventManagerWidget(context),
@@ -211,15 +211,18 @@ class _UserHomeScreenState extends State<UserHomeScreen>
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: List.generate(_chipLabels.length, (index) {
-                if (index == 0) {
-                  // "All" tab
-                  return _allTabContent();
-                } else {
-                  // Other tabs
-                  return _otherTabContent();
-                }
-              }),
+              children: List.generate(
+                _chipLabels.length,
+                (index) {
+                  if (index == 0) {
+                    // "All" tab
+                    return _allTabContent();
+                  } else {
+                    // Other tabs
+                    return _otherTabContent();
+                  }
+                },
+              ),
             ),
           ),
         ],
@@ -256,22 +259,73 @@ class _UserHomeScreenState extends State<UserHomeScreen>
       shrinkWrap: true,
       controller: scrollController,
       padding: EdgeInsets.only(top: 10),
-      itemCount: 1, // Example item count, adjust based on data
-      itemBuilder: (context, index) {
+      itemCount: 1, // Use the number of categories
+      itemBuilder: (context, categoryIndex) {
+        // Get the current category based on the tab index
+        Category currentCategory = categories[_tabController.index - 1];
+
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: InkWell(
-            onTap: () {
-              Get.to(const SearchResultScreen());
-            },
-            child: Container(
-              height: 200,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.black12,
-                borderRadius: BorderRadius.circular(30),
-              ),
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: currentCategory.subCategories.map((subCategory) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: InkWell(
+                  onTap: () {
+                    Get.to(const SearchResultScreen());
+                  },
+                  child: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Stack(
+                      children: [
+                        // Background Image
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(30),
+                          child: Image.network(
+                            subCategory.imageUrl,
+                            fit: BoxFit.cover,
+                            width: double.infinity,
+                            height: double.infinity,
+                          ),
+                        ),
+                        // Overlay for text visibility
+                        Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(30),
+                            gradient: LinearGradient(
+                              begin: Alignment.topCenter,
+                              end: Alignment.bottomCenter,
+                              colors: [
+                                Colors.transparent,
+                                Colors.black.withOpacity(0.7),
+                              ],
+                            ),
+                          ),
+                        ),
+                        // Subcategory Name
+                        Positioned(
+                          bottom: 20,
+                          left: 20,
+                          child: Text(
+                            subCategory.name,
+                            style: TextConstants.buttonText2.copyWith(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
           ),
         );
       },
@@ -279,35 +333,115 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   }
 }
 
-//event manager
-Widget eventManagerWidget(context) {
+// /import 'package:flutter/material.dart';
+
+Widget eventManagerWidget(BuildContext context) {
   return Container(
-    height: MediaQuery.of(context).size.height * .09,
+    height: MediaQuery.of(context).size.height * 0.09,
     width: double.infinity,
+    margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
     decoration: BoxDecoration(
-        color: Colors.grey.shade300,
-        border: Border(
-          bottom: BorderSide(
-            color: ColorConstants.primaryForeground,
-          ),
+      gradient: LinearGradient(
+        colors: [
+          ColorConstants.primaryForeground,
+          ColorConstants.primaryForeground.withOpacity(.9),
+        ],
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+      borderRadius: BorderRadius.circular(20),
+      boxShadow: [
+        BoxShadow(
+          color: ColorConstants.primaryForeground.withOpacity(0.3),
+          spreadRadius: 2,
+          blurRadius: 5,
+          offset: const Offset(0, 3),
         ),
-        borderRadius: BorderRadius.circular(8)),
+      ],
+    ),
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Text(
-          "Hire an event manager",
-          style: TextConstants.buttonText2,
+        const Icon(
+          Icons.event_available,
+          color: Colors.white,
+          size: 24,
         ),
-        // IconButton(
-        //     onPressed: () {
-        //       //
-        //     },
-        //     icon: const Icon(Icons.close))
+        const SizedBox(width: 12),
+        Text(
+          "Hire an Event Manager",
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 0.5,
+          ),
+        ),
+        const SizedBox(width: 12),
+        const Icon(
+          Icons.arrow_forward_ios,
+          color: Colors.white,
+          size: 20,
+        ),
       ],
     ),
   );
 }
+//event manager
+
+
+////
+// Widget eventManagerWidget(BuildContext context) {
+//   return Container(
+//     height: MediaQuery.of(context).size.height * .09,
+//     width: double.infinity,
+//     decoration: BoxDecoration(
+//       gradient: LinearGradient(
+//         colors: [
+//           ColorConstants.primaryForeground.withOpacity(0.8),
+//           ColorConstants.primaryForeground.withOpacity(1),
+//         ],
+//         begin: Alignment.topLeft,
+//         end: Alignment.bottomRight,
+//       ),
+//       border: Border(
+//         bottom: BorderSide(
+//           color: Colors.blueGrey.shade600,
+//         ),
+//       ),
+//       borderRadius: BorderRadius.circular(12),
+//       boxShadow: [
+//         BoxShadow(
+//           color: Colors.black.withOpacity(0.2),
+//           offset: Offset(0, 4),
+//           blurRadius: 6,
+//         ),
+//       ],
+//     ),
+//     child: Row(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Icon(
+//           Icons.event,
+//           color: Colors.white,
+//           size: 24,
+//         ),
+//         SizedBox(width: 8),
+//         Text(
+//           "Hire an Event Manager",
+//           style: TextStyle(
+//             color: Colors.white,
+//             fontSize: 16,
+//             fontWeight: FontWeight.bold,
+//             letterSpacing: 0.8,
+//           ),
+//         ),
+//       ],
+//     ),
+//   );
+// }
+
 
 
 //search widget

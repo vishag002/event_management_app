@@ -61,8 +61,7 @@ class UserVendorProfile extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.check_circle,
-                      color: Colors.green.shade700, size: 16),
+                  Icon(Icons.verified, color: Colors.green.shade700, size: 16),
                   const SizedBox(width: 4),
                   Text(
                     "Verified Vendor",
@@ -146,6 +145,8 @@ class UserVendorProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  _serviceManagerWidget(),
+                  const SizedBox(height: 20),
                   const Text(
                     "About",
                     style: TextStyle(
@@ -164,6 +165,8 @@ class UserVendorProfile extends StatelessWidget {
             ),
 
             const SizedBox(height: 30),
+            //  _serviceManagerWidget(),
+            //  const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Column(
@@ -210,30 +213,30 @@ class UserVendorProfile extends StatelessWidget {
   }
 }
 
-Widget _buildInfoRow({
-  required IconData icon,
-  required String text,
-  required Color iconColor,
-}) {
-  return Row(
-    children: [
-      Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: iconColor.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Icon(
-          icon,
-          size: 22,
-          color: iconColor,
-        ),
-      ),
-      const SizedBox(width: 16),
-      Text(text, style: TextConstants.bodyText),
-    ],
-  );
-}
+// Widget _buildInfoRow({
+//   required IconData icon,
+//   required String text,
+//   required Color iconColor,
+// }) {
+//   return Row(
+//     children: [
+//       Container(
+//         padding: const EdgeInsets.all(10),
+//         decoration: BoxDecoration(
+//           color: iconColor.withOpacity(0.1),
+//           borderRadius: BorderRadius.circular(10),
+//         ),
+//         child: Icon(
+//           icon,
+//           size: 22,
+//           color: iconColor,
+//         ),
+//       ),
+//       const SizedBox(width: 16),
+//       Text(text, style: TextConstants.bodyText),
+//     ],
+//   );
+// }
 
 Widget serviceListView({
   required context,
@@ -293,16 +296,24 @@ Widget serviceListView({
                     children: [
                       Text(
                         "Service name",
-                        style: TextConstants.formLabel.copyWith(
+                        style: TextConstants.headline.copyWith(
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                       SizedBox(height: 5),
                       Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec sodales dui, at maximus neque. Nullam vitae blandit ex. Morbi placerat augue vitae libero vehicula eleifend. Ut et pretium urna, eu viverra massa. Maecenas vitae vulputate turpis. Ut non nisl nec dui vehicula pharetra a id mi. Aliquam feugiat fringilla suscipit. Aliquam accumsan cursus blandit. Nullam bibendum vel libero id consequat. Duis ultricies fringilla turpis, nec dignissim erat cursus aliquam",
-                        style: TextConstants.bodyText.copyWith(),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
+                        "Marriage | concernt | Birthday",
+                        style: TextConstants.smallHighlightText,
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Starting from ",
+                            style: TextConstants.smallHighlightText,
+                          ),
+                          Text('₹ 550',
+                              style: TextConstants.smallHighlightText),
+                        ],
                       ),
                     ],
                   ),
@@ -312,6 +323,107 @@ Widget serviceListView({
           ],
         ),
       ),
+    ),
+  );
+}
+
+//service manager widget
+Widget _serviceManagerWidget() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(horizontal: 0),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // const Text(
+        //   "Service Manager Availability",
+        //   style: TextStyle(
+        //     fontSize: 20,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
+        // const SizedBox(height: 10),
+
+        // Service Manager Availability Section
+        Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            color: ColorConstants.primaryWhite,
+            borderRadius: BorderRadius.circular(20),
+            // boxShadow: [
+            //   BoxShadow(
+            //     color: Colors.grey.withOpacity(0.2),
+            //     blurRadius: 8,
+            //     spreadRadius: 2,
+            //     offset: const Offset(0, 4),
+            //   ),
+            // ],
+          ),
+          child: Row(
+            children: [
+              // Icon or Image
+              // CircleAvatar(
+              //   radius: 30,
+              //   backgroundColor: Colors.grey[200],
+              //   child: Icon(
+              //     Icons.person_outline,
+              //     size: 30,
+              //     color: Colors.grey[400],
+              //   ),
+              // ),
+              // const SizedBox(width: 16),
+
+              // Service Manager Details
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Service Manager Available",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      "Starting from ₹500",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // Action Button (Optional)
+              InkWell(
+                onTap: () {
+                  // Perform any action here (e.g., navigate to a details page)
+                  Get.to(() => UserServiceDetailsScreen());
+                },
+                child: Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: ColorConstants.primaryForeground,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Text(
+                    "Connect now",
+                    style: TextStyle(
+                      color: ColorConstants.primaryWhite,
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     ),
   );
 }

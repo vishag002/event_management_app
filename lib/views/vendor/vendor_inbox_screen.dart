@@ -68,7 +68,7 @@ class _VendorInboxScreenState extends State<VendorInboxScreen>
           indicatorSize: TabBarIndicatorSize.tab,
           indicator: UnderlineTabIndicator(
             borderSide: BorderSide(
-                color: Colors.black, style: BorderStyle.solid, width: 4),
+                color: Colors.black, style: BorderStyle.solid, width: 2),
           ),
           unselectedLabelStyle: TextConstants.subheading.copyWith(fontSize: 20),
           controller: _tabController,
@@ -127,36 +127,55 @@ Widget searchWidget() {
 /// Demo ListView
 
 Widget MessageListWidget() {
-  return ListView.separated(
-    itemCount: 10, // Number of items in the list
-    separatorBuilder: (context, index) {
-      return Divider(
-        color: Colors.grey, // Divider color
-        height: 1.5, // Height of the divider
-        thickness: 0.5, // Thickness of the divider
-        indent:
-            50, // Optional, add indent if you want some padding before the divider
-      );
-    },
+  return ListView.builder(
+    itemCount: 5, // Number of items in the list
     itemBuilder: (context, index) {
-      return Padding(
-        padding: const EdgeInsets.only(left: 20),
-        child: ListTile(
-          contentPadding: EdgeInsets.all(0),
-          onTap: () {
-            //todo : chat screen
-          },
-          leading: CircleAvatar(backgroundColor: ColorConstants.textSecondary),
-          title: Text(
-            "Name here",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text(
-            "Last message here...",
-            style: TextStyle(color: Colors.grey[700]),
-          ),
-        ),
-      );
+      return userChatList(context: context);
     },
+  );
+}
+
+///////
+
+Widget userChatList({required BuildContext context}) {
+  return ListTile(
+    leading: leadingWidget(),
+    title: Text(
+      "vendor name",
+      style: TextConstants.bodyText
+          .copyWith(height: 1, fontWeight: FontWeight.w600),
+    ),
+    subtitle: Padding(
+      padding: const EdgeInsets.only(
+        top: 5,
+      ),
+      child: Text(
+        "last message",
+        style: TextConstants.bodyText.copyWith(
+          height: 1,
+          fontSize: 14,
+        ),
+      ),
+    ),
+    trailing: Icon(
+      Icons.circle,
+      size: 10,
+      color: ColorConstants.primaryForeground,
+    ),
+  );
+}
+
+Widget leadingWidget() {
+  return Container(
+    width: 50,
+    height: 50,
+    decoration: const BoxDecoration(
+        color: ColorConstants.primaryWhite,
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: NetworkImage(
+              "https://www.logodesign.net/logo/wedding-ring-with-hearts-381ld.png?nwm=1&nws=1&industry=event-planner&sf=&txt_keyword=All"),
+          fit: BoxFit.cover,
+        )),
   );
 }

@@ -127,4 +127,13 @@ final List<Category> categories = [
       ),
     ],
   ),
+  Category(
+    name: 'Concert',
+    subCategories: [
+      SubCategory(
+        name: 'Stage',
+        imageUrl: privateImage,
+      ),
+    ],
+  )
 ];

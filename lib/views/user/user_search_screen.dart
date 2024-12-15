@@ -1,4 +1,4 @@
-import 'package:event_management_app/models/search_category_data.dart';
+import 'package:event_management_app/models/service_category_data.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/search_result_screen.dart';
 import 'package:event_management_app/views/vendor/vendor_home_screen.dart';
