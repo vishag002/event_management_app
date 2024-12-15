@@ -1,4 +1,4 @@
-import 'package:event_management_app/Authentication/login_screen.dart';
+import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
@@ -262,8 +262,12 @@ class VendorProfileScreen extends StatelessWidget {
   }
 
   void navigationAction() {
-    Get.to(
-        () => LoginScreen()); // Proper GetX navigation with lazy initialization
+    Get.offAll(
+      const RoleSelectionScreen(),
+      transition: Transition.cupertino,
+      fullscreenDialog: GetPlatform.isAndroid,
+      duration: const Duration(milliseconds: 600),
+    );
   }
 }
 

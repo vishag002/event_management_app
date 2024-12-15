@@ -1,5 +1,6 @@
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
+import 'package:event_management_app/views/user/search_result_screen.dart';
 import 'package:event_management_app/views/user/user_search_screen.dart';
 import 'package:event_management_app/views/user/user_select_city.dart';
 import 'package:event_management_app/views/user/user_service_details_screen.dart';
@@ -72,7 +73,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
     return Scaffold(
       appBar: AppBar(
         //toolbarHeight: 90,
-        toolbarHeight: MediaQuery.of(context).size.height * 0.164,
+        toolbarHeight: MediaQuery.of(context).size.height * 0.2,
         // actions: [
         //   IconButton(
         //       onPressed: () {
@@ -126,7 +127,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                           child: Container(
                             alignment: Alignment.centerLeft,
                             clipBehavior: Clip.hardEdge,
-                            width: MediaQuery.of(context).size.width * 0.35,
+                            width: MediaQuery.of(context).size.width * 0.37,
                             //height: MediaQuery.of(context).size.height * .05,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(30),
@@ -202,7 +203,7 @@ class _UserHomeScreenState extends State<UserHomeScreen>
           //   padding: const EdgeInsets.all(8.0),
           //   child: InkWell(
           //     onTap: () {
-          //       //
+          //       //54
           //     },
           //     child: ,
           //   ),
@@ -211,7 +212,13 @@ class _UserHomeScreenState extends State<UserHomeScreen>
             child: TabBarView(
               controller: _tabController,
               children: List.generate(_chipLabels.length, (index) {
-                return _buildCategoryContent();
+                if (index == 0) {
+                  // "All" tab
+                  return _allTabContent();
+                } else {
+                  // Other tabs
+                  return _otherTabContent();
+                }
               }),
             ),
           ),
@@ -221,13 +228,13 @@ class _UserHomeScreenState extends State<UserHomeScreen>
   }
 
   // Build content for each tab (category)
-  Widget _buildCategoryContent() {
+  Widget _allTabContent() {
     return ListView.builder(
       shrinkWrap: true,
       controller: scrollController,
       padding: EdgeInsets.only(top: 10),
       itemCount: 5, // Example item count, adjust based on data
-      itemBuilder: (context, idx) {
+      itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
@@ -236,6 +243,34 @@ class _UserHomeScreenState extends State<UserHomeScreen>
             },
             child: const ExploreScreenList(
               icon: IconsaxPlusLinear.heart,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  //other tabs
+  Widget _otherTabContent() {
+    return ListView.builder(
+      shrinkWrap: true,
+      controller: scrollController,
+      padding: EdgeInsets.only(top: 10),
+      itemCount: 1, // Example item count, adjust based on data
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: InkWell(
+            onTap: () {
+              Get.to(const SearchResultScreen());
+            },
+            child: Container(
+              height: 200,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(30),
+              ),
             ),
           ),
         );
@@ -305,40 +340,6 @@ Widget eventManagerWidget(context) {
 //         ),
 //         style: TextConstants.bodyText, // Style for the input text
 //         cursorColor: ColorConstants.textSecondary,
-//       ),
-//     ),
-//   );
-// }
-
-
-
-//first chip style
-
-// Widget _chipContainer(
-//     {required String label, bool isSelected = false, VoidCallback? onTap}) {
-//   return GestureDetector(
-//     onTap: onTap,
-//     child: Padding(
-//       padding: const EdgeInsets.all(8.0),
-//       child: Container(
-//         decoration: BoxDecoration(
-//           color: isSelected
-//               ? ColorConstants.primaryForeground
-//               : ColorConstants.highlightBlueLightest,
-//           border: Border.all(color: Colors.black),
-//           borderRadius: BorderRadius.circular(30),
-//         ),
-//         child: Padding(
-//           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-//           child: Text(
-//             label,
-//             style: TextStyle(
-//               color: isSelected
-//                   ? Colors.white
-//                   : Colors.black, // Text color changes with selection
-//             ),
-//           ),
-//         ),
 //       ),
 //     ),
 //   );
