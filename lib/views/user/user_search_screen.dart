@@ -45,53 +45,39 @@ class UserSearchScreen extends StatelessWidget {
 }
 
 Widget categoryTiles({required List<SubCategory> subCategories}) {
-  return GridView.builder(
-    shrinkWrap: true, // Ensures the GridView doesn't occupy infinite height
-    physics: NeverScrollableScrollPhysics(), // Prevents nested scrolling
-    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-      crossAxisCount: 2,
-      crossAxisSpacing: 16,
-      mainAxisSpacing: 16,
-      childAspectRatio: 3 / 2,
-    ),
+  return ListView.builder(
+    shrinkWrap: true,
+    physics:
+        NeverScrollableScrollPhysics(), // Prevents scrolling within the parent scroll view
     itemCount: subCategories.length,
     itemBuilder: (context, index) {
       final subCategory = subCategories[index];
-      return InkWell(
+      return ListTile(
         onTap: () {
           Get.to(() => SearchResultScreen());
         },
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.grey[300],
-            borderRadius: BorderRadius.circular(12),
-            // image: DecorationImage(
-            //   image: NetworkImage(subCategory.imageUrl),
-            //   fit: BoxFit.cover,
-            // ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Align(
-              alignment: Alignment.bottomLeft,
-              child: Text(
-                subCategory.name,
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1, 1),
-                      blurRadius: 4,
-                      color: Colors.black.withOpacity(0.8),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.network(
+            subCategory.imageUrl,
+            width: 50,
+            height: 50,
+            fit: BoxFit.cover,
           ),
         ),
+        title: Text(
+          subCategory.name,
+          style: TextStyle(
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          size: 16,
+          color: Colors.grey[600],
+        ),
+        contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       );
     },
   );
