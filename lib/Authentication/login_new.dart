@@ -4,6 +4,7 @@ import 'package:event_management_app/Authentication/vendorss/vendor_register_scr
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/user_bottom_nav_bar.dart';
+import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,9 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextEditingController userNameController = TextEditingController();
+    final TextEditingController passwordController = TextEditingController();
+
     return Scaffold(
       backgroundColor: ColorConstants.backgroundPrimary,
       body: SafeArea(
@@ -19,22 +23,29 @@ class LoginPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .05,
+                ),
                 _header(context),
-                const SizedBox(height: 40),
-                _inputField(context),
-                const SizedBox(height: 20),
-                googleSignInWidget(),
-                const SizedBox(height: 20),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .1,
+                ),
+                _inputField(context, userNameController, passwordController),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .08,
+                ),
                 Column(
                   children: [
                     _forgotPassword(context),
                     _guestUserSignIn(context),
                   ],
                 ),
-                const SizedBox(height: 40),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * .2,
+                ),
                 _signup(context),
               ],
             ),
@@ -56,11 +67,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _inputField(context) {
+  _inputField(context, userNameController, passwordController) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         TextField(
+          controller: userNameController,
           decoration: InputDecoration(
               hintText: "Username",
               border: OutlineInputBorder(
@@ -72,6 +84,7 @@ class LoginPage extends StatelessWidget {
         ),
         const SizedBox(height: 10),
         TextField(
+          controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
             border: OutlineInputBorder(
@@ -86,11 +99,16 @@ class LoginPage extends StatelessWidget {
         const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
-            Get.offAll(
-              const UserBottomNavBar(),
-              transition: Transition.cupertino,
-              fullscreenDialog: GetPlatform.isAndroid,
-              duration: const Duration(milliseconds: 600),
+            // Get.offAll(
+            //   const UserBottomNavBar(),
+            //   transition: Transition.cupertino,
+            //   fullscreenDialog: GetPlatform.isAndroid,
+            //   duration: const Duration(milliseconds: 600),
+            // );
+            handleLogin(
+              context,
+              userNameController.text,
+              passwordController.text,
             );
           },
           style: ElevatedButton.styleFrom(
@@ -124,7 +142,12 @@ class LoginPage extends StatelessWidget {
   _guestUserSignIn(context) {
     return InkWell(
       onTap: () {
-        //
+        Get.offAll(
+          const UserBottomNavBar(),
+          transition: Transition.cupertino,
+          fullscreenDialog: GetPlatform.isAndroid,
+          duration: const Duration(milliseconds: 600),
+        );
       },
       child: const Text(
         "Sign in as a guest",
@@ -142,7 +165,14 @@ class LoginPage extends StatelessWidget {
           children: [
             const Text("Don't have an account? "),
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Get.to(
+                  () => SignupPage(),
+                  transition: Transition.cupertino,
+                  fullscreenDialog: GetPlatform.isAndroid,
+                  duration: const Duration(milliseconds: 600),
+                );
+              },
               child: const Text(
                 "Sign up",
                 style: TextStyle(color: ColorConstants.primaryForeground),
@@ -158,7 +188,12 @@ class LoginPage extends StatelessWidget {
             const Text("Don't have a vendor account? "),
             InkWell(
               onTap: () {
-                Get.to(VendorRegisterScreen());
+                Get.to(
+                  () => VendorRegisterScreen(),
+                  transition: Transition.cupertino,
+                  fullscreenDialog: GetPlatform.isAndroid,
+                  duration: const Duration(milliseconds: 600),
+                );
               },
               child: const Text(
                 "Sign up",
@@ -170,52 +205,94 @@ class LoginPage extends StatelessWidget {
       ],
     );
   }
+
+////login function
+  void handleLogin(
+      BuildContext context, String enteredUsername, String enteredPassword) {
+    // Define user credentials
+    const String userUsername = "user";
+    const String userPassword = "123";
+
+    const String vendorUsername = "vendor";
+    const String vendorPassword = "123";
+
+    // Check entered credentials
+    if (enteredUsername == userUsername && enteredPassword == userPassword) {
+      // Navigate to UserBottomNavBar
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => UserBottomNavBar()),
+      );
+    } else if (enteredUsername == vendorUsername &&
+        enteredPassword == vendorPassword) {
+      // Navigate to VendorBottomNavBar
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => VendorBottomNavBar()),
+      );
+    } else {
+      // Show error dialog for incorrect credentials
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Login Failed"),
+          content: Text("Invalid username or password. Please try again."),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text("OK"),
+            ),
+          ],
+        ),
+      );
+    }
+  }
 }
 
 //google sign in widget
-Widget googleSignInWidget() {
-  return Container(
-    height: 50,
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(25),
-      border: Border.all(
-        color: ColorConstants.primaryForeground,
-      ),
-      boxShadow: [
-        BoxShadow(
-          color: Colors.white.withOpacity(0.5),
-          spreadRadius: 1,
-          blurRadius: 1,
-          offset: const Offset(0, 1), // changes position of shadow
-        ),
-      ],
-    ),
-    child: TextButton(
-      onPressed: () {},
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            height: 30.0,
-            width: 30.0,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                      "https://cdn.imgbin.com/17/10/21/google-suite-icon-google-icon-LmAAJV07.jpg"),
-                  fit: BoxFit.cover),
-              shape: BoxShape.circle,
-            ),
-          ),
-          const SizedBox(width: 18),
-          const Text(
-            "Sign In with Google",
-            style: TextStyle(
-              fontSize: 16,
-              color: ColorConstants.primaryForeground,
-            ),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+// Widget googleSignInWidget() {
+//   return Container(
+//     height: 50,
+//     decoration: BoxDecoration(
+//       borderRadius: BorderRadius.circular(25),
+//       border: Border.all(
+//         color: ColorConstants.primaryForeground,
+//       ),
+//       boxShadow: [
+//         BoxShadow(
+//           color: Colors.white.withOpacity(0.5),
+//           spreadRadius: 1,
+//           blurRadius: 1,
+//           offset: const Offset(0, 1), // changes position of shadow
+//         ),
+//       ],
+//     ),
+//     child: TextButton(
+//       onPressed: () {},
+//       child: Row(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         children: [
+//           Container(
+//             height: 30.0,
+//             width: 30.0,
+//             decoration: const BoxDecoration(
+//               image: DecorationImage(
+//                   image: NetworkImage(
+//                       "https://cdn.imgbin.com/17/10/21/google-suite-icon-google-icon-LmAAJV07.jpg"),
+//                   fit: BoxFit.cover),
+//               shape: BoxShape.circle,
+//             ),
+//           ),
+//           const SizedBox(width: 18),
+//           const Text(
+//             "Sign In with Google",
+//             style: TextStyle(
+//               fontSize: 16,
+//               color: ColorConstants.primaryForeground,
+//             ),
+//           ),
+//         ],
+//       ),
+//     ),
+//   );
+// }

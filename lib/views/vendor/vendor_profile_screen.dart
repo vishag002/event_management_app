@@ -1,3 +1,4 @@
+import 'package:event_management_app/Authentication/login_new.dart';
 import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
@@ -263,7 +264,7 @@ class VendorProfileScreen extends StatelessWidget {
 
   void navigationAction() {
     Get.offAll(
-      const RoleSelectionScreen(),
+      const LoginPage(),
       transition: Transition.cupertino,
       fullscreenDialog: GetPlatform.isAndroid,
       duration: const Duration(milliseconds: 600),

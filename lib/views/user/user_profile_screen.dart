@@ -1,3 +1,4 @@
+import 'package:event_management_app/Authentication/login_new.dart';
 import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:event_management_app/views/user/user_edit_profile_screen.dart';
 import 'package:event_management_app/views/user/user_faq_screen.dart';
@@ -163,7 +164,7 @@ class UserProfileScreen extends StatelessWidget {
 
   void navigationAction() {
     Get.offAll(
-      const RoleSelectionScreen(),
+      const LoginPage(),
       transition: Transition.cupertino,
       fullscreenDialog: GetPlatform.isAndroid,
       duration: const Duration(milliseconds: 600),
