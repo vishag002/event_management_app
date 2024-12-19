@@ -32,13 +32,20 @@ class ForgotPasswordScreen extends StatelessWidget {
 }
 
 _header(context) {
-  return const Column(
+  return Column(
     children: [
       Text(
         "Forgot Password",
-        style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+        style: TextConstants.appTitle.copyWith(
+          fontSize: 40,
+        ),
       ),
-      Text("Enter your Email"),
+      Text(
+        "Enter your Email",
+        style: TextConstants.formLabel.copyWith(
+          color: ColorConstants.textSecondary,
+        ),
+      ),
     ],
   );
 }

@@ -90,6 +90,10 @@ flutter:
         - asset: assets/fonts/Roboto-Regular.ttf
         - asset: assets/fonts/Roboto-Bold.ttf
           weight: 700
+    - family: Helvetica
+      fonts:
+        - asset: assets/fonts/Helvetica.ttf
+        - asset: assets/fonts/Helvetica-Bold.ttf
     # - family: Trajan Pro
     #   fonts:
     #     - asset: fonts/TrajanPro.ttf

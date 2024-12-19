@@ -24,19 +24,20 @@ class SignupPage extends StatelessWidget {
               Column(
                 children: <Widget>[
                   const SizedBox(height: 60.0),
-                  const Text(
+                  Text(
                     "Sign up",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
+                    style: TextConstants.appTitle.copyWith(
+                      fontSize: 32,
                     ),
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  // const SizedBox(
+                  //   height: 20,
+                  // ),
                   Text(
                     "Create your account",
-                    style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                    style: TextConstants.formLabel.copyWith(
+                      color: ColorConstants.textSecondary,
+                    ),
                   )
                 ],
               ),
@@ -96,23 +97,25 @@ class SignupPage extends StatelessWidget {
                 ],
               ),
               Container(
-                  padding: const EdgeInsets.only(top: 3, left: 3),
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      shape: const StadiumBorder(),
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      backgroundColor: ColorConstants.primaryForeground,
+                padding: const EdgeInsets.only(top: 3, left: 3),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    shape: const StadiumBorder(),
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: ColorConstants.primaryForeground,
+                  ),
+                  child: Text(
+                    "Sign up",
+                    style: TextConstants.buttonText.copyWith(
+                      fontSize: 20,
                     ),
-                    child: Text("Sign up",
-                        style: TextConstants.buttonText.copyWith(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w400,
-                        )),
-                  )),
+                  ),
+                ),
+              ),
               const Center(child: Text("Or")),
               Container(
-                height: 45,
+                height: 55,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   border: Border.all(
@@ -144,11 +147,11 @@ class SignupPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 18),
-                      const Text(
+                      Text(
                         "Sign In with Google",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: ColorConstants.primaryForeground,
+                        style: TextConstants.buttonText2.copyWith(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ],
@@ -158,15 +161,19 @@ class SignupPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const Text("Already have an account?"),
+                  Text(
+                    "Already have an account?",
+                    style: TextConstants.errorText
+                        .copyWith(color: ColorConstants.textPrimary),
+                  ),
                   TextButton(
                       onPressed: () {
                         Get.to(LoginPage());
                       },
-                      child: const Text(
+                      child: Text(
                         "Login",
-                        style:
-                            TextStyle(color: ColorConstants.primaryForeground),
+                        style: TextConstants.errorText
+                            .copyWith(color: ColorConstants.primaryForeground),
                       ))
                 ],
               )

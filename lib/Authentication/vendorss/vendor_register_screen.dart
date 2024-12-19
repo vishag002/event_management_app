@@ -110,18 +110,19 @@ class _VendorRegisterScreenState extends State<VendorRegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Existing header
-                const Text(
+                Text(
                   "Sign up",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
+                  style: TextConstants.appTitle.copyWith(
+                    fontSize: 32,
                   ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 10),
                 Text(
                   "Create your vendor account",
-                  style: TextStyle(fontSize: 15, color: Colors.grey[700]),
+                  style: TextConstants.formLabel.copyWith(
+                    color: ColorConstants.textSecondary,
+                  ),
                   textAlign: TextAlign.center,
                 ),
                 const SizedBox(height: 30),
@@ -208,11 +209,7 @@ class _VendorRegisterScreenState extends State<VendorRegisterScreen> {
                   ),
                   child: Text(
                     "Sign up",
-                    style: TextConstants.buttonText.copyWith(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.white,
-                    ),
+                    style: TextConstants.buttonText.copyWith(),
                   ),
                 ),
                 const SizedBox(height: 5),

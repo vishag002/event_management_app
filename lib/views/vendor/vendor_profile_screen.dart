@@ -1,5 +1,4 @@
 import 'package:event_management_app/Authentication/login_new.dart';
-import 'package:event_management_app/Authentication/role_selection_screen.dart';
 import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:flutter/cupertino.dart';
@@ -60,13 +59,9 @@ class VendorProfileScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             // Vendor Name
-            const Text(
+            Text(
               "ABC Limited",
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+              style: TextConstants.appTitle,
             ),
             const SizedBox(height: 8),
 
@@ -85,9 +80,8 @@ class VendorProfileScreen extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     "Verified Vendor",
-                    style: TextStyle(
+                    style: TextConstants.bodyText.copyWith(
                       color: Colors.green.shade700,
-                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -125,11 +119,10 @@ class VendorProfileScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'Contact Information',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
+                    style: TextConstants.headline.copyWith(
+                      fontSize: 20,
                     ),
                   ),
                   const SizedBox(height: 20),

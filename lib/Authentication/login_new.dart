@@ -65,13 +65,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _header(context) {
-    return const Column(
+    return Column(
       children: [
         Text(
           "Welcome Back",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+          style: TextConstants.appTitle.copyWith(
+            fontSize: 40,
+          ),
         ),
-        Text("Enter your credential to login"),
+        Text(
+          "Enter your credential to login",
+          style: TextConstants.formLabel.copyWith(
+            color: ColorConstants.textSecondary,
+          ),
+        ),
       ],
     );
   }
@@ -154,9 +161,10 @@ class _LoginPageState extends State<LoginPage> {
           duration: const Duration(milliseconds: 600),
         );
       },
-      child: const Text(
+      child: Text(
         "Forgot password?",
-        style: TextStyle(color: ColorConstants.primaryForeground),
+        style: TextConstants.errorText
+            .copyWith(color: ColorConstants.primaryForeground),
       ),
     );
   }
@@ -171,9 +179,10 @@ class _LoginPageState extends State<LoginPage> {
           duration: const Duration(milliseconds: 600),
         );
       },
-      child: const Text(
+      child: Text(
         "Sign in as a guest",
-        style: TextStyle(color: ColorConstants.primaryForeground),
+        style: TextConstants.errorText
+            .copyWith(color: ColorConstants.primaryForeground),
       ),
     );
   }
@@ -195,9 +204,10 @@ class _LoginPageState extends State<LoginPage> {
                   duration: const Duration(milliseconds: 600),
                 );
               },
-              child: const Text(
+              child: Text(
                 "Sign up",
-                style: TextStyle(color: ColorConstants.primaryForeground),
+                style: TextConstants.errorText
+                    .copyWith(color: ColorConstants.primaryForeground),
               ),
             )
           ],
@@ -217,9 +227,10 @@ class _LoginPageState extends State<LoginPage> {
                   duration: const Duration(milliseconds: 600),
                 );
               },
-              child: const Text(
+              child: Text(
                 "Sign up",
-                style: TextStyle(color: ColorConstants.primaryForeground),
+                style: TextConstants.errorText
+                    .copyWith(color: ColorConstants.primaryForeground),
               ),
             )
           ],

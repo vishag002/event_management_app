@@ -41,13 +41,9 @@ class UserVendorProfile extends StatelessWidget {
             const SizedBox(height: 20),
 
             // Vendor Name
-            const Text(
+            Text(
               "ABC Limited",
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Colors.black87,
-              ),
+              style: TextConstants.appTitle,
             ),
             const SizedBox(height: 8),
 
@@ -65,9 +61,8 @@ class UserVendorProfile extends StatelessWidget {
                   const SizedBox(width: 4),
                   Text(
                     "Verified Vendor",
-                    style: TextStyle(
+                    style: TextConstants.bodyText.copyWith(
                       color: Colors.green.shade700,
-                      fontSize: 13,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -147,11 +142,10 @@ class UserVendorProfile extends StatelessWidget {
                 children: [
                   _serviceManagerWidget(),
                   const SizedBox(height: 20),
-                  const Text(
+                  Text(
                     "About",
-                    style: TextStyle(
+                    style: TextConstants.headline.copyWith(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -172,11 +166,10 @@ class UserVendorProfile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     "Services Provided",
-                    style: TextStyle(
+                    style: TextConstants.headline.copyWith(
                       fontSize: 20,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -378,19 +371,17 @@ Widget _serviceManagerWidget() {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Service Manager Available",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black87,
+                      "Event Manager Available",
+                      style: TextConstants.bodyText.copyWith(
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       "Starting from ₹500",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.grey[600],
+                      style: TextConstants.errorText.copyWith(
+                        color: ColorConstants.textSecondary,
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ],
@@ -412,10 +403,8 @@ Widget _serviceManagerWidget() {
                   ),
                   child: Text(
                     "Connect now",
-                    style: TextStyle(
-                      color: ColorConstants.primaryWhite,
+                    style: TextConstants.buttonText.copyWith(
                       fontSize: 14,
-                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),

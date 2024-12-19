@@ -343,10 +343,8 @@ Widget eventManagerWidget(BuildContext context) {
         const SizedBox(width: 12),
         Text(
           "Hire an Event Manager",
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
+          style: TextConstants.subheading.copyWith(
+            color: ColorConstants.primaryWhite,
             letterSpacing: 0.5,
           ),
         ),

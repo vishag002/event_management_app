@@ -1,5 +1,6 @@
 import 'package:event_management_app/Authentication/login_new.dart';
 import 'package:event_management_app/Authentication/role_selection_screen.dart';
+import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/views/user/user_edit_profile_screen.dart';
 import 'package:event_management_app/views/user/user_faq_screen.dart';
 import 'package:event_management_app/views/user/user_security_screen.dart';
@@ -43,22 +44,12 @@ class UserProfileScreen extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 16),
-        Text(
-          "John Doe",
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
+        Text("John Doe", style: TextConstants.headline.copyWith()),
         const SizedBox(height: 8),
-        Text(
-          "john.doe@gmail.com",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey.shade600,
-          ),
-        ),
+        Text("john.doe@gmail.com",
+            style: TextConstants.formLabel.copyWith(
+                color: ColorConstants.textSecondary,
+                fontWeight: FontWeight.w600)),
       ],
     );
   }

@@ -64,17 +64,22 @@ class _ForgotPassWordOtpScreenState extends State<ForgotPassWordOtpScreen> {
   }
 
   Widget _header() {
-    return const Column(
+    return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
           "Verification",
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+          style: TextConstants.appTitle.copyWith(
+            fontSize: 32,
+          ),
         ),
         SizedBox(height: 10),
         Text(
           "Enter the 4-digit code sent to your email/phone.",
           textAlign: TextAlign.center,
+          style: TextConstants.formLabel.copyWith(
+            color: ColorConstants.textSecondary,
+          ),
         ),
       ],
     );

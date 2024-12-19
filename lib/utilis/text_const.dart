@@ -1,85 +1,86 @@
 // text_const.dart
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'color_const.dart'; // Import color constants for consistent colors
 
 class TextConstants {
   // App Title
-  static final TextStyle appTitle = GoogleFonts.montserrat(
+  static final TextStyle appTitle = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
     color: ColorConstants.textPrimary, // Primary text color
   );
 
   // Headline TextStyle
-  static final TextStyle headline = GoogleFonts.montserrat(
+  static final TextStyle headline = TextStyle(
     fontSize: 22,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Helvetica',
     color: ColorConstants.textPrimary,
   );
 
   // Subheading TextStyle
-  static final TextStyle subheading = GoogleFonts.hind(
+  static final TextStyle subheading = TextStyle(
     fontSize: 18,
     fontWeight: FontWeight.w500,
+    fontFamily: 'Helvetica',
     color: ColorConstants.textPrimary,
   );
   // Body TextStyle
-  static TextStyle bodyText = GoogleFonts.hind(
+  static TextStyle bodyText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
-    // fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.textPrimary,
   );
 
   // Secondary TextStyle (for lighter text, such as subtitles or descriptions)
-  static TextStyle bodyTextSecondary = GoogleFonts.hind(
+  static TextStyle bodyTextSecondary = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.normal,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.textSecondary, // Lighter text color
   );
 
   // Button TextStyle
-  static TextStyle buttonText = GoogleFonts.hind(
+  static TextStyle buttonText = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.buttonText, // White text for buttons
   );
-  static TextStyle buttonText2 = GoogleFonts.hind(
+  static TextStyle buttonText2 = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w600,
     //fontFamily: 'Roboto',
     color: ColorConstants.primaryForeground, // White text for buttons
   );
-  static TextStyle buttonTextSmall = GoogleFonts.hind(
+  static TextStyle buttonTextSmall = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.w600,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.buttonText, // White text for buttons
   );
 
   // Error TextStyle
-  static TextStyle errorText = GoogleFonts.hind(
+  static TextStyle errorText = TextStyle(
     fontSize: 14,
     fontWeight: FontWeight.normal,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: Colors.red, // Red for error messages
   );
 
   // Form Label TextStyle
-  static TextStyle formLabel = GoogleFonts.hind(
+  static TextStyle formLabel = TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.textPrimary,
   );
-  static TextStyle smallHighlightText = GoogleFonts.hind(
+  static TextStyle smallHighlightText = TextStyle(
     fontSize: 13,
     fontWeight: FontWeight.w500,
-    //fontFamily: 'Roboto',
+    fontFamily: 'Helvetica',
     color: ColorConstants.textSecondary,
   );
 }

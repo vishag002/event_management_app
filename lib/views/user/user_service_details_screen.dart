@@ -2,7 +2,6 @@ import 'package:event_management_app/utilis/color_const.dart';
 import 'package:event_management_app/utilis/text_const.dart';
 import 'package:event_management_app/views/user/user_vendor_profile.dart';
 import 'package:event_management_app/views/user/widgets/user_carousel_view_widget.dart';
-import 'package:event_management_app/views/vendor/widgets/carousel_widget_.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
