@@ -98,7 +98,12 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to(UserSelectCity());
+                            Get.to(
+                              UserSelectCity(),
+                              transition: Transition.cupertino,
+                              fullscreenDialog: GetPlatform.isAndroid,
+                              duration: const Duration(milliseconds: 600),
+                            );
                           },
                           child: Container(
                             alignment: Alignment.centerLeft,
@@ -131,7 +136,12 @@ class _UserHomeScreenState extends State<UserHomeScreen>
                         ),
                         InkWell(
                           onTap: () {
-                            Get.to(UserSearchScreen());
+                            Get.to(
+                              UserSearchScreen(),
+                              transition: Transition.cupertino,
+                              fullscreenDialog: GetPlatform.isAndroid,
+                              duration: const Duration(milliseconds: 600),
+                            );
                           },
                           child: Container(
                             //width: 40,
@@ -242,7 +252,12 @@ class _UserHomeScreenState extends State<UserHomeScreen>
           padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: () {
-              Get.to(const UserServiceDetailsScreen());
+              Get.to(
+                const UserServiceDetailsScreen(),
+                transition: Transition.cupertino,
+                fullscreenDialog: GetPlatform.isAndroid,
+                duration: const Duration(milliseconds: 600),
+              );
             },
             child: const ExploreScreenList(
               icon: IconsaxPlusLinear.heart,
@@ -258,75 +273,32 @@ class _UserHomeScreenState extends State<UserHomeScreen>
     return ListView.builder(
       shrinkWrap: true,
       controller: scrollController,
-      padding: EdgeInsets.only(top: 10),
+      padding: EdgeInsets.only(top: 0),
       itemCount: 1, // Use the number of categories
       itemBuilder: (context, categoryIndex) {
         // Get the current category based on the tab index
         Category currentCategory = categories[_tabController.index - 1];
 
-        return Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: currentCategory.subCategories.map((subCategory) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: InkWell(
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: currentCategory.subCategories.map((subCategory) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: .0),
+              child: InkWell(
                   onTap: () {
-                    Get.to(const SearchResultScreen());
+                    Get.to(
+                      const CategoryServiceViewScreen(),
+                      transition: Transition.cupertino,
+                      fullscreenDialog: GetPlatform.isAndroid,
+                      duration: const Duration(milliseconds: 600),
+                    );
                   },
-                  child: Container(
-                    height: 200,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: Colors.black12,
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    child: Stack(
-                      children: [
-                        // Background Image
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(30),
-                          child: Image.network(
-                            subCategory.imageUrl,
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                            height: double.infinity,
-                          ),
-                        ),
-                        // Overlay for text visibility
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(30),
-                            gradient: LinearGradient(
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                              colors: [
-                                Colors.transparent,
-                                Colors.black.withOpacity(0.7),
-                              ],
-                            ),
-                          ),
-                        ),
-                        // Subcategory Name
-                        Positioned(
-                          bottom: 20,
-                          left: 20,
-                          child: Text(
-                            subCategory.name,
-                            style: TextConstants.buttonText2.copyWith(
-                              color: Colors.white,
-                              fontSize: 18,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }).toList(),
-          ),
+                  child: categoryTiles(
+                    imageUrl: subCategory.imageUrl,
+                    name: subCategory.name,
+                  )),
+            );
+          }).toList(),
         );
       },
     );
@@ -388,6 +360,51 @@ Widget eventManagerWidget(BuildContext context) {
     ),
   );
 }
+////
+
+Widget categoryTiles({required imageUrl, required name}) {
+  return Card(
+    color: ColorConstants.primaryWhite,
+    child: ListTile(
+      minTileHeight: 65,
+      onTap: () {
+        Get.to(
+          () => CategoryServiceViewScreen(),
+          transition: Transition.cupertino,
+          fullscreenDialog: GetPlatform.isAndroid,
+          duration: const Duration(milliseconds: 600),
+        );
+      },
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(8),
+        child: Image.network(
+          imageUrl,
+          width: 60,
+          height: 60,
+          fit: BoxFit.cover,
+        ),
+      ),
+      title: Text(
+        name,
+        style: TextConstants.subheading.copyWith(
+          fontWeight: FontWeight.bold,
+          color: ColorConstants.textPrimary.withOpacity(.7),
+        ),
+      ),
+      trailing: Icon(
+        Icons.arrow_forward_ios,
+        size: 16,
+        color: Colors.grey[600],
+      ),
+      contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+    ),
+  );
+}
+
+
+
+
+
 //event manager
 
 

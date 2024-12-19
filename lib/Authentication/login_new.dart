@@ -8,46 +8,55 @@ import 'package:event_management_app/views/vendor/vendor_bottom_nav_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final TextEditingController userNameController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
+  _LoginPageState createState() => _LoginPageState();
+}
 
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController userNameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorConstants.backgroundPrimary,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .05,
-                ),
-                _header(context),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .1,
-                ),
-                _inputField(context, userNameController, passwordController),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .08,
-                ),
-                Column(
-                  children: [
-                    _forgotPassword(context),
-                    _guestUserSignIn(context),
-                  ],
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * .2,
-                ),
-                _signup(context),
-              ],
+            child: Form(
+              key: _formKey,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .05,
+                  ),
+                  _header(context),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .1,
+                  ),
+                  _inputField(context),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .08,
+                  ),
+                  Column(
+                    children: [
+                      _forgotPassword(context),
+                      _guestUserSignIn(context),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .2,
+                  ),
+                  _signup(context),
+                ],
+              ),
             ),
           ),
         ),
@@ -67,11 +76,12 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  _inputField(context, userNameController, passwordController) {
+  _inputField(context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        TextField(
+        TextFormField(
+          cursorColor: ColorConstants.primaryForeground,
           controller: userNameController,
           decoration: InputDecoration(
               hintText: "Username",
@@ -81,9 +91,16 @@ class LoginPage extends StatelessWidget {
               fillColor: ColorConstants.primaryForeground.withOpacity(0.1),
               filled: true,
               prefixIcon: const Icon(Icons.person)),
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your username';
+            }
+            return null;
+          },
         ),
         const SizedBox(height: 10),
-        TextField(
+        TextFormField(
+          cursorColor: ColorConstants.primaryForeground,
           controller: passwordController,
           decoration: InputDecoration(
             hintText: "Password",
@@ -95,21 +112,23 @@ class LoginPage extends StatelessWidget {
             prefixIcon: const Icon(Icons.password),
           ),
           obscureText: true,
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter your password';
+            }
+            return null;
+          },
         ),
         const SizedBox(height: 10),
         ElevatedButton(
           onPressed: () {
-            // Get.offAll(
-            //   const UserBottomNavBar(),
-            //   transition: Transition.cupertino,
-            //   fullscreenDialog: GetPlatform.isAndroid,
-            //   duration: const Duration(milliseconds: 600),
-            // );
-            handleLogin(
-              context,
-              userNameController.text,
-              passwordController.text,
-            );
+            if (_formKey.currentState!.validate()) {
+              handleLogin(
+                context,
+                userNameController.text,
+                passwordController.text,
+              );
+            }
           },
           style: ElevatedButton.styleFrom(
             shape: const StadiumBorder(),
@@ -130,6 +149,9 @@ class LoginPage extends StatelessWidget {
       onTap: () {
         Get.to(
           ForgotPasswordScreen(),
+          transition: Transition.cupertino,
+          fullscreenDialog: GetPlatform.isAndroid,
+          duration: const Duration(milliseconds: 600),
         );
       },
       child: const Text(
@@ -206,7 +228,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-////login function
+  ////login function
   void handleLogin(
       BuildContext context, String enteredUsername, String enteredPassword) {
     // Define user credentials
@@ -231,24 +253,17 @@ class LoginPage extends StatelessWidget {
         MaterialPageRoute(builder: (context) => VendorBottomNavBar()),
       );
     } else {
-      // Show error dialog for incorrect credentials
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: Text("Login Failed"),
+      // Show SnackBar for incorrect credentials
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
           content: Text("Invalid username or password. Please try again."),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text("OK"),
-            ),
-          ],
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
         ),
       );
     }
   }
 }
-
 //google sign in widget
 // Widget googleSignInWidget() {
 //   return Container(
